@@ -1,61 +1,103 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>サンプルホームページ</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #333;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-    nav {
-      background-color: #f2f2f2;
-      overflow: hidden;
-    }
-    nav a {
-      float: left;
-      color: #333;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-    nav a:hover {
-      background-color: #ddd;
-    }
-    section {
-      padding: 20px;
-    }
-    footer {
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 10px;
-    }
-  </style>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SurfQit Tutorial</title>
+    <style>
+        body {
+            font-family: "MS P ゴシック", sans-serif;
+            margin: 0;
+            padding: 0;
+          line-height:200%;
+        }
+        .top-bar {
+            background-color: SteelBlue;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+          
+            width: 20%;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: #333;
+            cursor: pointer;
+        }
+        .content {
+            width: 80%;
+            padding: 20px;
+        }
+        /* Add more styling as needed */
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            font-size: 14px; /* 中項目のフォントサイズに合わせる */
+            cursor: pointer;
+            margin: 0; /* タイトルの上下の余白を削除 */
+        }
+        .section-content {
+            display: none;
+        }
+        .section-content.active {
+            display: block;
+        }
+
+    </style>
 </head>
 <body>
-  <header>
-    <h1>サンプルホームページ</h1>
-  </header>
-  <nav>
-    <a href="#">ホーム</a>
-    <a href="#">製品</a>
-    <a href="#">サービス</a>
-    <a href="#">お問い合わせ</a>
-  </nav>
-  <section>
-    <h2>ようこそ</h2>
-    <p>当社のホームページへようこそ。私たちは高品質な製品とサービスを提供しています。</p>
-  </section>
-  <footer>
-    <p>&copy; 2023 サンプルホームページ</p>
-  </footer>
+    <div class="top-bar"><strong>SurfQit</strong></div>
+    <div class="container">
+        <div class="sidebar">
+          <h2>目次</h2>
+            <div class="section">
+                <h2 onclick="toggleSection('section1')">1. 導入</h2>
+            </div>
+            <div class="section">
+                <h2 onclick="toggleSection('section2')">2. 表面モデリング方法の種類と分類</h2>
+            </div>
+            <div class="section">
+                <h2 onclick="toggleSection('section3')">3. 一般的なpythonでの表面モデリング</h2>
+            </div>
+            <div class="section">
+                <h2 onclick="toggleSection('section4')">4. 量子アニーリングとは</h2>
+            </div>
+            <div class="section">
+                <h2 onclick="toggleSection('section5')">5. 量子アニーリングを用いた表面モデリング</h2>
+            </div>
+            <!-- Add other sections as needed -->
+        </div>
+        <div class="content">
+            <h1>SurfQit Tutorial</h1>
+            <p>SurfQitは材料開発に向けた材料表面モデリングを行うソフトウェアです。<br>このチュートリアルではSurfQitを使用するうえで必要な知識や具体的なコードを学ぶことのできる教材となります。<br>また、以下のBinderにアクセスすることで実際にコードを動かしてインタラクティブに材料表面モデリングを学ぶことができます。</p>
+            <br>
+            <h2>本チュートリアルの対象読者と到達点</h2>
+         　 <p1>本チュートリアルの対象読者は材料開発に携わる計算研究者および実験研究者となります。<br>また、本チュートリアルの到達点としては以下を想定しています。<br>
+             <ul>
+               <li>理論計算を行う方が自身の研究の中で複雑な材料に対しても計算モデルを作成することができる。</li>
+               <li>実験を行う方が自身の研究に役立てることができる計算モデルを作成することができる。</li>
+               </ul>
+</p1><br>
+          <h2>材料科学における表面モデリングの重要性</h2>
+          <p1
+          <p1>&nbsp&nbsp&nbsp材料科学とは、様々な製品や用途で使われる材料の性質を評価し、新たな機能を持つ材料を開発する分野です。主に無機材料と有機材料に大きく分類することができ、触媒や電池など様々な応用先があります。本ソフトウェアでは特に無機材料に注目しています。<p1>
+            <!-- Add more content -->
+        </div>
+    </div>
+    <script>
+        function toggleSection(sectionId) {
+            const sectionContent = document.getElementById(sectionId);
+            sectionContent.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
