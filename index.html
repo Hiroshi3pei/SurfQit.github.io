@@ -7,6 +7,7 @@
     <style>
         body {
             font-family: "MS P ゴシック", sans-serif;
+            color: dimgray;
             margin: 0;
             padding: 0;
           line-height:200%;
@@ -29,7 +30,7 @@
         }
         .sidebar a {
             text-decoration: none;
-            color: #333;
+            color: dimgrey;
             cursor: pointer;
         }
         .content {
@@ -60,19 +61,21 @@
         <div class="sidebar">
           <h2>目次</h2>
             <div class="section">
-                <h2 onclick="toggleSection('section1')">1. 導入</h2>
+                <a href="./index.html" id="section1" onclick="toggleSection('section1')"><strong>1. 導入</strong></a>
+              
+            </div>
+          
+            <div class="section">
+                <a href="./classification.html" id="section2" onclick="toggleSection('section2')"><strong>2. 表面モデリング方法の種類と分類</strong></a>
             </div>
             <div class="section">
-                <h2 onclick="toggleSection('section2')">2. 表面モデリング方法の種類と分類</h2>
+                <a href="./previous.html" id="section3" onclick="toggleSection('section3')"><strong>3. 一般的なpythonでの表面モデリング</strong></a>
             </div>
             <div class="section">
-                <h2 onclick="toggleSection('section3')">3. 一般的なpythonでの表面モデリング</h2>
+                <a href="./annealing.html" id="section4" onclick="toggleSection('section4')"><strong>4. 量子アニーリングとは</strong></a>
             </div>
             <div class="section">
-                <h2 onclick="toggleSection('section4')">4. 量子アニーリングとは</h2>
-            </div>
-            <div class="section">
-                <h2 onclick="toggleSection('section5')">5. 量子アニーリングを用いた表面モデリング</h2>
+                <a href="./surfqit.html" id="section5" onclick="toggleSection('section5')"><strong>5. 量子アニーリングを用いた表面モデリング</strong></a>
             </div>
             <!-- Add other sections as needed -->
         </div>
