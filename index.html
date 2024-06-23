@@ -5,102 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SurfQit Tutorial</title>
     <style>
-        body {
-            font-family: "MS P ゴシック", sans-serif;
-            color: dimgray;
-            margin: 0;
-            padding: 0;
-          line-height:200%;
-        }
-        .top-bar {
-            background-color: SteelBlue;
-            color: white;
-            padding: 10px;
-            text-align: left;
-        }
-        .container {
-            display: flex;
-            min-height: 100vh;
-        }
-        .sidebar {
-          
-            width: 20%;
-            background-color: #f0f0f0;
-            padding: 20px;
-        }
-        .sidebar a {
-            text-decoration: none;
-            color: dimgrey;
-            cursor: pointer;
-        }
-        .content {
-            width: 80%;
-            padding: 20px;
-        }
-        /* Add more styling as needed */
-        .section {
-            margin-bottom: 20px;
-        }
-        .section h2 {
-            font-size: 14px; /* 中項目のフォントサイズに合わせる */
-            cursor: pointer;
-            margin: 0; /* タイトルの上下の余白を削除 */
-        }
-        .section-content {
-            display: none;
-        }
-        .section-content.active {
-            display: block;
-        }
-
+      body {
+        font-family: "FontAwesome", "Arial";
+        color: #333333;
+        margin: 0;
+        padding: 0;
+        padding-top: 60px;
+        line-height:200%;
+      }
+      .top-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        font-size: 20px;
+        background: linear-gradient(90deg,#333399,#336699);
+        color: white;
+        padding: 10px;
+        text-align: left;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+      }
+      .container {
+        display: flex;
+        min-height: 100vh;
+      }
+      .sidebar {
+        width: 20%;
+        background-color: #f0f0f0;
+        padding: 20px;
+      }
+      .sidebar a {
+        font-size:15px;
+        text-decoration: none;
+        color: #333333;
+        cursor: pointer;
+        line-height: 3;
+      }
+      .content {
+        float: right;
+        width: 80%;
+        padding: 20px;
+      }
+      .section {
+        margin-bottom: 20px;
+      }
+      .section h2 {
+        font-size: 14px; /* 中項目のフォントサイズに合わせる */
+        cursor: pointer;
+        margin: 0; /* タイトルの上下の余白を削除 */
+      }
+      .section-content {
+        display: none;
+      }
+      .section-content.active {
+        display: block;
+      }
+      h2{
+        color: #336699;
+        padding: 0rem 2rem;
+        border-left: 4px solid #336699;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="top-bar"><strong>SurfQit</strong></div>
     <div class="container">
-        <div class="sidebar">
-          <h2>目次</h2>
-            <div class="section">
-                <a href="./index.html" id="section1" onclick="toggleSection('section1')"><strong>1. 導入</strong></a>
-              
-            </div>
-          
-            <div class="section">
-                <a href="./classification.html" id="section2" onclick="toggleSection('section2')"><strong>2. 表面モデリング方法の種類と分類</strong></a>
-            </div>
-            <div class="section">
-                <a href="./previous.html" id="section3" onclick="toggleSection('section3')"><strong>3. 一般的なpythonでの表面モデリング</strong></a>
-            </div>
-            <div class="section">
-                <a href="./annealing.html" id="section4" onclick="toggleSection('section4')"><strong>4. 量子アニーリングとは</strong></a>
-            </div>
-            <div class="section">
-                <a href="./surfqit.html" id="section5" onclick="toggleSection('section5')"><strong>5. 量子アニーリングを用いた表面モデリング</strong></a>
-            </div>
-            <!-- Add other sections as needed -->
-        </div>
+      <div class="sidebar">
+        <h2>目次</h2>
+        <ol style="font-weight: bold;">
+          <li><a href="./index.html"><strong>SurfQit Tutorial</strong></a></li>
+          <li><a href="./classification.html"><strong>表面モデリングの方法</strong></a></li>
+          <li><a href="./previous.html"><strong>一般的な表面モデリング方法</strong></a></li>
+          <li><a href="./annealing.html"><strong>量子アニーリングとは</strong></a></li>
+          <li><a href="./surfqit.html"><strong>量子アニーリングによる表面モデリング</strong></a></li>
+          </div>
         <div class="content">
-            <h1>SurfQit Tutorial</h1>
-            <p>SurfQitは材料開発に向けた材料表面モデリングを行うソフトウェアです。<br>このチュートリアルではSurfQitを使用するうえで必要な知識や具体的なコードを学ぶことのできる教材となります。<br>また、以下のBinderにアクセスすることで実際にコードを動かしてインタラクティブに材料表面モデリングを学ぶことができます。</p>
-            <br>
-            <h2>本チュートリアルの対象読者と到達点</h2>
-         　 <p1>本チュートリアルの対象読者は材料開発に携わる計算研究者および実験研究者となります。<br>また、本チュートリアルの到達点としては以下を想定しています。<br>
-             <ul>
-               <li>理論計算を行う方が自身の研究の中で複雑な材料に対しても計算モデルを作成することができる。</li>
-               <li>実験を行う方が自身の研究に役立てることができる計算モデルを作成することができる。</li>
-               </ul>
-</p1><br>
+          <h1>SurfQit Tutorial</h1>
+          <p>SurfQitは材料開発に向けた材料表面モデリングを行うソフトウェアです。<br> このチュートリアルではSurfQitを使用するうえで必要な知識や具体的なコードを学ぶことのできる教材となります。また、以下のBinderにアクセスすることで実際にコードを動かしてインタラクティブに材料表面モデリングを学ぶことができます。</p>
+          <br>
+          <h2>本チュートリアルの対象読者と到達点</h2>
+          <p1>本チュートリアルの対象読者は材料開発に携わる計算研究者および実験研究者となります。また、本チュートリアルの到達点としては以下を想定しています。<br>
+            <ul>
+              <li><strong>理論計算</strong>を行う方が自身の研究の中で複雑な材料に対しても計算モデルを作成することができる。</li>
+              <li><strong>実験</strong>を行う方が自身の研究に役立てることができる計算モデルを作成することができる。</li>
+            </ul></p1>
+          <br>
           <h2>材料科学における表面モデリングの重要性</h2>
-          <p1
           <p1>&nbsp&nbsp&nbsp材料科学とは、様々な製品や用途で使われる材料の性質を評価し、新たな機能を持つ材料を開発する分野です。主に無機材料と有機材料に大きく分類することができ、触媒や電池など様々な応用先があります。本ソフトウェアでは特に無機材料に注目しています。<p1>
             <!-- Add more content -->
-        </div>
-    </div>
-    <script>
-        function toggleSection(sectionId) {
-            const sectionContent = document.getElementById(sectionId);
-            sectionContent.classList.toggle('active');
-        }
-    </script>
-</body>
-</html>
+            </div>
+            </div>
+          </body>
+        </html>
