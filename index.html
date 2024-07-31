@@ -4,96 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SurfQit Tutorial</title>
-    <style>
-      body {
-        font-family: "FontAwesome", "Arial";
-        color: #333333;
-        margin: 0;
-        padding: 0;
-        padding-top: 60px;
-        line-height:200%;
-      }
-      .top-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        font-size: 20px;
-        background: linear-gradient(90deg,#333399,#336699);
-        color: white;
-        padding: 10px;
-        text-align: left;
-        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
-      }
-      .container {
-        display: flex;
-        min-height: 100vh;
-      }
-      .sidebar {
-        width: 20%;
-        background-color: #f0f0f0;
-        padding: 20px;
-      }
-      .sidebar a {
-        font-size:15px;
-        text-decoration: none;
-        color: #333333;
-        cursor: pointer;
-        line-height: 3;
-      }
-      .content {
-        float: right;
-        width: 80%;
-        padding: 20px;
-      }
-      .section {
-        margin-bottom: 20px;
-      }
-      .section h2 {
-        font-size: 14px; /* 中項目のフォントサイズに合わせる */
-        cursor: pointer;
-        margin: 0; /* タイトルの上下の余白を削除 */
-      }
-      .section-content {
-        display: none;
-      }
-      .section-content.active {
-        display: block;
-      }
-      h2{
-        color: #336699;
-        padding: 0rem 2rem;
-        border-left: 4px solid #336699;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="top-bar"><strong>SurfQit</strong></div>
-    <div class="container">
-      <div class="sidebar">
-        <h2>目次</h2>
-        <ol style="font-weight: bold;">
-          <li><a href="./index.html"><strong>SurfQit Tutorial</strong></a></li>
-          <li><a href="./classification.html"><strong>表面モデリングの方法</strong></a></li>
-          <li><a href="./previous.html"><strong>一般的な表面モデリング方法</strong></a></li>
-          <li><a href="./annealing.html"><strong>量子アニーリングとは</strong></a></li>
-          <li><a href="./surfqit.html"><strong>量子アニーリングによる表面モデリング</strong></a></li>
-          </div>
-        <div class="content">
-          <h1>SurfQit Tutorial</h1>
-          <p>SurfQitは材料開発に向けた材料表面モデリングを行うソフトウェアです。<br> このチュートリアルではSurfQitを使用するうえで必要な知識や具体的なコードを学ぶことのできる教材となります。また、以下のBinderにアクセスすることで実際にコードを動かしてインタラクティブに材料表面モデリングを学ぶことができます。</p>
-          <br>
-          <h2>本チュートリアルの対象読者と到達点</h2>
-          <p1>本チュートリアルの対象読者は材料開発に携わる計算研究者および実験研究者となります。また、本チュートリアルの到達点としては以下を想定しています。<br>
-            <ul>
-              <li><strong>理論計算</strong>を行う方が自身の研究の中で複雑な材料に対しても計算モデルを作成することができる。</li>
-              <li><strong>実験</strong>を行う方が自身の研究に役立てることができる計算モデルを作成することができる。</li>
-            </ul></p1>
-          <br>
-          <h2>材料科学における表面モデリングの重要性</h2>
-          <p1>&nbsp&nbsp&nbsp材料科学とは、様々な製品や用途で使われる材料の性質を評価し、新たな機能を持つ材料を開発する分野です。主に無機材料と有機材料に大きく分類することができ、触媒や電池など様々な応用先があります。本ソフトウェアでは特に無機材料に注目しています。<p1>
-            <!-- Add more content -->
-            </div>
-            </div>
-          </body>
-        </html>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <div class="top-bar"><strong>SurfQit</strong></div>
+  <div class="side">
+    <div class="side_content">
+      <h2>目次</h2>
+      <ol style="font-weight: bold;">
+        <li><a href="./index.html"><strong>SurfQit Tutorial</strong></a></li>
+        <li><a href="./classification.html"><strong>表面モデリングの方法</strong></a></li>
+        <li><a href="./previous.html"><strong>一般的な表面モデリング方法</strong></a></li>
+        <li><a href="./annealing.html"><strong>量子アニーリングとは</strong></a></li>
+        <li><a href="./surfqit.html"><strong>量子アニーリングによる表面モデリング</strong></a></li>
+      </ol>
+    </div>
+  </div>
+  <div class="main_content">
+    <h1>SurfQit Tutorial</h1>
+    <p>SurfQitは材料開発に向けた材料表面モデリングを行うソフトウェアです。<br> このチュートリアルではSurfQitを使用するうえで必要な知識や具体的なコードを学ぶことができる教材となります。また、以下のBinderにアクセスすることで実際にコードを動かしてインタラクティブに材料表面モデリングを学ぶことができます。</p>
+    <section id="section1">
+      <h2>本チュートリアルの対象読者と到達点</h2>
+      <p>本チュートリアルの対象読者は材料開発に携わる計算研究者および実験研究者となります。また、本チュートリアルの到達点としては以下を想定しています。</p>
+      <ul>
+        <li><strong>理論計算</strong>を行う方が自身の研究の中で複雑な材料に対しても計算モデルを作成することができる。</li>
+        <li><strong>実験</strong>を行う方が自身の研究に役立てることができる計算モデルを作成することができる。</li>
+      </ul>
+    </section>
+    <section id="section2">
+      <h2>材料科学における表面モデリングの重要性</h2>
+      <p>材料科学とは、様々な製品や用途で使われる材料の性質を評価し、新たな機能を持つ材料を開発する分野です。主に金属材料・無機材料・有機材料に分類することができ、それぞれに様々な応用先があります。</p>
+      <img src="./image1.png",alt="classification of material and its application",>
+      <p>材料はそれぞれに様々な性能を持ちますが、これらの性能の良し悪しは材料構造のマクロな違い(形態など)とミクロな違い(原子配列・電子構造など)からもたらされています。そのため、材料性能の評価は<strong>材料構造を理解</strong>することから始まります。とりわけ触媒や電池として用いられる材料は気体や液体における分子と反応するため、気体-固体界面や液体-固体界面となる<strong>材料表面のミクロな構造を理解</strong>することが重要となります。しかしながら、実験的に材料表面のミクロな構造を観察することは難しいことから、実際の表面構造を原子レベルに再現する<strong>表面モデリング</strong>が必要とされています。</p>
+      <img src="./image2.png",alt="importance of structure understanding",>
+    </section>
+    <section id="section3">
+      <h2>表面モデルの利用先</h2>
+      <p>表面モデリングにより構築した表面モデルは計算研究と実験研究の両方で利用することができます。計算研究の場合、量子化学計算やシミュレーションを行う際のインプットデータとして表面モデルを用いることができます。また、実験研究の場合、赤外分光やX線分光などの構造分析の参照データとして表面モデルを用いることができ、効率的に表面構造から材料特性を説明することができます。</p>
+      <img src="./image3.png",alt="utilization of surface model",>
+      <p>表面モデリングには様々な方法があり、SurfQitでは一般的な表面モデリング方法だけでなく、量子アニーリングを利用した表面モデリング方法により表面モデルを精度高く作成することができます。次の項では表面モデリング方法の種類と分類について触れていきます。</p>
+    </section>
+  </div>
+  <div class="button-container">
+    <a href="classification.html" class="button next-button"><strong>2. 表面モデリングの方法</strong></a>
+  </div>
+</body>
