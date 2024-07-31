@@ -4,86 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SurfQit Tutorial</title>
-    <style>
-      body {
-        font-family: "FontAwesome", "Arial";
-        color: #333333;
-        margin: 0;
-        padding: 0;
-        padding-top: 60px;
-        line-height:200%;
-      }
-      .top-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        font-size: 20px;
-        background: linear-gradient(90deg,#333399,#336699);
-        color: white;
-        padding: 10px;
-        text-align: left;
-        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
-      }
-      .container {
-        display: flex;
-        min-height: 100vh;
-      }
-      .sidebar {
-        width: 20%;
-        background-color: #f0f0f0;
-        padding: 20px;
-      }
-      .sidebar a {
-        font-size:15px;
-        text-decoration: none;
-        color: #333333;
-        cursor: pointer;
-        line-height: 3;
-      }
-      .content {
-        float: right;
-        width: 80%;
-        padding: 20px;
-      }
-      .section {
-        margin-bottom: 20px;
-      }
-      .section h2 {
-        font-size: 14px; /* 中項目のフォントサイズに合わせる */
-        cursor: pointer;
-        margin: 0; /* タイトルの上下の余白を削除 */
-      }
-      .section-content {
-        display: none;
-      }
-      .section-content.active {
-        display: block;
-      }
-      h2{
-        color: #336699;
-        padding: 0rem 2rem;
-        border-left: 4px solid #336699;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="top-bar"><strong>SurfQit</strong></div>
-    <div class="container">
-      <div class="sidebar">
-        <h2>目次</h2>
-        <ol style="font-weight: bold;">
-          <li><a href="./index.html"><strong>SurfQit Tutorial</strong></a></li>
-          <li><a href="./classification.html"><strong>表面モデリングの方法</strong></a></li>
-          <li><a href="./previous.html"><strong>一般的な表面モデリング方法</strong></a></li>
-          <li><a href="./annealing.html"><strong>量子アニーリングとは</strong></a></li>
-          <li><a href="./surfqit.html"><strong>量子アニーリングによる表面モデリング</strong></a></li>
-          </div>
-        <div class="content">
-          <h1>量子アニーリングとは</h1>
-          <p>本文</p>
-            <!-- Add more content -->
-            </div>
-            </div>
-          </body>
-        </html>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <div class="top-bar"><strong>SurfQit</strong></div>
+  <div class="side">
+    <div class="side_content">
+      <h2>目次</h2>
+      <ol style="font-weight: bold;">
+        <li><a href="./index.html"><strong>SurfQit Tutorial</strong></a></li>
+        <li><a href="./classification.html"><strong>表面モデリングの方法</strong></a></li>
+        <li><a href="./previous.html"><strong>一般的な表面モデリング方法</strong></a></li>
+        <li><a href="./annealing.html"><strong>量子アニーリングとは</strong></a></li>
+        <li><a href="./surfqit.html"><strong>量子アニーリングによる表面モデリング</strong></a></li>
+      </ol>
+    </div>
+  </div>
+  <div class="main_content">
+    <h1>量子アニーリングとは</h1>
+    <p>量子アニーリングとは、「組合せ最適化問題を高速かつ正確に解くことができる計算技術」であり、本ページでは以下の流れでその詳細を説明します。</p>
+    <ol>
+      <li>組合せ最適化問題とは</li>
+      <li>従来の古典コンピュータでの限界</li>
+      <li>アニーリングとは</li>
+      <li>量子アニーリングの特徴と利点</li>
+      <li>量子アニーリングの具体例</li>
+      <li>量子アニーリングの応用と課題</li>
+    </ol>
+    <section id="section1">
+      <h2>組合せ最適化問題とは</h2>
+      <p>組合せ最適化問題とは、「膨大な選択肢の中からベストな選択肢を見つけ出す問題」であり、この組合せ最適化問題は「目的地までの最短経路の探索」といった日常的なシーンや「トラック内により多くの荷物を積み込むための荷物配置の最適化」といった配送業界のシーンなど様々なシーンに潜んでいます。こういった組合せ最適化問題を解くことにより、早く目的地に到着できる経路の組合せや、必要とするガソリン/電気量や人件費を削減できる選択肢を導くことができます。</p>
+      <img src="./image1.png",alt="various example of combination optimization",>
+    </section>
+    <section id="section2">
+      <h2>従来の古典コンピュータでの限界</h2>
+      <p>こういった組合せ最適化問題を数値的に解くことは難しく、古典コンピュータでベストな選択肢を見つけるためには、<strong>全ての組合せを確認する</strong>か<strong>近傍探索法などで近似的により良い解を見つけるか</strong>をすることが必要になります。</p>
+      <img src="./image2.png",alt="search method by classic computer",>
+      <p>しかしながら、扱うデータ規模が増加すると検討すべき組合せの数が膨大化し、全ての組合せを確認するために膨大な処理時間や消費エネルギーが必要になります。近年は半導体技術の向上が終焉に近づいているとされているため、古典コンピュータで実問題に近い組合せ最適化問題を解くことは難しいとされています。<br>また、近似的により良い解を見つける方法においても局所解に陥りやすいといった課題もあり、局所解から脱して最適解を見つけ出すプロセスも必要となります。</p>
+      <img src="./image3.png",alt="problem on classic computer",>
+    </section>
+    <section id="section3">
+      <h2>アニーリングとは</h2>
+      <p>上記の課題を受け、高速かつ正確に組合せ最適化問題を解く手法として「アニーリング」に注目されました。アニーリングとは一般的に「金属の焼きなまし」のことを指し、高温で熱した後に徐々に温度を下げていくことで金属の結晶組織を均一化して加工性を向上させることができます。この均一化は、熱によって金属原子の位置がランダムに動き回り、徐々に冷却させることで内部エネルギーが最小となるような金属配列を形成していくことに起因します。</p>
+      <img src="./image4.png",alt="annealing",>
+      <p>そのため、「金属の内部エネルギーの最小化」であるアニーリングをコンピュータ上で再現することにより、組合せ最適化問題におけるベストな選択肢を高速かつ正確に解くことができると着想されました。実際に、金属の焼きなましにおける「金属原子配置」と「その内部エネルギー」をそれぞれ、組合せ最適化問題における「選択肢」と「その選択肢の良さ」に置き換えて関数化することで、アニーリングのアルゴリズムにより組合せ最適化対象となる関数が最小/最大となるベストな選択肢を見つけ出すことができるとされています。</p>
+      <img src="./image5.png",alt="optimization by annealing",>
+    </section>
+    <section id="section4">
+      <h2>量子アニーリングの特徴と利点</h2>
+      <p>アニーリングでは「温度」を変えることでベストな選択肢を得ることができますが、量子アニーリングでは「量子効果」を変えることで制御し、<strong>量子重ね合わせや量子トンネル効果</strong>といった量子の性質を利用した最適化をすることができます。</p>
+      <ul>
+        <li>量子重ね合わせ：古典コンピュータには情報を扱うために0か1を示すbitが複数あり、4bitあれば2^4個の組合せを別々に扱うことができます。一方、量子コンピュータでは0と1の両方を示すbitが複数あり、4bitあれば2^4個の組み合わせを同時に扱うことができます。0と1を同時に持った状態を「量子重ね合わせ」と呼び、この性質を利用することで全ての組合せを一度に表現することができます。</li>
+        <li>量子トンネル効果：古典コンピュータでの近傍探索法では局所解に陥り、最適解を得るためには大きなエネルギー障壁を超える必要があります。一方、量子コンピュータではエネルギー障壁を超えなくともすり抜けることができ、これを「量子トンネル効果」と呼びます。これにより、容易に局所解から脱して最適解を得ることができます。</li>
+      </ul>
+      <img src="./image6.png",alt="quantum feature",>
+      <p>以上より、量子アニーリングでは量子効果を強め、徐々に弱めていくことにより組合せ最適化問題におけるベストな選択肢を高速かつ正確に得ることができるとされています。</p>
+      <img src="./image7.png",alt="SA & QA",>
+    </section>
+    <section id="section5">
+      <h2>量子アニーリングの具体例</h2>
+      <p>量子アニーリングは組合せ最適化問題を解くのに特化した技術であり、様々なケースにおいてその優位性や可能性が示されています。冒頭に述べた「目的地までの最短経路の探索」の具体例を以下に示します。<br>量子アニーリングによる最適化を行う上で「最適化する対象の定式化」が必要となる。「最適化する対象の定式化」のためには変数とそれにより構成される関数を決定する必要がある。今回の「目的地までの最短経路の探索」では通過点となる地点とその地点を何番目に通貨するかが変数となり、それぞれの経路ごとの合計距離を表せるような関数を作成することとなります。</p>
+      <img src="./image8.png",alt="annealing",>
+    </section>
+    <section id="section6">
+      <h2>量子アニーリングの応用と課題</h2>
+      <p>現在は金融、交通、材料、創薬などのように実用的なケースから応用的なケースまで量子アニーリングの適用が進んでいる。しかしながら、組合せの最適化をしたい対象をQUBO形式で記述する必要がある点や扱えるbit数の限界により定式化の工夫が必要な点など様々な困難があり、今後多項式での記述やbit数の増加などが期待されている。</p>
+      <img src="./image8.png",alt="annealing",>
+    </section>
+
+  </div>
+  <div class="button-container">
+    <a href="previous.html" class="button prev-button"><strong>3. 一般的な表面モデリング方法</strong></a>
+    <a href="surfqit.html" class="button next-button"><strong>5. 量子アニーリングによる表面モデリング</strong></a>
+  </div>
+</body>
