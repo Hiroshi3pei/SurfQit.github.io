@@ -4,86 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SurfQit Tutorial</title>
-    <style>
-      body {
-        font-family: "FontAwesome", "Arial";
-        color: #333333;
-        margin: 0;
-        padding: 0;
-        padding-top: 60px;
-        line-height:200%;
-      }
-      .top-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        font-size: 20px;
-        background: linear-gradient(90deg,#333399,#336699);
-        color: white;
-        padding: 10px;
-        text-align: left;
-        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
-      }
-      .container {
-        display: flex;
-        min-height: 100vh;
-      }
-      .sidebar {
-        width: 20%;
-        background-color: #f0f0f0;
-        padding: 20px;
-      }
-      .sidebar a {
-        font-size:15px;
-        text-decoration: none;
-        color: #333333;
-        cursor: pointer;
-        line-height: 3;
-      }
-      .content {
-        float: right;
-        width: 80%;
-        padding: 20px;
-      }
-      .section {
-        margin-bottom: 20px;
-      }
-      .section h2 {
-        font-size: 14px; /* 中項目のフォントサイズに合わせる */
-        cursor: pointer;
-        margin: 0; /* タイトルの上下の余白を削除 */
-      }
-      .section-content {
-        display: none;
-      }
-      .section-content.active {
-        display: block;
-      }
-      h2{
-        color: #336699;
-        padding: 0rem 2rem;
-        border-left: 4px solid #336699;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="top-bar"><strong>SurfQit</strong></div>
-    <div class="container">
-      <div class="sidebar">
-        <h2>目次</h2>
-        <ol style="font-weight: bold;">
-          <li><a href="./index.html"><strong>SurfQit Tutorial</strong></a></li>
-          <li><a href="./classification.html"><strong>表面モデリングの方法</strong></a></li>
-          <li><a href="./previous.html"><strong>一般的な表面モデリング方法</strong></a></li>
-          <li><a href="./annealing.html"><strong>量子アニーリングとは</strong></a></li>
-          <li><a href="./surfqit.html"><strong>量子アニーリングによる表面モデリング</strong></a></li>
-          </div>
-        <div class="content">
-          <h1>量子アニーリングによる表面モデリング</h1>
-          <p>本文</p>
-            <!-- Add more content -->
-            </div>
-            </div>
-          </body>
-        </html>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <div class="top-bar"><strong>SurfQit</strong></div>
+  <div class="side">
+    <div class="side_content">
+      <h2>目次</h2>
+      <ol style="font-weight: bold;">
+        <li><a href="./index.html"><strong>SurfQit Tutorial</strong></a></li>
+        <li><a href="./classification.html"><strong>表面モデリングの方法</strong></a></li>
+        <li><a href="./previous.html"><strong>一般的な表面モデリング方法</strong></a></li>
+        <li><a href="./annealing.html"><strong>量子アニーリングとは</strong></a></li>
+        <li><a href="./surfqit.html"><strong>量子アニーリングによる表面モデリング</strong></a></li>
+      </ol>
+    </div>
+  </div>
+  <div class="main_content">
+    <h1>量子アニーリングによる表面モデリング</h1>
+    <p>SurfQitは量子アニーリングを用いることで表面構造を高速かつ正確にモデリングするソフトウェアです。<br> このページでは実際に表面モデリングを量子アニーリングで行うための具体的な方法を説明します。</p>
+    <section id="section1">
+      <h2>表面モデリングにおける量子アニーリングの適用</h2>
+    </section>
+  </div>
+  <div class="button-container">
+    <a href="annealing.html" class="button prev-button"><strong>4. 量子アニーリングとは</strong></a>
+  </div>
+</body>
