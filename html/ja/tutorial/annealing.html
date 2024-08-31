@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3. 量子アニーリングとは &mdash; SurfQit 1 ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js/language_switcher.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="4. 量子アニーリングによる表面モデリング" href="surfqit.html" />
+    <link rel="prev" title="2. 表面モデリングの分類" href="classification.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SurfQit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="main.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">1. 導入</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classification.html">2. 表面モデリングの分類</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. 量子アニーリングとは</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">3.1. 組合せ最適化問題とは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3.2. 従来の古典コンピュータでの限界</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">3.3. アニーリングとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">3.4. 量子アニーリングの特徴と利点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">3.5. 量子アニーリングの応用と課題</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="surfqit.html">4. 量子アニーリングによる表面モデリング</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../example/main.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../APIreference/main.html">API reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SurfQit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="main.html">Tutorial</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>量子アニーリングとは</li>
+      <li class="wy-breadcrumbs-aside">
+        
+<div id="language-selector">
+  <select onchange="location = this.value;">
+    <option value="/ja" selected>日本語</option>
+    <option value="/en" >English</option>
+  </select>
+</div>
+            <a href="../_sources/tutorial/annealing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">3. </span>量子アニーリングとは<a class="headerlink" href="#id1" title="この見出しへのパーマリンク"></a></h1>
+<p>量子アニーリングとは、「組合せ最適化問題を高速かつ正確に解くことができる計算技術」であり、本ページではその詳細を説明します。</p>
+<section id="id2">
+<h2><span class="section-number">3.1. </span>組合せ最適化問題とは<a class="headerlink" href="#id2" title="この見出しへのパーマリンク"></a></h2>
+<p>組合せ最適化問題とは、「膨大な選択肢の中からベストな選択肢を見つけ出す問題」であり、この組合せ最適化問題は「目的地までの最短経路の探索」といった日常的なシーンや「トラック内に多くの荷物を積み込むための荷物配置の最適化」といった配送業界のシーンなど様々なシーンに潜んでいます。</p>
+<img alt="../_images/image7.png" src="../_images/image7.png" />
+<p>こういった組合せ最適化問題を解くことにより、早く目的地に到着できる経路の組合せや、必要とするガソリン/電気量や人件費を削減できる選択肢を導くことができます。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.2. </span>従来の古典コンピュータでの限界<a class="headerlink" href="#id3" title="この見出しへのパーマリンク"></a></h2>
+<p>上記の組合せ最適化問題を数値的に解くことは難しく、古典コンピュータでベストな選択肢を見つけるためには、全ての組合せを確認するか近傍探索法などで近似的により良い解を見つけるかをする必要があります。</p>
+<img alt="../_images/image8.png" src="../_images/image8.png" />
+<p>しかしながら、実社会において「目的地までの最短経路の探索」を行う場合、経路を決定する曲がり角の数は前に示した図よりとても多くなります。
+また、現実的には「出発地と目的地の間の距離を最小とする経路を探索する」だけでなく、「複数の目的地をどの順番で行くか」や「混雑を回避するためにどの経路で行くか」などの情報を多く考慮する必要があります。</p>
+<p>このように扱うデータ規模が増加した場合、検討すべき組合せの数が指数関数的に膨大化し、全ての組合せを確認するために膨大な処理時間や消費エネルギーが必要になります。
+近年は半導体技術の向上が終焉に近づいているとされているため、古典コンピュータで実問題に近い組合せ最適化問題を解くことは難しいとされています。
+また、近似的により良い解を見つける方法においても局所解に陥りやすいといった課題があり、局所解から脱して最適解を見つけ出すプロセスも必要となります。</p>
+<img alt="../_images/image9.png" src="../_images/image9.png" />
+</section>
+<section id="id4">
+<h2><span class="section-number">3.3. </span>アニーリングとは<a class="headerlink" href="#id4" title="この見出しへのパーマリンク"></a></h2>
+<p>このような課題を受け、高速かつ正確に組合せ最適化問題を解く手法として「アニーリング」に注目されました。
+アニーリングとは一般的に「金属の焼きなまし」のことを指し、高温で熱した後に徐々に温度を下げていくことで金属の結晶組織を均一化して加工性を向上させることができます。</p>
+<p>この均一化は、熱によって金属原子の位置がランダムに動き回り、徐々に冷却させることで内部エネルギーが最小となるような金属配列を形成していくことに起因します。</p>
+<img alt="../_images/image10.png" src="../_images/image10.png" />
+<p>そのため、「金属の内部エネルギーの最小化」をもたらすアニーリングをコンピュータ上で再現することで、組合せ最適化問題におけるベストな選択肢を高速かつ正確に解くことができると着想されました。</p>
+<p>実際に、金属の焼きなましにおける「金属配列」と「その内部エネルギー」をそれぞれ、組合せ最適化問題における「組合せ」と「その組合せの良さ」に置き換えて関数化することで、アニーリングのアルゴリズムを介して組合せ最適化の対象となる関数が最小/最大となるベストな選択肢を見つけ出すことができるとされています。</p>
+</section>
+<section id="id5">
+<h2><span class="section-number">3.4. </span>量子アニーリングの特徴と利点<a class="headerlink" href="#id5" title="この見出しへのパーマリンク"></a></h2>
+<p>アニーリングでは「温度」を変えることでベストな選択肢を得ることができますが、量子アニーリングでは「量子効果」を変えることで制御し、 <strong>量子重ね合わせ</strong> や <strong>量子トンネル効果</strong> といった量子の性質を利用した最適化をすることができます。</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>量子重ね合わせ</dt><dd><p>古典コンピュータには情報を扱うために0か1を示すbitが複数あり、4bitあれば2<sup>4</sup>個の組合せを別々に扱うことができます。
+一方、量子コンピュータでは0と1の両方を同時に示すbitが複数あり、4bitあれば2<sup>4</sup>個の組み合わせを同時に扱うことができます。
+0と1を同時に示す状態を「量子重ね合わせ」と呼び、この性質を利用することで全ての組合せを一度に表現することができ、組合せ最適化に要する時間を削減できます。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>量子トンネル効果</dt><dd><p>古典コンピュータでの近傍探索法では局所解に陥りやすいため、最適解を得るためには大きなエネルギー障壁を超える必要があります。
+一方、量子コンピュータではエネルギー障壁を超えなくともすり抜けることができ、これを「量子トンネル効果」と呼びます。
+これにより、容易に局所解から脱して最適解を得ることができ、組合せ最適化の高精度化が期待されます。</p>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../_images/image11.png" src="../_images/image11.png" />
+<p>以上より、量子アニーリングでは量子効果を強めて徐々に弱めていくことにより、組合せ最適化問題におけるベストな選択肢を高速かつ正確に得ることができるとされています。</p>
+</section>
+<section id="id6">
+<h2><span class="section-number">3.5. </span>量子アニーリングの応用と課題<a class="headerlink" href="#id6" title="この見出しへのパーマリンク"></a></h2>
+<p>現在は金融、交通、材料、創薬など、実用的なケースから応用的なケースまで量子アニーリングの適用が進んでいます。</p>
+<p>一方で、組合せの最適化をしたい対象の関数化やbit数の不足など様々な困難があり、今後より容易な関数化やbit数の増加などが期待されている。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classification.html" class="btn btn-neutral float-left" title="2. 表面モデリングの分類" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="surfqit.html" class="btn btn-neutral float-right" title="4. 量子アニーリングによる表面モデリング" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, H.S. &amp; K.S..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
