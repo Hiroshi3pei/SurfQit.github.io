@@ -1,34 +1,51 @@
-// 現在のURLからベースパスを取得
-function getBasePath() {
+function getCurrentLanguageAndPath() {
     const path = window.location.pathname;
     const parts = path.split('/');
-    const langIndex = parts.indexOf('en');
-    if (langIndex !== -1) {
-        // 英語ページの場合
-        return parts.slice(0, langIndex).join('/') + '/';
+    
+    // 'docs' を探してそのインデックスを取得
+    const docsIndex = parts.indexOf('docs');
+    
+    // 英語版かどうかを判定
+    const isEnglish = parts[docsIndex + 1] === 'en';
+
+    // basePath を設定
+    const basePath = parts.slice(0, docsIndex + 1).join('/');
+
+    // relativePath を設定
+    let relativePath;
+    if (isEnglish) {
+        // 'docs/en/' の後の部分を取得
+        relativePath = parts.slice(docsIndex + 2).join('/');
     } else {
-        // 日本語ページの場合
-        return parts.slice(0, parts.length - 1).join('/') + '/';
+        // 'docs/' の後の部分を取得
+        relativePath = parts.slice(docsIndex + 1).join('/');
     }
+    
+    return {
+        lang: isEnglish ? 'en' : 'ja',
+        basePath: basePath,
+        relativePath: relativePath || 'index.html'
+    };
 }
 
-// 言語切り替えリンクを更新
-function updateLanguageLinks() {
-    const basePath = getBasePath();
-    const currentPath = window.location.pathname;
-    const isEnglish = currentPath.includes('/en/');
+function setLanguageLinks() {
+    const { lang, basePath, relativePath } = getCurrentLanguageAndPath();
 
+    // 日本語と英語のリンクを動的に設定
     const japaneseLink = document.getElementById('japanese-link');
     const englishLink = document.getElementById('english-link');
 
-    if (isEnglish) {
-        japaneseLink.href = currentPath.replace('/en/', '/');
-        englishLink.href = currentPath;
+    if (lang === 'en') {
+        // 英語版から日本語版へ: 'en' を削除したパスに変更
+        japaneseLink.href = `${basePath}/${relativePath}`;
+        englishLink.href = `${basePath}/en/${relativePath}`;
     } else {
-        japaneseLink.href = currentPath;
-        englishLink.href = basePath + 'en' + currentPath.substring(basePath.length - 1);
+        // 日本語版から英語版へ: 'en' を追加したパスに変更
+        japaneseLink.href = `${basePath}/${relativePath}`;
+        englishLink.href = `${basePath}/en/${relativePath}`;
     }
 }
 
-// ページ読み込み時に実行
-document.addEventListener('DOMContentLoaded', updateLanguageLinks);
+document.addEventListener('DOMContentLoaded', function() {
+    setLanguageLinks();
+});

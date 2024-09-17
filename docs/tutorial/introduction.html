@@ -51,8 +51,9 @@
 <li class="toctree-l1 current"><a class="reference internal" href="main.html">Tutorial</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">1. 導入</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">1.1. 本チュートリアルの対象読者と到達点</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">1.2. 材料科学における表面モデリングの重要性</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">1.3. 表面モデルの利用先</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1.2. 固体表面化学とは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1.3. 固体表面化学における表面モデリングの重要性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">1.4. 表面モデルの利用先</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="classification.html">2. 表面モデリングの分類</a></li>
@@ -96,34 +97,31 @@
              
   <section id="id1">
 <h1><span class="section-number">1. </span>導入<a class="headerlink" href="#id1" title="この見出しへのパーマリンク"></a></h1>
-<div class="line-block">
-<div class="line">SurfQitは材料開発に向けた材料表面モデリングを行うソフトウェアです。</div>
-<div class="line">このチュートリアルでは、SurfQitを使用する上で必要な知識を学ぶことができる教材となります。</div>
-</div>
+<p>SurfQitは <strong>触媒などの固体表面化学に関する材料の開発に向けた、材料表面モデリングを行うソフトウェア</strong> です。 このチュートリアルでは、SurfQitを使用する上で必要な知識を学ぶことができる教材となります。</p>
 <section id="id2">
 <h2><span class="section-number">1.1. </span>本チュートリアルの対象読者と到達点<a class="headerlink" href="#id2" title="この見出しへのパーマリンク"></a></h2>
-<div class="line-block">
-<div class="line">本チュートリアルの対象読者は、材料開発に携わる計算研究者および実験研究者となります。</div>
-<div class="line">また、本チュートリアルの到達点としては以下を想定しています。</div>
-</div>
+<p>本チュートリアルの対象読者は、触媒などの固体表面化学に関する材料の開発に携わる計算研究者および実験研究者となります。
+また、本チュートリアルの到達点としては以下を想定しています。</p>
 <ul class="simple">
-<li><p>理論計算を行う研究者が自身の研究の中で複雑な材料に対しても計算モデルを作成できる。</p></li>
-<li><p>実験を行う研究者が自身の研究に役立てることができる計算モデルを作成できる。</p></li>
+<li><p>理論シミュレーションにより固体表面化学を研究する方が、自身の研究の中で複雑な材料に対しても計算モデルを作成できる。</p></li>
+<li><p>実験的に固体表面化学を研究する方が、自身の研究に役立てることができる計算モデルを作成できる。</p></li>
 </ul>
 </section>
 <section id="id3">
-<h2><span class="section-number">1.2. </span>材料科学における表面モデリングの重要性<a class="headerlink" href="#id3" title="この見出しへのパーマリンク"></a></h2>
-<p>材料科学とは、様々な製品や用途で使われる材料の性質を評価し、新たな機能を持つ材料を開発する分野です。
-主に金属材料・無機材料・有機材料に分類することができ、それぞれに様々な応用先があります。</p>
+<h2><span class="section-number">1.2. </span>固体表面化学とは<a class="headerlink" href="#id3" title="この見出しへのパーマリンク"></a></h2>
+<p>固体表面化学とは、固体の表面における化学反応や物質移動を研究する分野のことを指します。主に <strong>触媒材料・吸着材料・電極材料・センサー材料</strong> は固体表面で生じる化学現象を利用した材料であり、固体表面化学を基により高性能な材料や新しい材料が研究開発されています。</p>
 <img alt="../_images/image1.png" src="../_images/image1.png" />
-<p>材料は様々な性能を持ちますが、これらの性能の良し悪しは材料構造のマクロな違い(形態など)とミクロな違い(原子配列・電子構造など)からもたらされています。
+</section>
+<section id="id4">
+<h2><span class="section-number">1.3. </span>固体表面化学における表面モデリングの重要性<a class="headerlink" href="#id4" title="この見出しへのパーマリンク"></a></h2>
+<p>固体表面化学に関する材料はそれぞれ様々な性能を持ちますが、これらの性能の良し悪しは材料構造のマクロな違い(形態など)とミクロな違い(原子配列・電子構造など)からもたらされています。
 そのため、材料性能の評価は材料構造を理解することから始まります。
-とりわけ、触媒や電池として用いられる材料は気体や液体における分子と反応するため、気体ー固体界面や液体ー固体界面となる <strong>材料表面のミクロな構造を理解することが重要</strong> となります。</p>
+とりわけ、固体表面で化学反応が進行するため、気体ー固体界面や液体ー固体界面となる <strong>材料表面のミクロな構造を理解することが重要</strong> となります。</p>
 <img alt="../_images/image2.png" src="../_images/image2.png" />
 <p>しかしながら、実験的に材料表面のミクロな構造を観察することは難しいことから、実際の表面構造を原子レベルに再現する <strong>「表面モデリング」</strong> が必要とされています。</p>
 </section>
-<section id="id4">
-<h2><span class="section-number">1.3. </span>表面モデルの利用先<a class="headerlink" href="#id4" title="この見出しへのパーマリンク"></a></h2>
+<section id="id5">
+<h2><span class="section-number">1.4. </span>表面モデルの利用先<a class="headerlink" href="#id5" title="この見出しへのパーマリンク"></a></h2>
 <p>表面モデリングにより構築した表面モデルは計算研究と実験研究の両方で利用することができます。
 計算研究の場合、量子化学計算やシミュレーションを行う際のインプットデータとして表面モデルを用いることができます。
 また、実験研究の場合、赤外分光やX線分光などの構造分析の参照データとして表面モデルを用いることができ、効率的に表面構造から材料特性を説明することができます。</p>
