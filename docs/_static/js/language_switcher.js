@@ -3,7 +3,7 @@ function getCurrentLanguageAndPath() {
     const parts = path.split('/');
     
     // 'docs' を探してそのインデックスを取得
-    const docsIndex = parts.indexOf('docs');
+    const docsIndex = parts.indexOf('hiroshi3pei.github.io');
     
     // 英語版かどうかを判定
     const isEnglish = parts[docsIndex + 1] === 'en';
