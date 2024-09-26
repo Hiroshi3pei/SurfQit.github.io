@@ -117,7 +117,7 @@
 </dl>
 </li>
 <li><dl class="simple">
-<dt>XAFS (X線吸収微細構造解析)</dt><dd><p>試料にX線を照射し、蛍光X線を検出することで材料表面における結合状態を得ることができます。</p>
+<dt>XAFS (X線吸収微細構造解析)</dt><dd><p>試料にX線を照射し、蛍光X線を検出することで材料表面における結合状態や配位状態を得ることができます。</p>
 </dd>
 </dl>
 </li>
@@ -154,20 +154,20 @@
 </dl>
 </li>
 <li><dl class="simple">
-<dt>ASE (Atomic Simulation Environment)</dt><dd><p>組成や結晶構造、格子定数を入力することで結晶構造データを構築可能なpythonパッケージ</p>
+<dt>ASE (Atomic Simulation Environment)</dt><dd><p>組成や結晶構造、格子定数を入力することで結晶構造データを構築可能なpythonライブラリ</p>
 </dd>
 </dl>
 </li>
 </ul>
 </div></blockquote>
 <div class="line-block">
-<div class="line">様々なデータベースを利用して結晶構造データを取得できたら、取得したデータを用いて表面を切り出します。</div>
+<div class="line">様々なデータベースを利用して結晶構造データを取得した後に、取得したデータを用いて表面を切り出します。</div>
 <div class="line">表面の切り出し方法はpythonによる処理と専用ソフトウェアによる処理の2つに大別することができます。</div>
 </div>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
-<dt>ASE</dt><dd><p>原子シミュレーションを行うためのpythonモジュール</p>
+<dt>ASE</dt><dd><p>原子シミュレーションを行うためのpythonライブラリ</p>
 </dd>
 </dl>
 </li>
@@ -197,7 +197,7 @@
 <img alt="../_images/image5.png" src="../_images/image5.png" />
 <div class="line-block">
 <div class="line">表面エネルギー <span class="math notranslate nohighlight">\(Esurf\)</span> は以下に示す式により算出され、表面構造の安定性を評価する値であり、表面エネルギーが小さい表面構造ほど実際に安定的に存在すると考えられています。</div>
-<div class="line">このとき、 <span class="math notranslate nohighlight">\(E(surface)\)</span> は表面モデルのエネルギー[eV]、 <span class="math notranslate nohighlight">\(E(bulk)\)</span> は結晶構造モデルのエネルギー[eV]、 <span class="math notranslate nohighlight">\(n\)</span> は表面モデルにおける単位格子の数[-]、 <span class="math notranslate nohighlight">\(S\)</span> は表面モデルの表面積[m<sup>2</sup>]を示します。</div>
+<div class="line">このとき、 <span class="math notranslate nohighlight">\(E(surface)\)</span> は表面モデルのエネルギー[eV]、 <span class="math notranslate nohighlight">\(E(bulk)\)</span> は結晶構造モデルのエネルギー[eV]、 <span class="math notranslate nohighlight">\(n\)</span> は表面モデルと結晶構造モデルの原子数の比率[-]、 <span class="math notranslate nohighlight">\(S\)</span> は表面モデルの表面積[m<sup>2</sup>]を示します。</div>
 </div>
 <div class="math notranslate nohighlight">
 \[Esurf = \frac{E(surface) - n E(bulk)}{2S}\]</div>
@@ -207,24 +207,24 @@
 <ul>
 <li><dl>
 <dt>モンテカルロシミュレーション</dt><dd><p>様々な確率分布で生成したランダム値を用いた最適化アルゴリズムです。</p>
-<p>ランダムでのシミュレーションを複数回行うことで、最適な解を見つけることができます。</p>
+<p>ランダムでのシミュレーションを複数回行うことで、より適した解を見つけることができます。</p>
 </dd>
 </dl>
 </li>
 <li><dl>
 <dt>遺伝的アルゴリズム</dt><dd><p>生物の進化の仕組みを模した最適化アルゴリズムです。</p>
-<p>より強い個体が生き残る現象や突然変異が起こる現象をアルゴリズム化することで、最適な解を探索することができます。</p>
+<p>より強い個体が生き残る現象や突然変異が起こる現象をアルゴリズム化することで、より適した解を探索することができます。</p>
 </dd>
 </dl>
 </li>
 <li><dl>
 <dt>量子アニーリング</dt><dd><p>焼きなましによる金属の均一化の仕組みを模した最適化アルゴリズムです。</p>
-<p>焼きなましにおける温度制御を量子により再現して量子の性質を用いることで、最適な解を網羅的に探索することができます。</p>
+<p>焼きなましにおける温度制御を量子により再現して量子の性質を用いることで、より適した解を網羅的に探索することができます。</p>
 </dd>
 </dl>
 </li>
 </ul>
-<p>モンテカルロシミュレーションや遺伝的アルゴリズムを用いた表面モデリングはこれまでに多く行われている一方、最適解を得ることができなかったり探索に時間を要することが課題として挙げられます。
+<p>モンテカルロシミュレーションや遺伝的アルゴリズムを用いた表面モデリングはこれまでに多く行われている一方、最適解を得ることができないことや探索に時間を要することが課題として挙げられます。
 その中で、量子アニーリングは少ない時間とコストで最適解をより正確に得ることができるアルゴリズムとされているため、組み合わせの多い表面モデリングに対して有用な手法であると考えられます。</p>
 <p>そのため、次のページにて量子アニーリングの原理を紹介します。</p>
 </section>
