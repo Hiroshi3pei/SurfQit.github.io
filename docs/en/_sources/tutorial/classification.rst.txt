@@ -28,7 +28,7 @@
 結晶構造データの取得方法の一例を以下に示します。
 
    - Materials Project
-      MIT(Massachusetts Institute of Technology)で開発された、物質材料の第一原理計算結果のデータベース
+      Kristin PerssonとAnubhav Jainらにより開発された、物質材料の第一原理計算結果のデータベース
    - AtomWork
       NIMS(物質・材料研究機構)とMPDS(Material Phases Data System)により開発された、科学技術文献から抽出したデータを収録した無機材料データベース
    - PubChem
