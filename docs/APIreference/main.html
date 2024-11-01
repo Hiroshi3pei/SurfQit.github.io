@@ -1,29 +1,27 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>API reference &mdash; SurfQit 1 ドキュメント</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
-        <script src="../_static/js/language_switcher.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d950290e"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/translations.js?v=4dbe4bdc"></script>
+      <script src="../_static/js/language_switcher.js?v=1af0da2e"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="allfunc module" href="allfunc.html" />
     <link rel="prev" title="8元合金の表面モデリング" href="../example/octonary_alloy_modeling.html" /> 
 </head>
 
@@ -46,10 +44,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/main.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../example/main.html">Example</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">API reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html">allfunc module</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -83,7 +85,92 @@
              
   <section id="api-reference">
 <h1>API reference<a class="headerlink" href="#api-reference" title="この見出しへのパーマリンク"></a></h1>
-<p>調整中</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="allfunc.html">allfunc module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.check_type"><code class="docutils literal notranslate"><span class="pre">check_type()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.Prepare_Config"><code class="docutils literal notranslate"><span class="pre">Prepare_Config</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.Prepare_Config.__init__"><code class="docutils literal notranslate"><span class="pre">Prepare_Config.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.Prepare_Config.read"><code class="docutils literal notranslate"><span class="pre">Prepare_Config.read()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.Prepare_Config.write"><code class="docutils literal notranslate"><span class="pre">Prepare_Config.write()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.storage_path_initialize"><code class="docutils literal notranslate"><span class="pre">storage_path_initialize()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.output_symmetry"><code class="docutils literal notranslate"><span class="pre">output_symmetry()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.convert_nanosheet_into_slab"><code class="docutils literal notranslate"><span class="pre">convert_nanosheet_into_slab()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.symmetry_equivalent_arrange"><code class="docutils literal notranslate"><span class="pre">symmetry_equivalent_arrange()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.visualize_symmetry_operation"><code class="docutils literal notranslate"><span class="pre">visualize_symmetry_operation()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.bulk2slab"><code class="docutils literal notranslate"><span class="pre">bulk2slab()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.adjust_concentration_each_layer"><code class="docutils literal notranslate"><span class="pre">adjust_concentration_each_layer()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.SurfaceAtomsManager"><code class="docutils literal notranslate"><span class="pre">SurfaceAtomsManager</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.SurfaceAtomsManager.__init__"><code class="docutils literal notranslate"><span class="pre">SurfaceAtomsManager.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.SurfaceAtomsManager.index_by_basis"><code class="docutils literal notranslate"><span class="pre">SurfaceAtomsManager.index_by_basis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.SurfaceAtomsManager.basisindex_by_tag"><code class="docutils literal notranslate"><span class="pre">SurfaceAtomsManager.basisindex_by_tag()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionSettings_nowarning"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionSettings_nowarning</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionSettings_nowarning.__init__"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionSettings_nowarning.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionSettings_nowarning.tag2grouped_basis"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionSettings_nowarning.tag2grouped_basis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionSettings_nowarning.index_by_basis"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionSettings_nowarning.index_by_basis</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionSettings_nowarning.all_cf_names"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionSettings_nowarning.all_cf_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionSettings_nowarning.cluster_mng"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionSettings_nowarning.cluster_mng</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.cluster2index"><code class="docutils literal notranslate"><span class="pre">cluster2index()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.cf_calculator_each_sublattice"><code class="docutils literal notranslate"><span class="pre">cf_calculator_each_sublattice()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.validate_calculatedCF"><code class="docutils literal notranslate"><span class="pre">validate_calculatedCF()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.ClusterManager_each_sublattice"><code class="docutils literal notranslate"><span class="pre">ClusterManager_each_sublattice</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterManager_each_sublattice.__init__"><code class="docutils literal notranslate"><span class="pre">ClusterManager_each_sublattice.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterManager_each_sublattice.build"><code class="docutils literal notranslate"><span class="pre">ClusterManager_each_sublattice.build()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.CESlab_nowarning"><code class="docutils literal notranslate"><span class="pre">CESlab_nowarning()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.Calculator"><code class="docutils literal notranslate"><span class="pre">Calculator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.Calculator.__init__"><code class="docutils literal notranslate"><span class="pre">Calculator.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.Calculator.optimization"><code class="docutils literal notranslate"><span class="pre">Calculator.optimization()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.Calculator.single_point"><code class="docutils literal notranslate"><span class="pre">Calculator.single_point()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.Calculator.csv_write"><code class="docutils literal notranslate"><span class="pre">Calculator.csv_write()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.Calculator.csv_read"><code class="docutils literal notranslate"><span class="pre">Calculator.csv_read()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.Calculator.csv_write_formationE"><code class="docutils literal notranslate"><span class="pre">Calculator.csv_write_formationE()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.CSV_Reader"><code class="docutils literal notranslate"><span class="pre">CSV_Reader</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.CSV_Reader.implemented_properties"><code class="docutils literal notranslate"><span class="pre">CSV_Reader.implemented_properties</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.CSV_Reader.nolabel"><code class="docutils literal notranslate"><span class="pre">CSV_Reader.nolabel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.CSV_Reader.default_parameters"><code class="docutils literal notranslate"><span class="pre">CSV_Reader.default_parameters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.CSV_Reader.__init__"><code class="docutils literal notranslate"><span class="pre">CSV_Reader.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.CSV_Reader.calculate"><code class="docutils literal notranslate"><span class="pre">CSV_Reader.calculate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.CSV_Reader.get_potential_energy"><code class="docutils literal notranslate"><span class="pre">CSV_Reader.get_potential_energy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.CSV_Reader.set_model_id"><code class="docutils literal notranslate"><span class="pre">CSV_Reader.set_model_id()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.NewStructures_each_sublattice"><code class="docutils literal notranslate"><span class="pre">NewStructures_each_sublattice</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.NewStructures_each_sublattice.__init__"><code class="docutils literal notranslate"><span class="pre">NewStructures_each_sublattice.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.CorrFunction_each_sublattice"><code class="docutils literal notranslate"><span class="pre">CorrFunction_each_sublattice</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.CorrFunction_each_sublattice.__init__"><code class="docutils literal notranslate"><span class="pre">CorrFunction_each_sublattice.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.CorrFunction_each_sublattice.get_cf_by_names"><code class="docutils literal notranslate"><span class="pre">CorrFunction_each_sublattice.get_cf_by_names()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.check_position_overlap"><code class="docutils literal notranslate"><span class="pre">check_position_overlap()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionExcutor"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionExcutor.__init__"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionExcutor.model_addition_random"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.model_addition_random()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionExcutor.add_user_structure"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.add_user_structure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionExcutor.unconverged_calculate"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.unconverged_calculate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionExcutor.update_formation_energy"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.update_formation_energy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionExcutor.calculate"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.calculate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionExcutor.ECI_evaruate"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.ECI_evaruate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionExcutor.get_basis_function"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.get_basis_function()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionExcutor.make_qubit"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.make_qubit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="allfunc.html#allfunc.ClusterExpansionExcutor.make_QUBO"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.make_QUBO()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 </section>
 
 
@@ -91,6 +178,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../example/octonary_alloy_modeling.html" class="btn btn-neutral float-left" title="8元合金の表面モデリング" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="allfunc.html" class="btn btn-neutral float-right" title="allfunc module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

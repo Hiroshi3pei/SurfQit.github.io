@@ -12,8 +12,8 @@ SurfQit documentation
 
 .. toctree::
    :maxdepth: 2
+   :caption: Contents:
 
    ./tutorial/main
    ./example/main
    ./APIreference/main
-
