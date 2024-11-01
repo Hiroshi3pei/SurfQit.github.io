@@ -1,0 +1,260 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. Classification of Surface Modeling &mdash; SurfQit 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=404a92a0"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/js/language_switcher.js?v=1af0da2e"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. What is Quantum Annealing?" href="annealing.html" />
+    <link rel="prev" title="1. Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SurfQit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="main.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Classification of Surface Modeling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.1. When the Surface Structure Is Already Known</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.2. When the Surface Structure Is Not Known</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="annealing.html">3. What is Quantum Annealing?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surfqit.html">4. Surface Modeling with Quantum Annealing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../example/main.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../APIreference/main.html">API reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SurfQit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="main.html">Tutorial</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2. </span>Classification of Surface Modeling</li>
+      <li class="wy-breadcrumbs-aside">
+        
+<div class="language-selector">
+    <a id="japanese-link" href="#">日本語</a>
+    <a id="english-link" href="#">English</a>
+</div>
+            <a href="../_sources/tutorial/classification.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">2. </span>Classification of Surface Modeling<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<p>Surface modeling methods can be broadly classified into two categories: “when the surface structure is already known” and “when the surface structure is not known.”</p>
+<section id="id2">
+<h2><span class="section-number">2.1. </span>When the Surface Structure Is Already Known<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<div class="line-block">
+<div class="line">For simple metal oxides like Al<sub>2</sub>O<sub>3</sub> and ZrO<sub>2</sub>, the crystal structure is uniquely determined by the surrounding environment (such as temperature and pressure), allowing for surface modeling without needing to determine the atomic arrangement on the material’s surface.</div>
+<div class="line">Additionally, surface structures can be determined through analyses using techniques such as electron beams or X-rays, as shown below.</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>TEM (Transmission Electron Microscopy)</dt><dd><p>By irradiating a sample with electrons and detecting the transmitted or scattered electrons, atomic arrangements and compositions can be obtained.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>STM (Scanning Tunneling Microscopy)</dt><dd><p>By bringing a metal probe close to a sample and detecting the tunneling current generated, surface structures can be obtained.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>XAFS (X-ray Absorption Fine Structure)</dt><dd><p>By irradiating a sample with X-rays and detecting the fluorescent X-rays, the bonding states and coordination states on the material’s surface can be obtained.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>XPS (X-ray Photoelectron Spectroscopy)</dt><dd><p>By irradiating a sample with X-rays and detecting the number and energy of emitted electrons, the bonding states on the material’s surface can be obtained.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<p>As shown above, when the surface structure is known, surface modeling can be performed by obtaining crystal structure data and slicing the surface.</p>
+<img alt="../_images/image4.png" src="../_images/image4.png" />
+<p>An example method for obtaining crystal structure data is shown below:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>Materials Project</dt><dd><p>A database of first-principles calculation results of materials developed by Kristin Persson and Anubhav Jain.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>AtomWork</dt><dd><p>An inorganic materials database that includes data extracted from scientific and technical literature, developed by NIMS (National Institute for Materials Science) and MPDS (Material Phases Data System).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>PubChem</dt><dd><p>A chemical substance database published by NCBI (National Center for Biotechnology Information).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>ICSD (Inorganic Cristal Structure Database)</dt><dd><p>An inorganic crystal structure database developed by FIZ Karlsruhe.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>ASE (Atomic Simulation Environment)</dt><dd><p>A Python package that allows the construction of crystal structure data by inputting composition, crystal structure, and lattice constants.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line">After crystal structure data is obtained using various databases, the data can be used to slice the surface.</div>
+<div class="line">he method of slicing the surface can be broadly divided into two categories: processing with Python and processing with dedicated software.</div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>ASE</dt><dd><p>A Python module for performing atomic simulations.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>pymatgen</dt><dd><p>An open-source Python library for materials analysis.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Materials Studio</dt><dd><p>Paid software for modeling and simulating materials.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Advance/NanoLabo</dt><dd><p>A GUI program package compatible with open-source materials analysis software.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>From the above, when the surface structure is already known, surface modeling can be performed by obtaining crystal structure data and slicing the surface.</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">2.2. </span>When the Surface Structure Is Not Known<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p>As mentioned earlier, surface structures can be determined through various analyses. However, in the case of catalyst and battery materials, metals or alloys, which are reaction sites, are dispersed at the nanoscale. Therefore, it is difficult to know the surface structure at the atomic level through the analyses mentioned above.</p>
+<p>In this case, surface modeling is generally performed by modeling all possible surface structures, calculating the surface energy using DFT (Density Functional Theory) calculations, and selecting the surface structure with the minimum surface energy.</p>
+<img alt="../_images/image5.png" src="../_images/image5.png" />
+<div class="line-block">
+<div class="line">Surface energy <span class="math notranslate nohighlight">\(Esurf\)</span> is calculated using the equation shown below and is a value that evaluates the stability of a surface structure. The lower the surface energy, the more stable the surface structure is considered to be.</div>
+<div class="line">Here, <span class="math notranslate nohighlight">\(E(surface)\)</span> represents the energy of the surface model [eV], <span class="math notranslate nohighlight">\(E(bulk)\)</span> represents the energy of the crystal structure model [eV], <span class="math notranslate nohighlight">\(n\)</span> represents the number of unit cells in the surface model [-], and <span class="math notranslate nohighlight">\(S\)</span> represents the surface area of the surface model [m<sup>2</sup>].</div>
+</div>
+<div class="math notranslate nohighlight">
+\[Esurf = \frac{E(surface) - n E(bulk)}{2S}\]</div>
+<p>Therefore, when the surface structure is not known, all possible surface models are created using the surface modeling method for “when the surface structure is already known”, and the surface modeling is performed by selecting the surface structure with the minimum surface energy.</p>
+<p>However, if there are multiple combinations of possible surface structures, searching for the most stable surface structure using DFT calculations can be time-consuming. Thus, statistical processing methods like those shown below are used to find the surface structure with the minimum surface energy with fewer DFT calculations.</p>
+<img alt="../_images/image6.png" src="../_images/image6.png" />
+<ul>
+<li><dl>
+<dt>Monte Carlo Simulation</dt><dd><p>An optimization algorithm that uses random values generated from various probability distributions.</p>
+<p>By performing multiple random simulations, the better solution can be found.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Genetic Algorithm</dt><dd><p>An optimization algorithm that mimics the mechanism of biological evolution.</p>
+<p>By algorithmizing phenomena such as the survival of stronger individuals and mutations, the better solution can be searched for.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Quantum Annealing</dt><dd><p>An optimization algorithm that mimics the mechanism of metal annealing.</p>
+<p>By reproducing temperature control in annealing using quantum mechanics, the better solution can be comprehensively searched using quantum properties.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>While surface modeling using Monte Carlo simulations or genetic algorithms has been widely performed, challenges remain, such as not being able to obtain the optimal solution or requiring significant time for exploration. In this context, quantum annealing is considered a useful method for surface modeling with many combinations, as it can more accurately find the optimal solution in less time and at a lower cost.</p>
+<p>Therefore, the next page introduces the principles of quantum annealing.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="1. Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="annealing.html" class="btn btn-neutral float-right" title="3. What is Quantum Annealing?" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, H.S. &amp; K.S..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

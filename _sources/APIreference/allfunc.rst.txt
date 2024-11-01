@@ -1,0 +1,7 @@
+allfunc module
+==============
+
+.. automodule:: allfunc
+   :members:
+   :undoc-members:
+   :show-inheritance:

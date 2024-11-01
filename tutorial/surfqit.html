@@ -1,0 +1,169 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. 量子アニーリングによる表面モデリング &mdash; SurfQit 1 ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d950290e"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/translations.js?v=4dbe4bdc"></script>
+      <script src="../_static/js/language_switcher.js?v=1af0da2e"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Example" href="../example/main.html" />
+    <link rel="prev" title="3. 量子アニーリングとは" href="annealing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SurfQit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="main.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">1. 導入</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classification.html">2. 表面モデリングの分類</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annealing.html">3. 量子アニーリングとは</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. 量子アニーリングによる表面モデリング</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">4.1. 表面モデリングにおける量子アニーリングの適用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">4.2. クラスター展開法による定式化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">4.3. アニーリングの実行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">4.4. 結果の出力と理解</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../example/main.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../APIreference/main.html">API reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SurfQit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="main.html">Tutorial</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4. </span>量子アニーリングによる表面モデリング</li>
+      <li class="wy-breadcrumbs-aside">
+        
+<div class="language-selector">
+    <a id="japanese-link" href="#">日本語</a>
+    <a id="english-link" href="#">English</a>
+</div>
+            <a href="../_sources/tutorial/surfqit.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">4. </span>量子アニーリングによる表面モデリング<a class="headerlink" href="#id1" title="この見出しへのパーマリンク"></a></h1>
+<div class="line-block">
+<div class="line">SurfQitは量子アニーリングを駆使することで表面構造を高速かつ正確にモデリングするソフトウェアです。</div>
+<div class="line">このページでは、実際に表面モデリングを量子アニーリングで行うための具体的な方法を説明します。</div>
+</div>
+<section id="id2">
+<h2><span class="section-number">4.1. </span>表面モデリングにおける量子アニーリングの適用<a class="headerlink" href="#id2" title="この見出しへのパーマリンク"></a></h2>
+<p>表面モデリングをアニーリングマシンで解くためには組合せ最適化問題に落とし込む必要があります。
+ここで、表面モデリングは各原子位置にどの元素が入るかの組合せ最適化問題と捉えることができるため、各原子位置における金属種を変数とすることでアニーリングマシンで解くことができる形になります。</p>
+<p>実際にアニーリングマシンで表面モデリングを行うためには、1)金属配置の組合せをバイナリ値(0 or 1)で表すことと、2)各金属配置の組合せに対する表面モデルの安定性を関数化すること、の2つが必要になります。</p>
+<p><strong>1) 金属配置の組合せのバイナリ化</strong></p>
+<p>金属Aと金属Bの2種類からなる2元合金では、ある原子位置に金属Aが入れば0、金属Bが入れば1とすることで金属配置の組合せのバイナリ化ができます。
+金属Aと金属Bと金属Cの3種類からなる3元合金では、ある原子位置に金属Aが入れば[1,0,0]、金属Bが入れば[0,1,0]、金属Cが入れば[0,0,1]とすることで金属配置の組合せのバイナリ化ができます。
+そのため、多元合金では各原子位置に対して構成金属種の数分の変数を設定することで全ての金属位置の組合せを0と1で表現することができます。</p>
+<img alt="../_images/image12.png" src="../_images/image12.png" />
+<p><strong>2) 各金属配置の組合せに対する表面モデルの安定性の関数化</strong></p>
+<p>表面モデルの安定性は表面エネルギーで評価することができるため、各金属配置の組合せに対する表面エネルギーを関数にすることができればアニーリングマシンで解くことができるようになります。
+ここでは、クラスター展開法を利用することで表面エネルギーの関数化を行います。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">4.2. </span>クラスター展開法による定式化<a class="headerlink" href="#id3" title="この見出しへのパーマリンク"></a></h2>
+<p>クラスター展開法とは系のエネルギーを小さなクラスターのエネルギーの足し合わせで表現する方法です。
+今回は合金表面の表面エネルギーを数原子からなるクラスターの足し合わせで記述します。</p>
+<img alt="../_images/image13.png" src="../_images/image13.png" />
+<p>ここで、Vは各クラスターが全体の合金表面の表面エネルギーに与える影響を表し、クラスター相互作用と呼ばれます。
+このクラスター相互作用を求めるためにいくつかの合金表面モデルの表面エネルギーをDFT計算により算出し、pythonのCLEASEパッケージによりクラスター相互作用を回帰して算出することができます。</p>
+</section>
+<section id="id4">
+<h2><span class="section-number">4.3. </span>アニーリングの実行<a class="headerlink" href="#id4" title="この見出しへのパーマリンク"></a></h2>
+<p>クラスター展開法により求めたクラスター相互作用を用いることでアニーリングマシンで解くことができるQUBO式(二次形式の制約なし二値変数最適化式)にします。
+このQUBO式を読み込むことでアニーリングを実行することができます。
+アニーリングの実行では目的関数が最小となる組合せを探索するため、金属種と合金比率を制御する必要があり、それに向けて制約関数を設定します。
+ここでは、ワンホットエンコーディングによる制約を行うことで目的の金属種と合金比率を持つ合金表面のモデリングを行うことができます。</p>
+<img alt="../_images/image14.png" src="../_images/image14.png" />
+</section>
+<section id="id5">
+<h2><span class="section-number">4.4. </span>結果の出力と理解<a class="headerlink" href="#id5" title="この見出しへのパーマリンク"></a></h2>
+<p>SurfQitではアニーリングの実行により得られた表面モデルに対して、X線回折パターン・動径分布関数・触媒性能評価用の吸着モデルを出力することができます。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="annealing.html" class="btn btn-neutral float-left" title="3. 量子アニーリングとは" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../example/main.html" class="btn btn-neutral float-right" title="Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, H.S. &amp; K.S..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
