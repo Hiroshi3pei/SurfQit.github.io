@@ -1,26 +1,26 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Surface modeling of Co-Cu alloy &mdash; SurfQit 1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+  <title>Surface modeling of Cobalt-Copper alloy &mdash; SurfQit 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=404a92a0"></script>
-      <script src="../_static/doctools.js?v=888ff710"></script>
-      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/js/language_switcher.js?v=1af0da2e"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Surface modeling of Co-Cu alloy under CO atmosphere" href="CoCu_CO_modeling.html" />
+    <link rel="next" title="Surface modeling of Cobalt-Copper alloy under carbon monoxide atmosphere" href="CoCu_CO_modeling.html" />
     <link rel="prev" title="Example" href="main.html" /> 
 </head>
 
@@ -47,17 +47,19 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/main.html">Tutorial</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="main.html">Example</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Surface modeling of Co-Cu alloy</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">インプットの作成</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">教師データ用表面モデルの出力</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#qubo">クラスター展開によるQUBO構築</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">量子アニーリングマシンによる最安定な表面モデルの出力</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">出力結果の解析</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Surface modeling of Cobalt-Copper alloy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">0. Install the Required Python Modules (Run only the first time)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#config">1. Set the Calculation Parameter via Config File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2. Output of Surface Models for Training Data and Energy Acquisition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qubo">3. Calculation of QUBO Coefficients via Cluster Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">4. Construction of QUBO Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">5. Execution of Annealing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">6. Output of Optimization Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">7. Utilization of Optimized Models (Optional)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="CoCu_CO_modeling.html">Surface modeling of Co-Cu alloy under CO atmosphere</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CoCu_CO_modeling.html">Surface modeling of Cobalt-Copper alloy under carbon monoxide atmosphere</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ternary_alloy_modeling.html">Surface modeling of ternary alloy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="octonary_alloy_modeling.html">Surface modeling of Octonary alloy</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../APIreference/main.html">API reference</a></li>
@@ -78,7 +80,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="main.html">Example</a></li>
-      <li class="breadcrumb-item active">Surface modeling of Co-Cu alloy</li>
+      <li class="breadcrumb-item active">Surface modeling of Cobalt-Copper alloy</li>
       <li class="wy-breadcrumbs-aside">
         
 <div class="language-selector">
@@ -94,62 +96,265 @@
            <div itemprop="articleBody">
              
   <section id="co-cu">
-<h1>Surface modeling of Co-Cu alloy<a class="headerlink" href="#co-cu" title="Permalink to this heading"></a></h1>
-<p>ここではCo-Cu合金の表面モデリングを行う方法を説明します。
-Co-Cu合金は” “といった表面構造を持つことが報告されており、これにより” “という性質を示すとされています。</p>
-<p>“図示”</p>
+<h1>Surface modeling of Cobalt-Copper alloy<a class="headerlink" href="#co-cu" title="Link to this heading"></a></h1>
+<p>In this example, the method for surface modeling of Cobalt-Copper (Co-Cu) alloy will be explained. Surface reactions using alloy materials exhibit various performance dependent on the composition and atomic positions at the alloy surface. Therefore, elucidation of the alloy surface structure is essential for understanding surface reactions using alloy materials.</p>
+<p>Herein, this section describes the surface modeling method for Co-Cu alloys using quantum annealing.</p>
+<p>A schematic overview of the entire process is presented below.</p>
+<img alt="../_images/image0.png" src="../_images/image0.png" />
 <section id="id1">
-<h2>インプットの作成<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
-<p>以下のコードによりインプットを作成します。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">var1</span> <span class="o">=</span> <span class="p">[</span><span class="n">Co</span><span class="p">,</span><span class="n">Cu</span><span class="p">]</span>
-<span class="linenos">2</span><span class="n">var2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<h2>0. Install the Required Python Modules (Run only the first time)<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>As required modules may not be available in your execution environment, please install the necessary modules at the first time.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">pip</span> <span class="n">install</span> <span class="n">ase</span><span class="o">==</span><span class="mf">3.22</span>
+<span class="linenos"> 2</span><span class="n">pip</span> <span class="n">install</span> <span class="n">spglib</span>
+<span class="linenos"> 3</span><span class="n">pip</span> <span class="n">install</span> <span class="n">cycthon</span>
+<span class="linenos"> 4</span><span class="n">pip</span> <span class="n">install</span> <span class="n">clease</span>
+<span class="linenos"> 5</span><span class="n">pip</span> <span class="n">install</span> <span class="n">tqdm</span>
+<span class="linenos"> 6</span><span class="n">pip</span> <span class="n">install</span> <span class="n">amplify</span>
+<span class="linenos"> 7</span><span class="n">pip</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">cache</span><span class="o">-</span><span class="nb">dir</span> <span class="n">install</span> <span class="n">amplify_bbopt</span>
+<span class="linenos"> 8</span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span><span class="mf">.11</span><span class="o">-</span><span class="n">dev</span>
+<span class="linenos"> 9</span><span class="n">python</span> <span class="n">cython_setup</span><span class="o">.</span><span class="n">py</span> <span class="n">build_ext</span> <span class="o">--</span><span class="n">inplace</span>
+<span class="linenos">10</span><span class="n">cythonize</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">a</span> <span class="n">cython_process</span><span class="o">.</span><span class="n">pyx</span>
 </pre></div>
 </div>
-<div class="line-block">
-<div class="line">“ “は合金を構成する元素を示し、リスト形式で入力します。今回はCo-Cu合金を扱うため、” “=[Co,Cu]とします。</div>
-<div class="line">また、” “は検討する表面モデルのサイズを指定するパラメータです。今回は4×4の4層からなる表面モデルを検討するため、” “=(4,4,4)とします。</div>
-<div class="line">他にも、”他のパラメータの説明”</div>
-<div class="line">注意点として、”注意点”</div>
+</section>
+<section id="config">
+<h2>1. Set the Calculation Parameter via Config File<a class="headerlink" href="#config" title="Link to this heading"></a></h2>
+<p>This software executes based on the calculation conditions specified in the config file.</p>
+<p>As default calculation parameters are already documented in the config file, we have to load the default config file at first and modify the calculation parameters as needed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span><span class="w"> </span><span class="nn">allfunc</span>
+<span class="linenos">2</span><span class="n">config</span> <span class="o">=</span> <span class="n">allfunc</span><span class="o">.</span><span class="n">Prepare_Config</span><span class="p">()</span>
+<span class="linenos">3</span><span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/image1.png" src="../_images/image1.png" />
+<p>The config file consists of the following sections:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>preparation: Settings for desired alloy surface information</p></li>
+<li><p>cluster: Settings for cluster expansion</p></li>
+<li><p>calculation: Settings for training data</p></li>
+<li><p>annealing: Settings for annealing execution</p></li>
+</ul>
+</div></blockquote>
+<p>The target material system and calculation parameters are configured here.</p>
+<p>Here, the following parameters are specified in the format 「config.write(“Section name”,”key name”, “value”)」.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>storage_path (Execution location)</p></li>
+<li><p>substitue_ratio (Target alloy composition)</p></li>
+<li><p>supercell_multiple (Surface model size)</p></li>
+<li><p>host_path (Path to the CIF file of the initial bulk structure)</p></li>
+</ul>
+</div></blockquote>
+<p>Additionally, exposed surfaces and vacuum layers of the surface model can be configured in the config file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">#Exection location</span>
+<span class="linenos"> 2</span><span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;preparation&quot;</span><span class="p">,</span><span class="s2">&quot;storage_path&quot;</span><span class="p">,</span><span class="s2">&quot;./work/&quot;</span><span class="p">)</span>
+<span class="linenos"> 3</span><span class="n">allfunc</span><span class="o">.</span><span class="n">storage_path_initialize</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1">#Target alloy composition</span>
+<span class="linenos"> 6</span><span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;preparation&quot;</span><span class="p">,</span><span class="s2">&quot;substitute_ratio&quot;</span><span class="p">,[{</span><span class="s2">&quot;Cu&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="s2">&quot;Co&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]}])</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1">#Surface model size</span>
+<span class="linenos"> 9</span><span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;preparation&quot;</span><span class="p">,</span><span class="s2">&quot;supercell_multiple&quot;</span><span class="p">,[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="c1">#Path to the CIF file of the initial bulk structure</span>
+<span class="linenos">12</span><span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;preparation&quot;</span><span class="p">,</span><span class="s2">&quot;host_path&quot;</span><span class="p">,</span><span class="s1">&#39;./bulk.cif&#39;</span><span class="p">)</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="c1">#For check</span>
+<span class="linenos">15</span><span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
 </div>
 </section>
 <section id="id2">
-<h2>教師データ用表面モデルの出力<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
-<p>次に、定式化に向けたクラスター展開法を行うための教師データを作成します。
-以下のコードにより教師データ用の表面モデルを複数出力します。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;cif&quot;</span> <span class="c1">#Choose &quot;cif&quot; or &quot;vasp&quot;</span>
-<span class="linenos">2</span><span class="n">sample</span> <span class="n">code</span>
+<h2>2. Output of Surface Models for Training Data and Energy Acquisition<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>Next, training data is created for cluster expansion method to formulate the metal arrangement problem.</p>
+<p>The following parameters need to be set for creating training data:</p>
+<blockquote>
+<div><ul>
+<li><p>train_data_num (Number of training data)</p>
+<p>Having more information on the formation energies for surface models leads to an accurate formulation of the metal configuration problem, so it is better to have more training data.</p>
+<p>However, the number of possible inequivalent surface models on a given surface model size is maximum 2^N, and considering surface symmetry further reduces the number of inequivalent models. Therefore, the number of training data points must be smaller than this value.</p>
+</li>
+<li><p>calculation_method (Method for calculating the training data)</p>
+<ul class="simple">
+<li><p>In case of using VASP: ‘[“VASP”,”VASP”]’</p></li>
+<li><p>In case of using QuantumEspresso: ‘[“QuantumEspresso”,”QuantumEspresso”]’</p></li>
+<li><p>In case of reading energy csv file: ‘[“csv_reader”,”csv_read”]’</p></li>
+</ul>
+</li>
+<li><p>fmax (Threshold of convergence on the training data calculation)</p></li>
+<li><p>max_cluster_size (Cluster size on cluster expansion)</p>
+<p>Cluster sizes for each number of cluster atoms are specified in list format</p>
+<p>The cluster size must be smaller than the surface model size.</p>
+<p>Additionally, as the length of this list specifies the number of cluster atoms to consider, specifying [3.0] indicates consideration of 2-atom clusters at 3Å, while [3.0, 5.0] indicates formulation considering both 2-atom clusters at 3Å and 3-atom clusters at 5Å.</p>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">#Number of training data</span>
+<span class="linenos"> 2</span><span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;calculation&quot;</span><span class="p">,</span><span class="s2">&quot;train_data_num&quot;</span><span class="p">,</span><span class="s1">&#39;30&#39;</span><span class="p">)</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="c1">#Method for calculating the training data</span>
+<span class="linenos"> 5</span><span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;calculation&quot;</span><span class="p">,</span><span class="s2">&quot;calculation_method&quot;</span><span class="p">,</span><span class="s1">&#39;[&quot;csv_reader&quot;,&quot;csv_read&quot;]&#39;</span><span class="p">)</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="c1">#threshold of convergence on the training data calculation</span>
+<span class="linenos"> 8</span><span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;calculation&quot;</span><span class="p">,</span><span class="s2">&quot;fmax&quot;</span><span class="p">,</span><span class="s1">&#39;0.02&#39;</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="c1">#Cluster size on cluster expansion</span>
+<span class="linenos">11</span><span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;cluster&quot;</span><span class="p">,</span><span class="s2">&quot;max_cluster_size&quot;</span><span class="p">,</span> <span class="s1">&#39;[3.5]&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>出力される表面モデルの形式は” “によりcifファイルとvaspファイルの中から指定することができます。</p>
+<p>Once calculation parameters are set, the following function can output the dataset CSV and surface models for training data</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">CE</span> <span class="o">=</span> <span class="n">allfunc</span><span class="o">.</span><span class="n">ClusterExpansionExcutor</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="linenos">2</span><span class="n">CE</span><span class="o">.</span><span class="n">model_addition_random</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Formation energies are calculated using the surface models obtained for training data.</p>
+<p>In the following program, formation energies are calculated or loaded by the method specified in the calculation_method of the config file, and recorded in the dataset CSV for training data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">CE</span><span class="o">.</span><span class="n">unconverged_calculate</span><span class="p">()</span>
+</pre></div>
+</div>
 </section>
 <section id="qubo">
-<h2>クラスター展開によるQUBO構築<a class="headerlink" href="#qubo" title="Permalink to this heading"></a></h2>
-<p>出力された表面モデルの表面エネルギーを算出し、CSVファイルとして読み込むことでクラスター展開によるQUBO構築を行うことができます。
-VASPやQuantumEspressoを用いることで表面エネルギーを算出することができ、他の合金系を扱う際には各自で表面エネルギーを算出して結果をCSVファイルとして読み込む必要があります。
-CSVファイルのフォーマットは教師データ用表面モデルの出力時に出力されているため、そちらを参考にしてください。</p>
-<p>今回はexampleとして既にQuantumEspressoで算出した結果を読み込みます。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">traindata_csv</span> <span class="o">=</span> <span class="s2">&quot;./sample.csv&quot;</span>
-<span class="linenos">2</span><span class="n">sample</span> <span class="n">code</span>
+<h2>3. Calculation of QUBO Coefficients via Cluster Expansion<a class="headerlink" href="#qubo" title="Link to this heading"></a></h2>
+<p>Next, QUBO coefficients are calculated through cluster expansion for solving on the annealing machine.</p>
+<p>Here, the regression results of QUBO coefficients are influenced by the following conditions, so we have to perform cluster expansion after setting appropriate parameters as needed.</p>
+<blockquote>
+<div><ul>
+<li><p>scoreing_scheme (Evaluation method for regression)</p>
+<p>The k-fold cross-validation is adopted by default. Please modify the parameters if using other evaluation methods.</p>
+</li>
+<li><p>split_number (Number of folds in cross-validation)</p></li>
+<li><p>fitting_scheme (Scheme of regression)</p></li>
+<li><p>alpha (Setting about the coefficients on regression)</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">CE</span><span class="o">.</span><span class="n">ECI_evaluate</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>注意点として、”注意点”</p>
+<p>Accuracy evaluation is performed under the specified execution conditions.</p>
+<p>Cross-validation evaluation is performed here, and if the value exceeds the specified threshold, accuracy can be improved by modifying cluster expansion conditions.</p>
 </section>
 <section id="id3">
-<h2>量子アニーリングマシンによる最安定な表面モデルの出力<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
-<p>以下のコードにより、クラスター展開により構築したQUBOを読み込み、アニーリングマシンで表面エネルギーが最小となる金属配置を解いていきます。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">annealing_type</span> <span class="o">=</span> <span class="s2">&quot;d-wave&quot;</span> <span class="c1">#Choose &quot;d-wave&quot; or &quot;fixstars&quot; or &quot;da&quot;</span>
-<span class="linenos">2</span><span class="n">sample</span> <span class="n">code</span>
+<h2>4. Construction of QUBO Matrix<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>The QUBO matrix is constructed using QUBO coefficients obtained through cluster expansion regression.</p>
+<p>As the QUBO matrix construction varies depending on the type of annealing machine, annealing machine configuration must be specified here.</p>
+<p>In this case, we will use the Fixstars Amplify annealing machine.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">QUBO</span><span class="p">,</span><span class="n">constant</span><span class="o">=</span><span class="n">CE</span><span class="o">.</span><span class="n">make_QUBO</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>このとき、使うアニーリングマシンをannealing_typeで指定します。
-また、アニーリングでの制約条件として” “を考慮する必要があるため、” “のパラメータでそれらの設定を行います。</p>
+<p>Upon examining the obtained QUBO matrix, we can confirm that its shape corresponds to the specified order, and the formation energy for a specific metal arrangement can be derived by summing the respective coefficients.</p>
 </section>
 <section id="id4">
-<h2>出力結果の解析<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
-<p>上のコードを実行した際、以下の結果が描画され、” “がファイルとして出力されます。</p>
-<p>“図示”</p>
-<p>“出力ファイルの説明”</p>
-<p>“オプショナルな出力結果に関して”</p>
+<h2>5. Execution of Annealing<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>Next, we load the QUBO matrix constructed through cluster expansion and use the annealing machine to determine the metal arrangement that minimizes formation energy.</p>
+<p>While it’s possible to focus execution on specific compositions if desired, here we demonstrate a program that explores surface structures where three Cobalt atoms are successively substituted for Copper.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">ase.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">write</span>
+<span class="linenos"> 2</span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="linenos"> 3</span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1">#Annealing setting</span>
+<span class="linenos"> 6</span><span class="n">fa</span> <span class="o">=</span> <span class="n">allfunc</span><span class="o">.</span><span class="n">Fixstars_Amplify</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="n">QUBO</span><span class="p">,</span><span class="n">constant</span><span class="p">,</span><span class="n">CE</span><span class="o">.</span><span class="n">make_qubit</span><span class="p">())</span>
+<span class="linenos"> 7</span><span class="n">fa</span><span class="o">.</span><span class="n">set_default_penalty</span><span class="p">(</span><span class="n">QUBO</span><span class="p">,</span><span class="s2">&quot;QUBO_max&quot;</span><span class="p">)</span>
+<span class="linenos"> 8</span><span class="n">fa</span><span class="o">.</span><span class="n">default_penalty</span> <span class="o">*=</span> <span class="mi">10</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="c1">#Result path setting</span>
+<span class="linenos">11</span><span class="n">resultdir</span><span class="o">=</span><span class="s1">&#39;./work/result/&#39;</span>
+<span class="linenos">12</span><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">resultdir</span><span class="p">):</span>
+<span class="linenos">13</span>    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">resultdir</span><span class="p">)</span>
+<span class="linenos">14</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Cu&quot;</span><span class="p">,</span><span class="s2">&quot;Co&quot;</span><span class="p">,</span><span class="s2">&quot;energy&quot;</span><span class="p">]</span>
+<span class="linenos">15</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="n">columns</span><span class="p">)</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="c1">#Execute annealing</span>
+<span class="linenos">18</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+<span class="linenos">19</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">fa</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">],{</span><span class="s2">&quot;Cu&quot;</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="s2">&quot;Co&quot;</span><span class="p">:</span><span class="mi">27</span><span class="o">-</span><span class="n">i</span><span class="p">})</span>
+<span class="linenos">20</span>    <span class="n">result_dict</span> <span class="o">=</span> <span class="n">fa</span><span class="o">.</span><span class="n">decode_to_universal_style</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="linenos">21</span>    <span class="n">write</span><span class="p">(</span><span class="n">resultdir</span><span class="o">+</span><span class="sa">f</span><span class="s2">&quot;Cu</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">Co</span><span class="si">{</span><span class="mi">27</span><span class="o">-</span><span class="n">i</span><span class="si">}</span><span class="s2">.cif&quot;</span><span class="p">,</span><span class="n">allfunc</span><span class="o">.</span><span class="n">best_bits2model</span><span class="p">(</span><span class="n">result_dict</span><span class="p">,</span><span class="n">CE</span><span class="p">))</span>
+<span class="linenos">22</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">_append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="mi">27</span><span class="o">-</span><span class="n">i</span><span class="p">,</span><span class="n">result_dict</span><span class="p">[</span><span class="s2">&quot;best_energy&quot;</span><span class="p">]],</span><span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+<span class="linenos">23</span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">resultdir</span><span class="o">+</span><span class="s2">&quot;energy.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The result_dict dictionary can display optimal metal arrangement information for the composition ratios under consideration.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>best_energy: Formation energy of the optimal metal arrangement</p></li>
+<li><p>best_bits: Binary representation of the optimal metal arrangement (The CIF file is constructed using it.)</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id5">
+<h2>6. Output of Optimization Results<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>Upon completion of annealing, CIF files of the optimized surface models and CSV files of their formation energies can be obtained.</p>
+<p>While this output is sufficient, the following physicochemical information can be visualized for the optimized surface models to examine alloy structural characteristics:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Visualization of metal positions in the surface model</p></li>
+<li><p>Depth-wise composition distribution of the surface model</p></li>
+<li><p>Radial distribution function for each layer of the surface model</p></li>
+<li><p>Relative heights between two elements for each composition ratio</p></li>
+<li><p>Formation energy for each composition ratio</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span><span class="w"> </span><span class="nn">visualize</span>
+<span class="linenos">2</span><span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Cu&#39;</span><span class="p">,</span><span class="s1">&#39;Co&#39;</span><span class="p">]</span>
+<span class="linenos">3</span><span class="n">total_atoms</span> <span class="o">=</span> <span class="mi">27</span>
+<span class="linenos">4</span><span class="n">resultdir</span> <span class="o">=</span> <span class="s1">&#39;./work/result/&#39;</span>
+<span class="linenos">5</span>
+<span class="linenos">6</span><span class="n">visualization_manager</span> <span class="o">=</span> <span class="n">visualize</span><span class="o">.</span><span class="n">VisualizationManager</span><span class="p">(</span><span class="n">resultdir</span><span class="p">,</span> <span class="n">elements</span><span class="p">,</span> <span class="n">total_atoms</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">#Visualization of metal positions in the surface model</span>
+<span class="linenos">2</span><span class="n">alloy_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">24</span><span class="p">]</span>
+<span class="linenos">3</span><span class="n">visualization_manager</span><span class="o">.</span><span class="n">view_model</span><span class="p">(</span><span class="n">alloy_ratios</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/image2.png" src="../_images/image2.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">#Depth-wise composition distribution of the surface model</span>
+<span class="linenos">2</span><span class="n">alloy_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">21</span><span class="p">]</span>
+<span class="linenos">3</span><span class="n">visualization_manager</span><span class="o">.</span><span class="n">view_composition</span><span class="p">(</span><span class="n">alloy_ratios</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/image3.png" src="../_images/image3.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">#Radial distribution function for each layer of the surface model</span>
+<span class="linenos">2</span><span class="n">alloy_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">21</span><span class="p">]</span>
+<span class="linenos">3</span><span class="n">visualization_manager</span><span class="o">.</span><span class="n">view_rdf</span><span class="p">(</span><span class="n">alloy_ratios</span><span class="p">,</span> <span class="n">center_element</span><span class="o">=</span><span class="s1">&#39;Co&#39;</span><span class="p">,</span> <span class="n">target_elements</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Co&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<img alt="../_images/image4.png" src="../_images/image4.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">#Relative heights between two elements for each composition ratio</span>
+<span class="linenos">2</span><span class="n">alloy_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">21</span><span class="p">]</span>
+<span class="linenos">3</span><span class="n">visualization_manager</span><span class="o">.</span><span class="n">view_relativeposition</span><span class="p">(</span><span class="n">alloy_ratios</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/image5.png" src="../_images/image5.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">#Formation energy for each composition ratio</span>
+<span class="linenos">2</span><span class="n">alloy_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">21</span><span class="p">]</span>
+<span class="linenos">3</span><span class="n">visualization_manager</span><span class="o">.</span><span class="n">view_energy</span><span class="p">(</span><span class="n">alloy_ratios</span><span class="p">,</span> <span class="n">visualize_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">visualize_width</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/image6.png" src="../_images/image6.png" />
+<p>Additionally, when exploring multiple surface models with varying composition ratios, a dashboard is available for interactive understanding of the relationship between composition ratios and surface structures.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span><span class="w"> </span><span class="nn">visualize</span>
+<span class="linenos">2</span><span class="kn">import</span><span class="w"> </span><span class="nn">dashboard</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Cu&#39;</span><span class="p">,</span><span class="s1">&#39;Co&#39;</span><span class="p">]</span>
+<span class="linenos">5</span><span class="n">total_atoms</span> <span class="o">=</span> <span class="mi">27</span>
+<span class="linenos">6</span><span class="n">resultdir</span> <span class="o">=</span> <span class="s1">&#39;./work/result/&#39;</span>
+<span class="linenos">7</span>
+<span class="linenos">8</span><span class="n">visualization_manager</span> <span class="o">=</span> <span class="n">visualize</span><span class="o">.</span><span class="n">VisualizationManager</span><span class="p">(</span><span class="n">resultdir</span><span class="p">,</span> <span class="n">elements</span><span class="p">,</span> <span class="n">total_atoms</span><span class="p">)</span>  <span class="c1"># VisualizationManagerのインスタンスを生成</span>
+<span class="linenos">9</span><span class="n">app</span> <span class="o">=</span> <span class="n">dashboard</span><span class="o">.</span><span class="n">DashApp</span><span class="p">(</span><span class="n">elements</span><span class="p">,</span> <span class="n">total_atoms</span><span class="p">,</span> <span class="n">visualization_manager</span><span class="p">,</span> <span class="n">initial_plots</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">,</span><span class="s1">&#39;composition&#39;</span><span class="p">,</span> <span class="s1">&#39;rdf&#39;</span><span class="p">,</span><span class="s1">&#39;relativeposition&#39;</span><span class="p">,</span><span class="s1">&#39;energy&#39;</span><span class="p">])</span>  <span class="c1"># 初期プロットを設定</span>
+</pre></div>
+</div>
+<img alt="../_images/image7.png" src="../_images/image7.png" />
+<p>In the dashboard output by the above code, moving the left slider allows visualization of physicochemical information for surface models at various composition ratios.</p>
+<p>These results indicate that Cu-Co alloys are more stable in a phase-separated state rather than in an ordered mixture.</p>
+<p>However, due to factors such as the current low accuracy of cluster expansion formulation, the validity of these results needs to be evaluated separately.</p>
+<p>Furthermore, by modifying calculation conditions and target systems in this software, various information about metal arrangements can be obtained for different systems</p>
+</section>
+<section id="id6">
+<h2>7. Utilization of Optimized Models (Optional)<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>Alloy surface models with optimal metal arrangements are used to evaluate adsorption behaviors of various atoms and molecules for understanding catalytic and surface reactions.</p>
+<p>This software can obtain surface symmetry and output inequivalent adsorption models.</p>
+<p>While currently limited to simple systems such as H atoms and CO molecules, development is ongoing to accommodate adsorption of CO2 molecules and H2O in the future.</p>
 </section>
 </section>
 
@@ -158,7 +363,7 @@ CSVファイルのフォーマットは教師データ用表面モデルの出�
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="main.html" class="btn btn-neutral float-left" title="Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="CoCu_CO_modeling.html" class="btn btn-neutral float-right" title="Surface modeling of Co-Cu alloy under CO atmosphere" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="CoCu_CO_modeling.html" class="btn btn-neutral float-right" title="Surface modeling of Cobalt-Copper alloy under carbon monoxide atmosphere" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

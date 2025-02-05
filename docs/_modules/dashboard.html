@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dashboard &mdash; SurfQit 1 ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=b0bc784d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=4755f45a"></script>
+      <script src="../_static/js/language_switcher.js?v=1af0da2e"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SurfQit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/main.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example/main.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../APIreference/main.html">API reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SurfQit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">モジュールコード</a></li>
+      <li class="breadcrumb-item active">dashboard</li>
+      <li class="wy-breadcrumbs-aside">
+        
+<div class="language-selector">
+    <a id="japanese-link" href="#">日本語</a>
+    <a id="english-link" href="#">English</a>
+</div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>dashboard のソースコード</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">dash</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dash</span><span class="w"> </span><span class="kn">import</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dash.dependencies</span><span class="w"> </span><span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dash_bootstrap_components</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dbc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">read</span><span class="p">,</span><span class="n">write</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase</span><span class="w"> </span><span class="kn">import</span> <span class="n">Atom</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nglview</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plotly</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plotly.graph_objs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">go</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">plotly.subplots</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_subplots</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plotly.colors</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">visualize</span>
+
+<div class="viewcode-block" id="DashApp">
+<a class="viewcode-back" href="../APIreference/dashboard.html#dashboard.DashApp">[ドキュメント]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DashApp</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class of Dash Management&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="DashApp.__init__">
+<a class="viewcode-back" href="../APIreference/dashboard.html#dashboard.DashApp.__init__">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elements</span><span class="p">,</span> <span class="n">total_atoms</span><span class="p">,</span> <span class="n">visualization_manager</span><span class="p">:</span> <span class="n">visualize</span><span class="o">.</span><span class="n">VisualizationManager</span><span class="p">,</span> <span class="n">initial_plots</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="n">elements</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_atoms</span> <span class="o">=</span> <span class="n">total_atoms</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">viz_manager</span> <span class="o">=</span> <span class="n">visualization_manager</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_configs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">viz_manager</span><span class="o">.</span><span class="n">get_available_plots</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_plots</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_plot_selection</span><span class="p">(</span><span class="n">initial_plots</span> <span class="ow">or</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setup_layout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setup_callbacks</span><span class="p">()</span></div>
+
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_plot_selection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plots</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">available_plots</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">viz_manager</span><span class="o">.</span><span class="n">get_available_plots</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">plots</span> <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">available_plots</span><span class="p">]</span>
+    
+<div class="viewcode-block" id="DashApp.setup_layout">
+<a class="viewcode-back" href="../APIreference/dashboard.html#dashboard.DashApp.setup_layout">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">INITIAL_RATIOS</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">total_atoms</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># Sidebar component with Plot Selector, Sliders and Dropdowns</span>
+        <span class="n">sidebar</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">html</span><span class="o">.</span><span class="n">H4</span><span class="p">(</span><span class="s1">&#39;Settings&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="s2">&quot;16px&quot;</span><span class="p">})],</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;5vh&quot;</span><span class="p">}),</span>
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span><span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span><span class="s1">&#39;Element Selection&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="s2">&quot;14px&quot;</span><span class="p">,</span> <span class="s2">&quot;margin-bottom&quot;</span><span class="p">:</span> <span class="s2">&quot;15px&quot;</span><span class="p">}),</span>
+                                               <span class="o">*</span><span class="p">[</span><span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">html</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="s2">&quot;12px&quot;</span><span class="p">})],</span><span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="s2">&quot;padding-right&quot;</span><span class="p">:</span> <span class="s2">&quot;0px&quot;</span><span class="p">}),</span>
+                                                                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;slider-</span><span class="si">{</span><span class="n">element</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                                                                                                 <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                                                                                 <span class="nb">max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="c1">#self.total_atoms,</span>
+                                                                                                 <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                                                                                 <span class="n">value</span><span class="o">=</span><span class="p">(</span><span class="n">ratio</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">total_atoms</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="c1">#ratio,</span>
+                                                                                                 <span class="n">marks</span><span class="o">=</span><span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">20</span><span class="p">)},</span>
+                                                                                                 <span class="n">included</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                                                                 <span class="n">tooltip</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;placement&quot;</span><span class="p">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">,</span> <span class="s2">&quot;always_visible&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}),</span>
+                                                                                      <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">,</span> <span class="s1">&#39;margin&#39;</span><span class="p">:</span> <span class="s1">&#39;0 5px&#39;</span><span class="p">})],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span>
+                                                                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;value-</span><span class="si">{</span><span class="n">element</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;text-align&#39;</span><span class="p">:</span> <span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="s2">&quot;12px&quot;</span><span class="p">})],</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;padding-left&quot;</span><span class="p">:</span> <span class="s2">&quot;0px&quot;</span><span class="p">}),],</span> <span class="n">className</span><span class="o">=</span><span class="s1">&#39;mb-1&#39;</span><span class="p">)])</span>
+                                                <span class="k">for</span> <span class="n">element</span><span class="p">,</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">,</span> <span class="n">INITIAL_RATIOS</span><span class="p">)],</span>
+                                               <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;composition-display&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;margin-top&#39;</span><span class="p">:</span> <span class="s1">&#39;20px&#39;</span><span class="p">,</span> <span class="s2">&quot;margin-bottom&quot;</span><span class="p">:</span> <span class="s2">&quot;30px&quot;</span><span class="p">,</span> <span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="s2">&quot;14px&quot;</span><span class="p">}),</span>
+                                               <span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span><span class="s1">&#39;Plot Selection&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="s2">&quot;14px&quot;</span><span class="p">,</span> <span class="s2">&quot;margin-bottom&quot;</span><span class="p">:</span> <span class="s2">&quot;15px&quot;</span><span class="p">}),</span>
+                                               <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;plot-selector&#39;</span><span class="p">,</span>
+                                                            <span class="n">options</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">k</span><span class="p">}</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_configs</span><span class="o">.</span><span class="n">keys</span><span class="p">()],</span>
+                                                            <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_plots</span><span class="p">,</span>
+                                                            <span class="n">multi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="s2">&quot;12px&quot;</span><span class="p">,</span> <span class="s2">&quot;margin-bottom&quot;</span><span class="p">:</span> <span class="s2">&quot;30px&quot;</span><span class="p">}),</span>
+                                               <span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span><span class="s1">&#39;RDF Analysis&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="s2">&quot;14px&quot;</span><span class="p">,</span> <span class="s2">&quot;margin-bottom&quot;</span><span class="p">:</span> <span class="s2">&quot;15px&quot;</span><span class="p">}),</span>
+                                               <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">html</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Center Element&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="s2">&quot;12px&quot;</span><span class="p">}),</span>
+                                                                 <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;center-element-dropdown&#39;</span><span class="p">,</span>
+                                                                              <span class="n">options</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">elem</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">elem</span><span class="p">}</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">],</span>
+                                                                              <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                                                              <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="s2">&quot;12px&quot;</span><span class="p">})],</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s1">&#39;mb-3&#39;</span><span class="p">),</span>
+                                                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">html</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Target Elements&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="s2">&quot;12px&quot;</span><span class="p">}),</span>
+                                                                 <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;target-elements-dropdown&#39;</span><span class="p">,</span>
+                                                                              <span class="n">options</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">elem</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">elem</span><span class="p">}</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">],</span>
+                                                                              <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+                                                                              <span class="n">multi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                                              <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="s2">&quot;12px&quot;</span><span class="p">})],</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">)])])],</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;95vh&quot;</span><span class="p">,</span> <span class="s2">&quot;overflow-y&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">})],</span> <span class="n">className</span><span class="o">=</span><span class="s1">&#39;bg-light&#39;</span><span class="p">)</span>
+        <span class="c1"># Content area for graphs</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;plot-container&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;100vh&quot;</span><span class="p">})</span>
+        <span class="c1"># Main layout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s2">&quot;mb-4&quot;</span><span class="p">)])]),</span>
+                                    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">sidebar</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s1">&#39;bg-light&#39;</span><span class="p">),</span>
+                                             <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">9</span><span class="p">)])],</span> <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;vh-100 p-0&quot;</span><span class="p">)])</span></div>
+
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_plot_dimensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_plots</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;get the number of figure for each line&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">n_plots</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_plots</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_plots</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">//</span> <span class="mi">3</span>
+            <span class="k">if</span> <span class="n">n_plots</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="c1"># 下の段は最大2つ</span>
+                <span class="n">lower_row_plots</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_plots</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">rows</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="n">lower_row_plots</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_plots</span> <span class="o">-</span> <span class="n">lower_row_plots</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">rows</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_plots</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_column_width</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_plots</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">plot_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> 
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;get the width of column&quot;&quot;&quot;</span> 
+        <span class="k">if</span> <span class="n">n_plots</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span> 
+            <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mi">12</span> <span class="o">/</span> <span class="n">n_plots</span><span class="p">)</span> 
+        <span class="k">else</span><span class="p">:</span> 
+            <span class="k">if</span> <span class="n">plot_index</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span> 
+                <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mi">12</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> 
+            <span class="k">else</span><span class="p">:</span> 
+                <span class="n">remaining_plots</span> <span class="o">=</span> <span class="n">n_plots</span> <span class="o">-</span> <span class="mi">3</span> 
+                <span class="n">plots_per_row</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">remaining_plots</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mi">12</span> <span class="o">/</span> <span class="n">plots_per_row</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_plot_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">n_rows</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">is_single_plot</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">row_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+        <span class="n">base_height</span> <span class="o">=</span> <span class="mi">1400</span> <span class="o">//</span> <span class="n">n_rows</span>
+        
+        <span class="k">if</span> <span class="n">row_index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">height_factor</span> <span class="o">=</span> <span class="mi">1</span>  
+        <span class="k">else</span><span class="p">:</span> 
+            <span class="n">height_factor</span> <span class="o">=</span> <span class="mf">1.2</span> 
+
+        <span class="n">size_configs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;single&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mi">500</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">)),</span>
+                <span class="s2">&quot;multi&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">800</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mi">600</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">))},</span>
+            <span class="s2">&quot;composition&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;single&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mi">500</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">)),</span>
+                <span class="s2">&quot;multi&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">800</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mi">600</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">))},</span>
+            <span class="s2">&quot;rdf&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;single&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mi">500</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">)),</span>
+                <span class="s2">&quot;multi&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">800</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mi">600</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">))},</span>
+            <span class="s2">&quot;relativeposition&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;single&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mi">500</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">)),</span>
+                <span class="s2">&quot;multi&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">800</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mi">600</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">))},</span>
+            <span class="s2">&quot;energy&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;single&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mi">800</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">)),</span>
+                <span class="s2">&quot;multi&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">800</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mi">600</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">))}}</span>
+        
+        <span class="n">default_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">base_height</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">))</span>
+        <span class="n">plot_config</span> <span class="o">=</span> <span class="n">size_configs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plot_name</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;single&quot;</span><span class="p">:</span> <span class="n">default_size</span><span class="p">,</span> <span class="s2">&quot;multi&quot;</span><span class="p">:</span> <span class="n">default_size</span><span class="p">})</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="n">plot_config</span><span class="p">[</span><span class="s2">&quot;single&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">is_single_plot</span> <span class="k">else</span> <span class="n">plot_config</span><span class="p">[</span><span class="s2">&quot;multi&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">base_height</span> <span class="o">*</span> <span class="n">height_factor</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_single_plot</span><span class="p">:</span>
+            <span class="n">ratio</span> <span class="o">=</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">base_height</span> <span class="o">*</span> <span class="n">height_factor</span> <span class="o">*</span> <span class="n">ratio</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">base_height</span> <span class="o">*</span> <span class="n">height_factor</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">size</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_organize_plots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">selected_plots</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">ratios</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">center_element</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">target_elements</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">selected_plots</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="n">n_plots</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">selected_plots</span><span class="p">)</span>
+        <span class="n">n_rows</span><span class="p">,</span> <span class="n">plots_per_row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_plot_dimensions</span><span class="p">(</span><span class="n">n_plots</span><span class="p">)</span>
+        <span class="n">is_single_plot</span> <span class="o">=</span> <span class="n">n_plots</span> <span class="o">==</span> <span class="mi">1</span>
+
+        <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">current_row</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">plot_index</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">plot_name</span> <span class="ow">in</span> <span class="n">selected_plots</span><span class="p">:</span>
+            <span class="n">figure</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_plot</span><span class="p">(</span><span class="n">plot_name</span><span class="p">,</span> 
+                                         <span class="n">ratios</span><span class="p">,</span> 
+                                         <span class="n">center_element</span><span class="o">=</span><span class="n">center_element</span><span class="p">,</span> 
+                                         <span class="n">target_elements</span><span class="o">=</span><span class="n">target_elements</span><span class="p">,</span>
+                                         <span class="n">size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_plot_size</span><span class="p">(</span><span class="n">plot_name</span><span class="p">,</span> <span class="n">n_rows</span><span class="p">,</span> <span class="n">is_single_plot</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)))</span>
+
+            <span class="n">col_width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_column_width</span><span class="p">(</span><span class="n">n_plots</span><span class="p">,</span> <span class="n">plot_index</span><span class="p">)</span>
+            <span class="n">plot_info</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;figure&#39;</span><span class="p">:</span> <span class="n">figure</span><span class="p">,</span>
+                         <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="n">col_width</span><span class="p">,</span>
+                         <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;plot-</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="si">}</span><span class="s1">-</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">current_row</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
+            
+            <span class="n">current_row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot_info</span><span class="p">)</span>
+            <span class="n">plot_index</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_row</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span> <span class="k">if</span> <span class="n">plot_index</span> <span class="o">&lt;=</span> <span class="mi">3</span> <span class="k">else</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="n">plot_name</span> <span class="o">==</span> <span class="n">selected_plots</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_row</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span> <span class="k">if</span> <span class="n">plot_index</span> <span class="o">&lt;=</span> <span class="mi">3</span> <span class="k">else</span> <span class="mi">2</span><span class="p">):</span>
+                    <span class="n">remaining_width</span> <span class="o">=</span> <span class="mi">12</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">plot</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">plot</span> <span class="ow">in</span> <span class="n">current_row</span><span class="p">)</span>
+                    <span class="n">additional_width</span> <span class="o">=</span> <span class="n">remaining_width</span> <span class="o">//</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_row</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">plot</span> <span class="ow">in</span> <span class="n">current_row</span><span class="p">:</span>
+                        <span class="n">plot</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">additional_width</span>
+                <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_row</span><span class="p">)</span>
+                <span class="n">current_row</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">rows</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ratios</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">center_element</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">target_elements</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+        <span class="n">figure</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">size</span> <span class="ow">or</span> <span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">plot_name</span> <span class="o">==</span> <span class="s2">&quot;composition&quot;</span><span class="p">:</span>
+            <span class="n">figure</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_configs</span><span class="p">[</span><span class="n">plot_name</span><span class="p">](</span><span class="n">raw_ratios</span><span class="o">=</span><span class="n">ratios</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">plot_name</span> <span class="o">==</span> <span class="s2">&quot;rdf&quot;</span><span class="p">:</span>
+            <span class="n">figure</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_configs</span><span class="p">[</span><span class="n">plot_name</span><span class="p">](</span><span class="n">raw_ratios</span><span class="o">=</span><span class="n">ratios</span><span class="p">,</span>
+                                                  <span class="n">center_element</span><span class="o">=</span><span class="n">center_element</span><span class="p">,</span>
+                                                  <span class="n">target_elements</span><span class="o">=</span><span class="n">target_elements</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">plot_name</span> <span class="o">==</span> <span class="s2">&quot;model&quot;</span><span class="p">:</span>
+            <span class="n">figure</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_configs</span><span class="p">[</span><span class="n">plot_name</span><span class="p">](</span><span class="n">raw_ratios</span><span class="o">=</span><span class="n">ratios</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">plot_name</span> <span class="o">==</span> <span class="s2">&quot;relativeposition&quot;</span><span class="p">:</span>
+            <span class="n">figure</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_configs</span><span class="p">[</span><span class="n">plot_name</span><span class="p">](</span><span class="n">raw_ratios</span><span class="o">=</span><span class="n">ratios</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">plot_name</span> <span class="o">==</span> <span class="s2">&quot;energy&quot;</span><span class="p">:</span>
+            <span class="n">visualize_start</span><span class="o">=</span><span class="mi">0</span>
+            <span class="n">visualize_width</span><span class="o">=</span><span class="mi">3</span>
+            <span class="n">figure</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_configs</span><span class="p">[</span><span class="n">plot_name</span><span class="p">](</span><span class="n">raw_ratios</span><span class="o">=</span><span class="n">ratios</span><span class="p">,</span>
+                                                  <span class="n">visualize_start</span><span class="o">=</span><span class="n">visualize_start</span><span class="p">,</span>
+                                                  <span class="n">visualize_width</span><span class="o">=</span><span class="n">visualize_width</span><span class="p">)</span>
+            
+        <span class="c1"># レイアウトの更新</span>
+        <span class="k">if</span> <span class="n">figure</span><span class="p">:</span>
+            <span class="n">figure</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span>
+                                 <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span>
+                                 <span class="n">margin</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">40</span><span class="p">),</span>
+                                 <span class="n">autosize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">figure</span>
+
+<div class="viewcode-block" id="DashApp.setup_callbacks">
+<a class="viewcode-back" href="../APIreference/dashboard.html#dashboard.DashApp.setup_callbacks">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup_callbacks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;value-</span><span class="si">{</span><span class="n">element</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">),</span>
+                              <span class="n">Input</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;slider-</span><span class="si">{</span><span class="n">element</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))(</span><span class="k">lambda</span> <span class="n">value</span><span class="p">,</span> <span class="n">element</span><span class="o">=</span><span class="n">element</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
+
+        <span class="nd">@self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;composition-display&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">),</span>
+                           <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;slider-</span><span class="si">{</span><span class="n">element</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">])</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">update_composition_display</span><span class="p">(</span><span class="o">*</span><span class="n">ratios</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">ratios</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s2">&quot;Please adjust the ratios&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;text-align&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span> 
+            <span class="n">compositions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">viz_manager</span><span class="o">.</span><span class="n">calculate_composition</span><span class="p">(</span><span class="n">ratios</span><span class="p">)</span>
+            <span class="n">composition_text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">element</span><span class="si">}{</span><span class="n">compositions</span><span class="p">[</span><span class="n">element</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">)</span>
+    
+            <span class="k">return</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span><span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span><span class="n">html</span><span class="o">.</span><span class="n">Strong</span><span class="p">(</span><span class="n">composition_text</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;font-size&#39;</span><span class="p">:</span> <span class="s1">&#39;24px&#39;</span><span class="p">})],</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;text-align&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})])</span>
+
+        <span class="nd">@self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;plot-container&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">),</span>
+                           <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;plot-selector&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
+                           <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;center-element-dropdown&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
+                           <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;target-elements-dropdown&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)]</span> <span class="o">+</span>
+                           <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;slider-</span><span class="si">{</span><span class="n">element</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">])</span>
+        
+        <span class="k">def</span><span class="w"> </span><span class="nf">update_layout</span><span class="p">(</span><span class="n">selected_plots</span><span class="p">,</span> <span class="n">center_element</span><span class="p">,</span> <span class="n">target_elements</span><span class="p">,</span> <span class="o">*</span><span class="n">ratios</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">selected_plots</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s2">&quot;図を選択してください&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;text-center mt-4&quot;</span><span class="p">)</span>
+
+            <span class="n">plot_rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_organize_plots</span><span class="p">(</span><span class="n">selected_plots</span><span class="p">,</span>
+                                             <span class="nb">list</span><span class="p">(</span><span class="n">ratios</span><span class="p">),</span>
+                                             <span class="n">center_element</span><span class="o">=</span><span class="n">center_element</span><span class="p">,</span>
+                                             <span class="n">target_elements</span><span class="o">=</span><span class="n">target_elements</span><span class="p">)</span>
+            <span class="n">row_components</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">plot_rows</span><span class="p">:</span>
+                <span class="n">cols</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">plot</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+                    <span class="n">cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">plot</span><span class="p">[</span><span class="s1">&#39;figure&#39;</span><span class="p">],</span> <span class="nb">id</span><span class="o">=</span><span class="n">plot</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]),</span>
+                                                  <span class="n">width</span><span class="o">=</span><span class="n">plot</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">]))</span>
+                <span class="n">row_components</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">cols</span><span class="p">))</span>
+            
+            <span class="k">return</span> <span class="n">row_components</span>
+
+        <span class="c1"># Run the Dash application</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">port</span><span class="o">=</span><span class="mi">8051</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, H.S. &amp; K.S..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

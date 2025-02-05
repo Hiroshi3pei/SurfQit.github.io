@@ -1,22 +1,22 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="ja">
+<html class="writer-html5" lang="ja" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2. 表面モデリングの分類 &mdash; SurfQit 1 ドキュメント</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d950290e"></script>
-      <script src="../_static/doctools.js?v=888ff710"></script>
-      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-      <script src="../_static/translations.js?v=4dbe4bdc"></script>
+      <script src="../_static/documentation_options.js?v=b0bc784d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=4755f45a"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../_static/js/language_switcher.js?v=1af0da2e"></script>
     <script src="../_static/js/theme.js"></script>
@@ -93,10 +93,10 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">2. </span>表面モデリングの分類<a class="headerlink" href="#id1" title="この見出しへのパーマリンク"></a></h1>
+<h1><span class="section-number">2. </span>表面モデリングの分類<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <p>表面モデリングの方法として、「既に表面構造が分かっている場合」と「表面構造が分かっていない場合」の2つに大別することができます。</p>
 <section id="id2">
-<h2><span class="section-number">2.1. </span>既に表面構造が分かっている場合<a class="headerlink" href="#id2" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">2.1. </span>既に表面構造が分かっている場合<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <div class="line-block">
 <div class="line">Al<sub>2</sub>O<sub>3</sub>やZrO<sub>2</sub>といった単純な金属酸化物では結晶構造が周囲環境(温度や圧力)によって一意に決まるため、材料表面における原子配列を求めることなく表面構造をモデリングすることができます。</div>
 <div class="line">また以下に示すように、電子線やX線などを利用した分析により表面構造を知ることもできます。</div>
@@ -127,7 +127,7 @@
 </ul>
 </div>
 <p>上記に示すように表面構造が分かっている場合、結晶構造データを取得して表面を切り出すことで表面モデリングを行います。</p>
-<img alt="../_images/image4.png" src="../_images/image4.png" />
+<img alt="../_images/image41.png" src="../_images/image41.png" />
 <p>結晶構造データの取得方法の一例を以下に示します。</p>
 <blockquote>
 <div><ul class="simple">
@@ -189,10 +189,10 @@
 <p>以上より、既に表面構造が分かっている場合では、結晶構造データを取得して表面を切り出すことで表面モデリングをすることができます。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">2.2. </span>表面構造が分かっていない場合<a class="headerlink" href="#id3" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">2.2. </span>表面構造が分かっていない場合<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p>前述したように種々の分析により表面構造を知ることができますが、触媒材料や電池材料においては反応点である金属や合金をナノサイズにして分散させるため、上記の分析で表面構造を原子レベルで知ることは難しいとされています。</p>
 <p>この場合、考えられる全ての表面構造をモデリングしてDFT計算(密度汎関数理論計算)で表面エネルギー <span class="math notranslate nohighlight">\(Esurf\)</span> を算出し、最小となる表面構造を選定することで表面モデリングを行うことが一般的とされています。</p>
-<img alt="../_images/image5.png" src="../_images/image5.png" />
+<img alt="../_images/image51.png" src="../_images/image51.png" />
 <div class="line-block">
 <div class="line">表面エネルギー <span class="math notranslate nohighlight">\(Esurf\)</span> は以下に示す式により算出され、表面構造の安定性を評価する値であり、表面エネルギーが小さい表面構造ほど実際に安定的に存在すると考えられています。</div>
 <div class="line">このとき、 <span class="math notranslate nohighlight">\(E(surface)\)</span> は表面モデルのエネルギー[eV]、 <span class="math notranslate nohighlight">\(E(bulk)\)</span> は結晶構造モデルのエネルギー[eV]、 <span class="math notranslate nohighlight">\(n\)</span> は表面モデルと結晶構造モデルの原子数の比率[-]、 <span class="math notranslate nohighlight">\(S\)</span> は表面モデルの表面積[m<sup>2</sup>]を示します。</div>
@@ -201,7 +201,7 @@
 \[Esurf = \frac{E(surface) - n E(bulk)}{2S}\]</div>
 <p>そのため、表面構造が分かっていない場合は考えうる全ての表面モデルを「既に表面構造が分かっている場合」での表面モデリング方法により作成し、表面エネルギーが最小となる表面構造を選定することで表面モデリングを行います。</p>
 <p>しかし、考えられる表面構造に複数の組み合わせが存在する場合はDFT計算で最安定な表面構造を探索するのに時間を要するため、以下に示すような統計的な処理により少ないDFT計算回数で表面エネルギーが最小となる表面構造を探索することが行われています。</p>
-<img alt="../_images/image6.png" src="../_images/image6.png" />
+<img alt="../_images/image61.png" src="../_images/image61.png" />
 <ul>
 <li><dl>
 <dt>モンテカルロシミュレーション</dt><dd><p>様々な確率分布で生成したランダム値を用いた最適化アルゴリズムです。</p>

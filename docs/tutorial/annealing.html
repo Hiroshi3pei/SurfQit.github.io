@@ -1,22 +1,22 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="ja">
+<html class="writer-html5" lang="ja" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3. 量子アニーリングとは &mdash; SurfQit 1 ドキュメント</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d950290e"></script>
-      <script src="../_static/doctools.js?v=888ff710"></script>
-      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-      <script src="../_static/translations.js?v=4dbe4bdc"></script>
+      <script src="../_static/documentation_options.js?v=b0bc784d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=4755f45a"></script>
       <script src="../_static/js/language_switcher.js?v=1af0da2e"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
@@ -95,27 +95,27 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">3. </span>量子アニーリングとは<a class="headerlink" href="#id1" title="この見出しへのパーマリンク"></a></h1>
+<h1><span class="section-number">3. </span>量子アニーリングとは<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <p>量子アニーリングとは、「組合せ最適化問題を高速かつ正確に解くことができる計算技術」であり、本ページではその詳細を説明します。</p>
 <section id="id2">
-<h2><span class="section-number">3.1. </span>組合せ最適化問題とは<a class="headerlink" href="#id2" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">3.1. </span>組合せ最適化問題とは<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>組合せ最適化問題とは、「膨大な選択肢の中からベストな選択肢を見つけ出す問題」であり、この組合せ最適化問題は「目的地までの最短経路の探索」といった日常的なシーンや「トラック内に多くの荷物を積み込むための荷物配置の最適化」といった配送業界のシーンなど様々なシーンに潜んでいます。</p>
-<img alt="../_images/image7.png" src="../_images/image7.png" />
+<img alt="../_images/image71.png" src="../_images/image71.png" />
 <p>これらのような組合せ最適化問題を解くことにより、早く目的地に到着できる経路の組合せや、必要とするガソリン/電気量や人件費を削減できる選択肢を導くことができます。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">3.2. </span>従来の古典コンピュータでの限界<a class="headerlink" href="#id3" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">3.2. </span>従来の古典コンピュータでの限界<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p>上記の組合せ最適化問題の最適解を解析的に求めることは難しく、古典コンピュータでベストな選択肢を見つけるためには、全ての組合せを確認するか近傍探索法などで近似的により良い解を見つけるかをする必要があります。</p>
-<img alt="../_images/image8.png" src="../_images/image8.png" />
+<img alt="../_images/image81.png" src="../_images/image81.png" />
 <p>しかしながら、実社会において「目的地までの最短経路の探索」を行う場合、経路を決定する曲がり角の数は前に示した図よりとても多くなります。
 また、現実的には「出発地と目的地の間の距離を最小とする経路を探索する」だけでなく、「複数の目的地をどの順番で行くか」や「混雑を回避するためにどの経路で行くか」などの情報を多く考慮する必要があります。</p>
 <p>このように扱うデータ規模が増加した場合、検討すべき組合せの数が指数関数的に膨大化し、全ての組合せを確認するために膨大な処理時間や消費エネルギーが必要になります。
 近年は半導体技術の向上が終焉に近づいているとされているため、古典コンピュータで実問題に近い組合せ最適化問題を解くことは難しいとされています。
 また、近似的により良い解を見つける方法においても局所解に陥りやすいといった課題があり、局所解から脱して最適解を見つけ出すプロセスも必要となります。</p>
-<img alt="../_images/image9.png" src="../_images/image9.png" />
+<img alt="../_images/image91.png" src="../_images/image91.png" />
 </section>
 <section id="id4">
-<h2><span class="section-number">3.3. </span>アニーリングとは<a class="headerlink" href="#id4" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">3.3. </span>アニーリングとは<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <p>このような課題を受け、高速かつ正確に組合せ最適化問題を解く手法として「アニーリング」に注目されました。
 アニーリングとは一般的に「金属の焼きなまし」のことを指し、高温で熱した後に徐々に温度を下げていくことで金属の結晶組織を均一化して加工性を向上させることができます。</p>
 <p>この均一化は、熱によって金属原子の位置がランダムに動き回り、徐々に冷却させることで内部エネルギーが最小となるような金属配列を形成していくことに起因します。</p>
@@ -124,7 +124,7 @@
 <p>実際に、金属の焼きなましにおける「金属配列」と「その内部エネルギー」をそれぞれ、組合せ最適化問題における「組合せ」と「その組合せの良さ」に置き換えて関数化することで、アニーリングのアルゴリズムを介して組合せ最適化の対象となる関数が最小/最大となるベストな選択肢を見つけ出すことができるとされています。</p>
 </section>
 <section id="id5">
-<h2><span class="section-number">3.4. </span>量子アニーリングの特徴と利点<a class="headerlink" href="#id5" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">3.4. </span>量子アニーリングの特徴と利点<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
 <p>アニーリングでは「温度」を変えることでベストな選択肢を得ることができますが、量子アニーリングでは「量子効果」を変えることで制御し、 <strong>量子重ね合わせ</strong> や <strong>量子トンネル効果</strong> といった量子の性質を利用した最適化をすることができます。</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -146,7 +146,7 @@
 <p>以上より、量子アニーリングでは量子効果を強めて徐々に弱めていくことにより、組合せ最適化問題におけるベストな選択肢を高速かつ正確に得ることができるとされています。</p>
 </section>
 <section id="id6">
-<h2><span class="section-number">3.5. </span>量子アニーリングの応用と課題<a class="headerlink" href="#id6" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">3.5. </span>量子アニーリングの応用と課題<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
 <p>現在は金融、交通、材料、創薬など、実用的なケースから応用的なケースまで量子アニーリングの適用が進んでいます。</p>
 <p>一方で、組合せの最適化をしたい対象の関数化やbit数の不足など様々な困難があり、今後より容易な関数化やbit数の増加などが期待されています。</p>
 </section>

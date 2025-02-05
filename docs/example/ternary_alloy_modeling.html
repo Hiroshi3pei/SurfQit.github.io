@@ -1,27 +1,27 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="ja">
+<html class="writer-html5" lang="ja" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3元合金の表面モデリング &mdash; SurfQit 1 ドキュメント</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d950290e"></script>
-      <script src="../_static/doctools.js?v=888ff710"></script>
-      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-      <script src="../_static/translations.js?v=4dbe4bdc"></script>
+      <script src="../_static/documentation_options.js?v=b0bc784d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=4755f45a"></script>
       <script src="../_static/js/language_switcher.js?v=1af0da2e"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="8元合金の表面モデリング" href="octonary_alloy_modeling.html" />
+    <link rel="next" title="API reference" href="../APIreference/main.html" />
     <link rel="prev" title="一酸化炭素雰囲気下でのCo-Cu合金の表面モデリング" href="CoCu_CO_modeling.html" /> 
 </head>
 
@@ -50,8 +50,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="main.html">Example</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="CoCu_modeling.html">Co-Cu合金の表面モデリング</a></li>
 <li class="toctree-l2"><a class="reference internal" href="CoCu_CO_modeling.html">一酸化炭素雰囲気下でのCo-Cu合金の表面モデリング</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3元合金の表面モデリング</a></li>
-<li class="toctree-l2"><a class="reference internal" href="octonary_alloy_modeling.html">8元合金の表面モデリング</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3元合金の表面モデリング</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#config">1. configファイルによる条件設定</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../APIreference/main.html">API reference</a></li>
@@ -88,8 +90,40 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1>3元合金の表面モデリング<a class="headerlink" href="#id1" title="この見出しへのパーマリンク"></a></h1>
+<h1>3元合金の表面モデリング<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <p>ここでは3元合金に拡張する際の方法を説明します。</p>
+<p>3元合金を含む3種類以上の金属が混ざった合金はステンレス鋼などの機能性材料や水素製造用材料として広く用いられています。</p>
+<p>単金属や2元合金と比較して、幅広く合金表面の構造や特性を制御することができる一方、その起源を明らかにすることは難しいとされています。</p>
+<p>本ページではSurfQitの多元合金への適用例として、3元合金のモデリングを行う際の相違点を記載します。</p>
+<section id="config">
+<h2>1. configファイルによる条件設定<a class="headerlink" href="#config" title="Link to this heading"></a></h2>
+<p>基本的に対象とする合金系は最初のconfig設定時に指定することで扱うことができます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">allfunc</span>
+<span class="linenos"> 2</span><span class="n">config</span> <span class="o">=</span> <span class="n">allfunc</span><span class="o">.</span><span class="n">Prepare_Config</span><span class="p">()</span>
+<span class="linenos"> 3</span><span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1">#Exection location</span>
+<span class="linenos"> 6</span><span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;preparation&quot;</span><span class="p">,</span><span class="s2">&quot;storage_path&quot;</span><span class="p">,</span><span class="s2">&quot;./work/&quot;</span><span class="p">)</span>
+<span class="linenos"> 7</span><span class="n">allfunc</span><span class="o">.</span><span class="n">storage_path_initialize</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="linenos"> 8</span>
+<span class="hll"><span class="linenos"> 9</span><span class="c1">#Target alloy composition</span>
+</span><span class="hll"><span class="linenos">10</span><span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;preparation&quot;</span><span class="p">,</span><span class="s2">&quot;substitute_ratio&quot;</span><span class="p">,[{</span><span class="s2">&quot;Cu&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="s2">&quot;Co&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="s2">&quot;Pd&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]}])</span>
+</span><span class="linenos">11</span>
+<span class="linenos">12</span><span class="c1">#Surface model size</span>
+<span class="linenos">13</span><span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;preparation&quot;</span><span class="p">,</span><span class="s2">&quot;supercell_multiple&quot;</span><span class="p">,[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="c1">#Path to the CIF file of the initial bulk structure</span>
+<span class="linenos">16</span><span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;preparation&quot;</span><span class="p">,</span><span class="s2">&quot;host_path&quot;</span><span class="p">,</span><span class="s1">&#39;./bulk.cif&#39;</span><span class="p">)</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="c1">#For check</span>
+<span class="linenos">19</span><span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>このとき、金属種を変えたり元素数を変えたりすることで、様々な多元合金の表面モデリングを行うことができます。</p>
+<p>この部分以前や以降では
+<a class="reference internal" href="CoCu_modeling.html"><span class="doc">Co-Cu合金の表面モデリング</span></a>
+と同様に実行することで進めることができます。</p>
+</section>
 </section>
 
 
@@ -97,7 +131,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="CoCu_CO_modeling.html" class="btn btn-neutral float-left" title="一酸化炭素雰囲気下でのCo-Cu合金の表面モデリング" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="octonary_alloy_modeling.html" class="btn btn-neutral float-right" title="8元合金の表面モデリング" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../APIreference/main.html" class="btn btn-neutral float-right" title="API reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

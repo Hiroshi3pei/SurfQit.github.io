@@ -2,3 +2,44 @@
 3元合金の表面モデリング
 ###########################
 ここでは3元合金に拡張する際の方法を説明します。
+
+3元合金を含む3種類以上の金属が混ざった合金はステンレス鋼などの機能性材料や水素製造用材料として広く用いられています。
+
+単金属や2元合金と比較して、幅広く合金表面の構造や特性を制御することができる一方、その起源を明らかにすることは難しいとされています。
+
+本ページではSurfQitの多元合金への適用例として、3元合金のモデリングを行う際の相違点を記載します。
+
+*********************************************************
+1. configファイルによる条件設定
+*********************************************************
+基本的に対象とする合金系は最初のconfig設定時に指定することで扱うことができます。
+
+.. code-block:: python
+   :linenos:
+   :emphasize-lines: 9, 10
+
+   import allfunc
+   config = allfunc.Prepare_Config()
+   config.read()
+
+   #Exection location
+   config.write("preparation","storage_path","./work/")
+   allfunc.storage_path_initialize(config)
+
+   #Target alloy composition
+   config.write("preparation","substitute_ratio",[{"Cu": [0.0, 1.0], "Co": [0.0, 1.0], "Pd": [0.0, 1.0]}])
+
+   #Surface model size
+   config.write("preparation","supercell_multiple",[3,3,3])
+
+   #Path to the CIF file of the initial bulk structure
+   config.write("preparation","host_path",'./bulk.cif')
+
+   #For check
+   config.read()
+
+このとき、金属種を変えたり元素数を変えたりすることで、様々な多元合金の表面モデリングを行うことができます。
+
+この部分以前や以降では
+:doc:`./CoCu_modeling`
+と同様に実行することで進めることができます。

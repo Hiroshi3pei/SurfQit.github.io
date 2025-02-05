@@ -1,3 +1,4 @@
+
 #######
 Example
 #######
@@ -8,4 +9,3 @@ Example
    CoCu_modeling
    CoCu_CO_modeling
    ternary_alloy_modeling
-   octonary_alloy_modeling

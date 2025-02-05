@@ -1,27 +1,27 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Surface modeling of Co-Cu alloy under CO atmosphere &mdash; SurfQit 1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+  <title>Surface modeling of Cobalt-Copper alloy under carbon monoxide atmosphere &mdash; SurfQit 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=404a92a0"></script>
-      <script src="../_static/doctools.js?v=888ff710"></script>
-      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/js/language_switcher.js?v=1af0da2e"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Surface modeling of ternary alloy" href="ternary_alloy_modeling.html" />
-    <link rel="prev" title="Surface modeling of Co-Cu alloy" href="CoCu_modeling.html" /> 
+    <link rel="prev" title="Surface modeling of Cobalt-Copper alloy" href="CoCu_modeling.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,17 +47,12 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/main.html">Tutorial</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="main.html">Example</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="CoCu_modeling.html">Surface modeling of Co-Cu alloy</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Surface modeling of Co-Cu alloy under CO atmosphere</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">インプットの作成</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">教師データ用表面モデルの出力</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#qubo">クラスター展開によるQUBO構築</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">量子アニーリングマシンによる最安定な表面モデルの出力</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">出力結果の解析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CoCu_modeling.html">Surface modeling of Cobalt-Copper alloy</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Surface modeling of Cobalt-Copper alloy under carbon monoxide atmosphere</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2. Output of Surface Models for Training Data and Energy Acquisition</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="ternary_alloy_modeling.html">Surface modeling of ternary alloy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="octonary_alloy_modeling.html">Surface modeling of Octonary alloy</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../APIreference/main.html">API reference</a></li>
@@ -78,7 +73,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="main.html">Example</a></li>
-      <li class="breadcrumb-item active">Surface modeling of Co-Cu alloy under CO atmosphere</li>
+      <li class="breadcrumb-item active">Surface modeling of Cobalt-Copper alloy under carbon monoxide atmosphere</li>
       <li class="wy-breadcrumbs-aside">
         
 <div class="language-selector">
@@ -94,58 +89,34 @@
            <div itemprop="articleBody">
              
   <section id="co-cu">
-<h1>Surface modeling of Co-Cu alloy under CO atmosphere<a class="headerlink" href="#co-cu" title="Permalink to this heading"></a></h1>
-<p>ここでは一酸化炭素雰囲気下でのCo-Cu合金の表面モデリングを行う方法を説明します。
-Co-Cu合金は一酸化炭素雰囲気ではCoが表面に偏析することが報告されております。
-この現象をSurfQitにより確認していきます。</p>
-<p>“図示”</p>
+<h1>Surface modeling of Cobalt-Copper alloy under carbon monoxide atmosphere<a class="headerlink" href="#co-cu" title="Link to this heading"></a></h1>
+<p>Here, we will explain the method for surface modeling of Co-Cu alloy under carbon monoxide (CO) atmosphere. It has been reported that Co segregates to the surface in Co-Cu alloys under carbon monoxide atmosphere.</p>
+<img alt="../_images/image8.png" src="../_images/image8.png" />
+<p>There are no existing methods suitable for modeling this phenomenon, and it needs to be examined exhaustively. However, in SurfQit, surface structures under CO atmosphere can be modeled by creating a dataset that calculates the formation energy of models with CO molecules adsorbed on the surface during the creation of training data for cluster expansion.</p>
+<img alt="../_images/image9.png" src="../_images/image9.png" />
+<p>This page describes the differences when performing modeling under CO atmosphere.</p>
 <section id="id1">
-<h2>インプットの作成<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
-<p>以下のコードによりインプットを作成します。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">var1</span> <span class="o">=</span> <span class="p">[</span><span class="n">Co</span><span class="p">,</span><span class="n">Cu</span><span class="p">]</span>
-<span class="linenos">2</span><span class="n">var2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
-<span class="linenos">3</span><span class="n">var3</span> <span class="o">=</span> <span class="s2">&quot;CO&quot;</span>
+<h2>2. Output of Surface Models for Training Data and Energy Acquisition<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>For surface modeling under vacuum conditions, training data can be created by executing the following code.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">CE</span> <span class="o">=</span> <span class="n">allfunc</span><span class="o">.</span><span class="n">ClusterExpansionExcutor</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="linenos">2</span><span class="n">CE</span><span class="o">.</span><span class="n">model_addition_random</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="CoCu_modeling.html"><span class="doc">Surface modeling of Co-Cu alloy</span></a> との相違点として、”相違点”。
-以降のプログラムは <a class="reference internal" href="CoCu_modeling.html"><span class="doc">Surface modeling of Co-Cu alloy</span></a> と同様になります。</p>
-</section>
-<section id="id2">
-<h2>教師データ用表面モデルの出力<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
-<p>次に、定式化に向けたクラスター展開法を行うための教師データを作成します。
-以下のコードで教師データ用の表面モデルを複数出力することができます。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;cif&quot;</span> <span class="c1">#Choose &quot;cif&quot; or &quot;vasp&quot;</span>
-<span class="linenos">2</span><span class="n">sample</span> <span class="n">code</span>
+<p>Training data can be constructed by calculating the surface modeling output here.</p>
+<p>On the other hand, under CO atmosphere, a surface model with CO molecules present on the surface can be created by executing the following code.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">CE</span> <span class="o">=</span> <span class="n">allfunc</span><span class="o">.</span><span class="n">ClusterExpansionExcutor</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="linenos">2</span><span class="n">CE</span><span class="o">.</span><span class="n">model_addition_random</span><span class="p">()</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="linenos">5</span><span class="n">paths</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;./work/train_data/*.cif&quot;</span><span class="p">)</span>
+<span class="linenos">6</span><span class="n">sp</span> <span class="o">=</span> <span class="n">allfunc</span><span class="o">.</span><span class="n">Slab_Processor</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span><span class="s2">&quot;slab&quot;</span><span class="p">,</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span><span class="n">leyer_number</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="linenos">7</span><span class="n">sp</span><span class="p">([</span><span class="n">sp</span><span class="o">.</span><span class="n">undo_z_wrap</span><span class="p">,</span><span class="n">sp</span><span class="o">.</span><span class="n">add_vacuum</span><span class="p">],</span><span class="s2">&quot;slab&quot;</span><span class="p">)</span>
+<span class="linenos">8</span><span class="n">sp</span><span class="p">([</span><span class="n">sp</span><span class="o">.</span><span class="n">undo_z_wrap</span><span class="p">,</span><span class="n">sp</span><span class="o">.</span><span class="n">add_vacuum</span><span class="p">,</span><span class="n">sp</span><span class="o">.</span><span class="n">adsorption_CO</span><span class="p">],</span><span class="s2">&quot;COad&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="qubo">
-<h2>クラスター展開によるQUBO構築<a class="headerlink" href="#qubo" title="Permalink to this heading"></a></h2>
-<p>出力された表面モデルの表面エネルギーを算出し、CSVファイルとして読み込むことでクラスター展開によるQUBO構築を行うことができます。
-VASPやQuantumEspressoを用いることで表面エネルギーを算出することができ、他の合金系を扱う際には各自で表面エネルギーを算出して結果をCSVファイルとして読み込む必要があります。
-CSVファイルのフォーマットは教師データ用表面モデルの出力時に出力されているため、そちらを参考にしてください。</p>
-<p>今回はexampleとして既にQuantumEspressoで算出した結果を読み込みます。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">traindata_csv</span> <span class="o">=</span> <span class="s2">&quot;./sample_CO.csv&quot;</span>
-<span class="linenos">2</span><span class="n">sample</span> <span class="n">code</span>
-</pre></div>
-</div>
-</section>
-<section id="id3">
-<h2>量子アニーリングマシンによる最安定な表面モデルの出力<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
-<p>以下のコードにより、クラスター展開により構築したQUBOを読み込み、アニーリングマシンで表面エネルギーが最小となる金属配置を解いていきます。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">annealing_type</span> <span class="o">=</span> <span class="s2">&quot;d-wave&quot;</span> <span class="c1">#Choose &quot;d-wave&quot; or &quot;fixstars&quot; or &quot;da&quot;</span>
-<span class="linenos">2</span><span class="n">sample</span> <span class="n">code</span>
-</pre></div>
-</div>
-<p>このとき、使うアニーリングマシンをannealing_typeで指定します。
-また、アニーリングでの制約条件として” “を考慮する必要があるため、” “のパラメータでそれらの設定を行います。</p>
-</section>
-<section id="id4">
-<h2>出力結果の解析<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
-<p>上のコードを実行した際、以下の結果が描画され、” “がファイルとして出力されます。</p>
-<p>“図示”</p>
-<p>“出力ファイルの説明”</p>
-<p>“オプショナルな出力結果に関して”</p>
+<p>Surface structure modeling under CO atmosphere is enabled by calculating the formation energy using the surface model for training data with CO molecules present on the surface obtained here.</p>
+<p>At this point, surface modeling under other reactive atmospheres can also be investigated by specifying other molecules or atoms instead of ‘CO’.</p>
+<p>Before and after this section, you can proceed by executing in the same way as in <a class="reference internal" href="CoCu_modeling.html"><span class="doc">Surface modeling of Cobalt-Copper alloy</span></a> .</p>
 </section>
 </section>
 
@@ -153,7 +124,7 @@ CSVファイルのフォーマットは教師データ用表面モデルの出�
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="CoCu_modeling.html" class="btn btn-neutral float-left" title="Surface modeling of Co-Cu alloy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="CoCu_modeling.html" class="btn btn-neutral float-left" title="Surface modeling of Cobalt-Copper alloy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="ternary_alloy_modeling.html" class="btn btn-neutral float-right" title="Surface modeling of ternary alloy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

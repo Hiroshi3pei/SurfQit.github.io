@@ -1,79 +1,326 @@
 ###########################
 Co-Cu合金の表面モデリング
 ###########################
-ここではCo-Cu合金の表面モデリングを行う方法を説明します。
-Co-Cu合金は" "といった表面構造を持つことが報告されており、これにより" "という性質を示すとされています。
+ここではCo-Cu合金の表面モデリングを行う方法を説明します。合金材料を利用した表面反応は合金表面における組成や原子位置に依存して性能が変化します。そのため、合金の表面状態を知ることは表面反応の理解に向けて重要であるとされています。
 
-"図示"
+そこで、量子アニーリングを利用したCo-Cu合金の表面モデリング方法を本項で説明します。
+
+以下に全体の流れの概略図を示します。
+
+.. localized-image:: image0.png
 
 *********************************************************
-インプットの作成
+0. 必要なモジュールのインストール (初回のみ実行)
 *********************************************************
-以下のコードによりインプットを作成します。
+実行環境によって必要なモジュールがない可能性があるため、初回実行時に必要なモジュールをインストールしてください。
 
 .. code-block:: python
    :linenos:
 
-   var1 = [Co,Cu]
-   var2 = (4,4,4)
-
-| " "は合金を構成する元素を示し、リスト形式で入力します。今回はCo-Cu合金を扱うため、" "=[Co,Cu]とします。
-| また、" "は検討する表面モデルのサイズを指定するパラメータです。今回は4×4の4層からなる表面モデルを検討するため、" "=(4,4,4)とします。
-| 他にも、"他のパラメータの説明"
-| 注意点として、"注意点"
+   pip install ase==3.22
+   pip install spglib
+   pip install cycthon
+   pip install clease
+   pip install tqdm
+   pip install amplify
+   pip --no-cache-dir install amplify_bbopt
+   sudo apt-get install python3.11-dev
+   python cython_setup.py build_ext --inplace
+   cythonize -i -a cython_process.pyx
 
 *********************************************************
-教師データ用表面モデルの出力
+1. configファイルによる条件設定
 *********************************************************
-次に、定式化に向けたクラスター展開法を行うための教師データを作成します。
-以下のコードにより教師データ用の表面モデルを複数出力します。
+本ソフトウェアはconfigファイルに記載された実行条件を読み込んで実行されます。
+
+デフォルトの計算条件は既にconfigファイルに記載されているため、まず初めにデフォルトのconfigファイルを読み込み、必要に応じて計算条件を変更します。
 
 .. code-block:: python
    :linenos:
 
-   output_type="cif" #Choose "cif" or "vasp"
-   sample code
+   import allfunc
+   config = allfunc.Prepare_Config()
+   config.read()
 
-出力される表面モデルの形式は" "によりcifファイルとvaspファイルの中から指定することができます。
+.. localized-image:: image1.png
 
-*********************************************************
-クラスター展開によるQUBO構築
-*********************************************************
-出力された表面モデルの表面エネルギーを算出し、CSVファイルとして読み込むことでクラスター展開によるQUBO構築を行うことができます。
-VASPやQuantumEspressoを用いることで表面エネルギーを算出することができ、他の合金系を扱う際には各自で表面エネルギーを算出して結果をCSVファイルとして読み込む必要があります。
-CSVファイルのフォーマットは教師データ用表面モデルの出力時に出力されているため、そちらを参考にしてください。
+configファイルは以下のSectionで構成されています。
 
-今回はexampleとして既にQuantumEspressoで算出した結果を読み込みます。
+   - preparation：求めたい合金表面の情報に関する設定
+   - cluster：クラスター展開に関する設定
+   - calculation：教師データに関する設定
+   - annealing：アニーリングの実行に関する設定
 
-.. code-block:: python
-   :linenos:
+対象とする材料系や計算条件をここで設定します。
 
-   traindata_csv = "./sample.csv"
-   sample code
+ここでは以下の条件をそれぞれ「config.write("Section name","key name", "value")」のフォーマットで指定します。
 
-注意点として、"注意点"
+   - storage_path (実行場所の指定)
+   - substitute_ratio (扱う合金種)
+   - supercell_multiple (扱う表面モデルサイズ)
+   - host_path (元となるバルク構造のCIFファイルのパス)
 
-*********************************************************
-量子アニーリングマシンによる最安定な表面モデルの出力
-*********************************************************
-以下のコードにより、クラスター展開により構築したQUBOを読み込み、アニーリングマシンで表面エネルギーが最小となる金属配置を解いていきます。
+このほかにも、検討する露出面や表面モデルの真空層についてもconfigで設定することができます。
 
 .. code-block:: python
    :linenos:
 
-   annealing_type = "d-wave" #Choose "d-wave" or "fixstars" or "da"
-   sample code
+   #Exection location
+   config.write("preparation","storage_path","./work/")
+   allfunc.storage_path_initialize(config)
 
-このとき、使うアニーリングマシンをannealing_typeで指定します。
-また、アニーリングでの制約条件として" "を考慮する必要があるため、" "のパラメータでそれらの設定を行います。
+   #Target alloy composition
+   config.write("preparation","substitute_ratio",[{"Cu": [0.0, 1.0], "Co": [0.0, 1.0]}])
+
+   #Surface model size
+   config.write("preparation","supercell_multiple",[3,3,3])
+
+   #Path to the CIF file of the initial bulk structure
+   config.write("preparation","host_path",'./bulk.cif')
+
+   #For check
+   config.read()
 
 *********************************************************
-出力結果の解析
+2. 教師データ用モデルの出力とエネルギー取得
 *********************************************************
-上のコードを実行した際、以下の結果が描画され、" "がファイルとして出力されます。
+次に、金属配置問題の定式化に向けたクラスター展開法を行うための教師データを作成します。
 
-"図示"
+教師データの作成に向けて、以下の条件を設定する必要があります。
 
-"出力ファイルの説明"
+   - train_data_num (教師データの数)
+     
+     様々な金属比率や金属配置を持つ表面モデルに対する形成エネルギーの関係性が多くあると、金属配置問題を正確に定式化することに繋がるため、教師データ数は多い方が良いです。
+     
+     しかし、対象とする表面モデルのサイズで構成可能な非等価な表面モデルは最大2^N通りで、表面対称性を考慮するとさらに非等価な表面モデルは限られてくるため、ここでの教師データの数はその値より小さくする必要があります。
 
-"オプショナルな出力結果に関して"
+   - calculation_method (教師データを算出する方法)
+
+     - VASPで算出する場合：'["VASP","VASP"]'
+     - QuantumEspressoで算出する場合：'["QuantumEspresso","QuantumEspresso"]'
+     - エネルギー値をCSVから読み込む場合：'["csv_reader","csv_read"]'
+
+   - fmax (教師データ算出時の収束閾値)
+   - max_cluster_size (クラスター展開でのクラスターサイズ)
+
+     検討するクラスター原子数ごとのクラスターサイズをリスト形式で指定します。
+     
+     クラスターサイズは検討する表面モデルサイズより小さい必要があります。
+     
+     また、このリストの長さが検討するクラスター原子数を指定するため、[3.0]と指定した場合は3Åの2原子クラスターを考慮し、[3.0, 5.0]と指定した場合は3Åの2原子クラスターと5Åの3原子クラスターを考慮した定式化を行います。
+
+.. code-block:: python
+   :linenos:
+
+   #Number of training data
+   config.write("calculation","train_data_num",'30')
+
+   #Method for calculating the training data
+   config.write("calculation","calculation_method",'["csv_reader","csv_read"]')
+
+   #threshold of convergence on the training data calculation
+   config.write("calculation","fmax",'0.02')
+
+   #Cluster size on cluster expansion
+   config.write("cluster","max_cluster_size", '[3.5]')
+
+計算条件を設定できたら、以下の関数により教師データ用のデータセットCSVと表面モデルを出力します。
+
+.. code-block:: python
+   :linenos:
+
+   CE = allfunc.ClusterExpansionExcutor(config)
+   CE.model_addition_random()
+
+ここで得られた教師データ用表面モデルを用いて形成エネルギーを算出します。
+
+以下のプログラムにおいて、configファイルのcalculation_methodで設定した方法により形成エネルギーを算出または読み込みすることで、教師データ用のデータセットCSVに形成エネルギーを記載します。
+
+.. code-block:: python
+   :linenos:
+
+   CE.unconverged_calculate()
+
+*********************************************************
+3. クラスター展開によるQUBO係数の算出
+*********************************************************
+次に、アニーリングマシンでの求解に向けてQUBO係数をクラスター展開により算出します。
+
+ここで以下の条件によりQUBO係数の回帰結果が左右されるため、必要に応じて条件設定を行ってからクラスター展開を行います。
+
+   - scoring_scheme (回帰に向けた評価方法)
+
+     デフォルトではk-分割交差検証が採用されています。他の評価手法を利用する場合は条件を変更してください。
+
+   - split_number (交差検証における分割数)
+
+   - fitting_scheme (回帰スキーム)
+
+   - alpha (回帰における係数)
+
+.. code-block:: python
+   :linenos:
+
+   CE.ECI_evaluate()
+
+このときに、実行条件下での精度評価が行われます。
+
+ここではクロスバリデーションによる評価を行っており、規定値よりも大きい値の場合はクラスター展開における条件を変えることで精度をあげることが可能となります。
+
+*********************************************************
+4. QUBO行列の構築
+*********************************************************
+クラスター展開により回帰されたQUBO係数を用いてQUBO行列を構築します。
+
+求解を行うアニーリングマシンの種類によって構築するQUBO行列が異なるため、ここでアニーリングマシンの設定を行う必要があります。
+
+今回はFixstars Amplifyのアニーリングマシンを使用することとします。
+
+.. code-block:: python
+   :linenos:
+
+   QUBO,constant=CE.make_QUBO()
+
+得られたQUBO行列を確認すると、指定した次数に対応した行列のshapeになっていることが分かり、各係数を足し合わせることである金属配置での形成エネルギーを導出することができます。
+
+*********************************************************
+5. アニーリングの実行
+*********************************************************
+次に、クラスター展開により構築したQUBO行列を読み込み、アニーリングマシンで表面エネルギーが最小となる金属配置を求めていきます。
+
+目的の組成があればその組成だけに注目した実行も可能ですが、今回はCuに対してCoを3原子ずつ置換した際の表面構造を探索するプログラムを示します。
+
+.. code-block:: python
+   :linenos:
+
+   from ase.io import write
+   import os
+   import pandas as pd
+
+   #Annealing setting
+   fa = allfunc.Fixstars_Amplify(config,QUBO,constant,CE.make_qubit())
+   fa.set_default_penalty(QUBO,"QUBO_max")
+   fa.default_penalty *= 10
+
+   #Result path setting
+   resultdir='./work/result/'
+   if not os.path.isdir(resultdir):
+       os.makedirs(resultdir)
+   columns=["Cu","Co","energy"]
+   df = pd.DataFrame(columns = columns)
+
+   #Execute annealing
+   for i in range(0,28,3):
+       result = fa.run([None,None],{"Cu":i,"Co":27-i})
+       result_dict = fa.decode_to_universal_style(result)
+       write(resultdir+f"Cu{i}Co{27-i}.cif",allfunc.best_bits2model(result_dict,CE))
+       df = df._append(pd.Series([i,27-i,result_dict["best_energy"]],index=df.columns,name=str(i)))
+   df.to_csv(resultdir+"energy.csv")
+
+result_dictというdictには、検討している組成比における最適な金属配置情報を表示することができます。
+
+  - best_energy: 最適な金属配置における形成エネルギー
+  - best_bits: 最適な金属配置におけるバイナリ (これをもとにCIFファイルを構築しています。)
+
+*********************************************************
+6. 最適化結果の出力
+*********************************************************
+アニーリングの実行が終了すると、最適化後の表面モデルのCIFファイルとその形成エネルギーのCSVファイルを得ることができます。
+
+この出力だけでも十分ですが、最適化後の表面モデルに対して以下に示す物理化学的情報を可視化することができ、合金構造の特徴を確認することができます。
+
+  - 表面モデルにおける金属位置の描画
+  - 表面モデルの深さ方向の組成分布
+  - 表面モデルの層ごとの動径分布関数
+  - 各組成比に対する2元素間の相対高さ
+  - 各組成比に対する形成エネルギー
+
+.. code-block:: python
+   :linenos:
+
+   import visualize
+   elements = ['Cu','Co']
+   total_atoms = 27
+   resultdir = './work/result/'
+
+   visualization_manager = visualize.VisualizationManager(resultdir, elements, total_atoms)
+
+
+.. code-block:: python
+   :linenos:
+
+   #Visualization of metal positions in the surface model
+   alloy_ratios=[3,24]
+   visualization_manager.view_model(alloy_ratios,size=22)
+
+.. localized-image:: image2.png
+
+.. code-block:: python
+   :linenos:
+
+   #Depth-wise composition distribution of the surface model
+   alloy_ratios=[6,21]
+   visualization_manager.view_composition(alloy_ratios)
+
+.. localized-image:: image3.png
+
+.. code-block:: python
+   :linenos:
+
+   #Radial distribution function for each layer of the surface model
+   alloy_ratios=[6,21]
+   visualization_manager.view_rdf(alloy_ratios, center_element='Co', target_elements=['Co'])
+
+.. localized-image:: image4.png
+
+.. code-block:: python
+   :linenos:
+
+   #Relative heights between two elements for each composition ratio
+   alloy_ratios=[6,21]
+   visualization_manager.view_relativeposition(alloy_ratios)
+
+.. localized-image:: image5.png
+
+.. code-block:: python
+   :linenos:
+
+   #Formation energy for each composition ratio
+   alloy_ratios=[6,21]
+   visualization_manager.view_energy(alloy_ratios, visualize_start=0, visualize_width=3)
+
+.. localized-image:: image6.png
+
+また、組成比を変えた複数の表面モデルの探索を行った場合、組成比と表面構造の関係性をインタラクティブに理解するためのダッシュボードを利用することが可能です。
+
+.. code-block:: python
+   :linenos:
+
+   import visualize
+   import dashboard
+
+   elements = ['Cu','Co']
+   total_atoms = 27
+   resultdir = './work/result/'
+
+   visualization_manager = visualize.VisualizationManager(resultdir, elements, total_atoms)  # VisualizationManagerのインスタンスを生成
+   app = dashboard.DashApp(elements, total_atoms, visualization_manager, initial_plots=['model','composition', 'rdf','relativeposition','energy'])  # 初期プロットを設定
+
+.. localized-image:: image7.png
+
+上のコードで出力されたダッシュボードにおいて、左のsliderを動かすと様々な組成比における表面モデルの物理化学的情報をまとめて描画することが可能です。
+
+この結果から、Cu-Co合金では規則的に混ざるよりも相分離したほうが安定であることが分かります。
+
+ただし、クラスター展開による定式化の精度が未だ低いことなどから、結果が妥当かどうかは別で検討する必要があります。
+
+また、このソフトウェアにおいて計算条件や検討する系を変えることで、様々な系に対する金属配置について様々な情報を得ることができます。
+
+*********************************************************
+7. 最適化モデルの利用 (オプション)
+*********************************************************
+最適な金属配置を持った合金表面モデルは、触媒反応や表面反応の理解に向けて様々な原子や分子の吸着挙動を評価することになります。
+
+このソフトウェアでは表面の対称性を取得して、非等価な吸着モデルを出力することができます。
+
+現状H原子やCO分子といった単純な系に限られていますが、今後CO2分子やH2Oの吸着にも対応できるように開発を進めています。

@@ -1,21 +1,21 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2. Classification of Surface Modeling &mdash; SurfQit 1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=404a92a0"></script>
-      <script src="../_static/doctools.js?v=888ff710"></script>
-      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../_static/js/language_switcher.js?v=1af0da2e"></script>
     <script src="../_static/js/theme.js"></script>
@@ -92,10 +92,10 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">2. </span>Classification of Surface Modeling<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">2. </span>Classification of Surface Modeling<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <p>Surface modeling methods can be broadly classified into two categories: “when the surface structure is already known” and “when the surface structure is not known.”</p>
 <section id="id2">
-<h2><span class="section-number">2.1. </span>When the Surface Structure Is Already Known<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.1. </span>When the Surface Structure Is Already Known<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <div class="line-block">
 <div class="line">For simple metal oxides like Al<sub>2</sub>O<sub>3</sub> and ZrO<sub>2</sub>, the crystal structure is uniquely determined by the surrounding environment (such as temperature and pressure), allowing for surface modeling without needing to determine the atomic arrangement on the material’s surface.</div>
 <div class="line">Additionally, surface structures can be determined through analyses using techniques such as electron beams or X-rays, as shown below.</div>
@@ -126,7 +126,7 @@
 </ul>
 </div>
 <p>As shown above, when the surface structure is known, surface modeling can be performed by obtaining crystal structure data and slicing the surface.</p>
-<img alt="../_images/image4.png" src="../_images/image4.png" />
+<img alt="../_images/image41.png" src="../_images/image41.png" />
 <p>An example method for obtaining crystal structure data is shown below:</p>
 <blockquote>
 <div><ul class="simple">
@@ -188,10 +188,10 @@
 <p>From the above, when the surface structure is already known, surface modeling can be performed by obtaining crystal structure data and slicing the surface.</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">2.2. </span>When the Surface Structure Is Not Known<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.2. </span>When the Surface Structure Is Not Known<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p>As mentioned earlier, surface structures can be determined through various analyses. However, in the case of catalyst and battery materials, metals or alloys, which are reaction sites, are dispersed at the nanoscale. Therefore, it is difficult to know the surface structure at the atomic level through the analyses mentioned above.</p>
 <p>In this case, surface modeling is generally performed by modeling all possible surface structures, calculating the surface energy using DFT (Density Functional Theory) calculations, and selecting the surface structure with the minimum surface energy.</p>
-<img alt="../_images/image5.png" src="../_images/image5.png" />
+<img alt="../_images/image51.png" src="../_images/image51.png" />
 <div class="line-block">
 <div class="line">Surface energy <span class="math notranslate nohighlight">\(Esurf\)</span> is calculated using the equation shown below and is a value that evaluates the stability of a surface structure. The lower the surface energy, the more stable the surface structure is considered to be.</div>
 <div class="line">Here, <span class="math notranslate nohighlight">\(E(surface)\)</span> represents the energy of the surface model [eV], <span class="math notranslate nohighlight">\(E(bulk)\)</span> represents the energy of the crystal structure model [eV], <span class="math notranslate nohighlight">\(n\)</span> represents the number of unit cells in the surface model [-], and <span class="math notranslate nohighlight">\(S\)</span> represents the surface area of the surface model [m<sup>2</sup>].</div>
@@ -200,7 +200,7 @@
 \[Esurf = \frac{E(surface) - n E(bulk)}{2S}\]</div>
 <p>Therefore, when the surface structure is not known, all possible surface models are created using the surface modeling method for “when the surface structure is already known”, and the surface modeling is performed by selecting the surface structure with the minimum surface energy.</p>
 <p>However, if there are multiple combinations of possible surface structures, searching for the most stable surface structure using DFT calculations can be time-consuming. Thus, statistical processing methods like those shown below are used to find the surface structure with the minimum surface energy with fewer DFT calculations.</p>
-<img alt="../_images/image6.png" src="../_images/image6.png" />
+<img alt="../_images/image61.png" src="../_images/image61.png" />
 <ul>
 <li><dl>
 <dt>Monte Carlo Simulation</dt><dd><p>An optimization algorithm that uses random values generated from various probability distributions.</p>

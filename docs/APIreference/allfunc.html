@@ -1,26 +1,27 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="ja">
+<html class="writer-html5" lang="ja" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>allfunc module &mdash; SurfQit 1 ドキュメント</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d950290e"></script>
-      <script src="../_static/doctools.js?v=888ff710"></script>
-      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-      <script src="../_static/translations.js?v=4dbe4bdc"></script>
+      <script src="../_static/documentation_options.js?v=b0bc784d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=4755f45a"></script>
       <script src="../_static/js/language_switcher.js?v=1af0da2e"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="visualize module" href="visualize.html" />
     <link rel="prev" title="API reference" href="main.html" /> 
 </head>
 
@@ -53,6 +54,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#allfunc.Prepare_Config"><code class="docutils literal notranslate"><span class="pre">Prepare_Config</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.Prepare_Config.__init__"><code class="docutils literal notranslate"><span class="pre">Prepare_Config.__init__()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.Prepare_Config.read"><code class="docutils literal notranslate"><span class="pre">Prepare_Config.read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Prepare_Config.save"><code class="docutils literal notranslate"><span class="pre">Prepare_Config.save()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.Prepare_Config.write"><code class="docutils literal notranslate"><span class="pre">Prepare_Config.write()</span></code></a></li>
 </ul>
 </li>
@@ -75,6 +77,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionSettings_nowarning.index_by_basis"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionSettings_nowarning.index_by_basis</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionSettings_nowarning.all_cf_names"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionSettings_nowarning.all_cf_names</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionSettings_nowarning.cluster_mng"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionSettings_nowarning.cluster_mng</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionSettings_nowarning.create_cluster_list_and_trans_matrix"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionSettings_nowarning.create_cluster_list_and_trans_matrix()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#allfunc.cluster2index"><code class="docutils literal notranslate"><span class="pre">cluster2index()</span></code></a></li>
@@ -83,6 +86,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#allfunc.ClusterManager_each_sublattice"><code class="docutils literal notranslate"><span class="pre">ClusterManager_each_sublattice</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterManager_each_sublattice.__init__"><code class="docutils literal notranslate"><span class="pre">ClusterManager_each_sublattice.__init__()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterManager_each_sublattice.build"><code class="docutils literal notranslate"><span class="pre">ClusterManager_each_sublattice.build()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterManager_each_sublattice.cluster_list_for_template"><code class="docutils literal notranslate"><span class="pre">ClusterManager_each_sublattice.cluster_list_for_template()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#allfunc.CESlab_nowarning"><code class="docutils literal notranslate"><span class="pre">CESlab_nowarning()</span></code></a></li>
@@ -107,6 +111,11 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#allfunc.NewStructures_each_sublattice"><code class="docutils literal notranslate"><span class="pre">NewStructures_each_sublattice</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.NewStructures_each_sublattice.__init__"><code class="docutils literal notranslate"><span class="pre">NewStructures_each_sublattice.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.NewStructures_each_sublattice.generate_probe_structure"><code class="docutils literal notranslate"><span class="pre">NewStructures_each_sublattice.generate_probe_structure()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#allfunc.ProbeStructure_each_sublattice"><code class="docutils literal notranslate"><span class="pre">ProbeStructure_each_sublattice</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.ProbeStructure_each_sublattice.__init__"><code class="docutils literal notranslate"><span class="pre">ProbeStructure_each_sublattice.__init__()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#allfunc.CorrFunction_each_sublattice"><code class="docutils literal notranslate"><span class="pre">CorrFunction_each_sublattice</span></code></a><ul>
@@ -115,21 +124,79 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#allfunc.check_position_overlap"><code class="docutils literal notranslate"><span class="pre">check_position_overlap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#allfunc.check_max_cluster_size"><code class="docutils literal notranslate"><span class="pre">check_max_cluster_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#allfunc.Slab_Processor"><code class="docutils literal notranslate"><span class="pre">Slab_Processor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.__init__"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.update_radiusdict"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.update_radiusdict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.selective_dynamics"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.selective_dynamics()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.set_cif_list"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.set_cif_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.set_vaccum_thickness"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.set_vaccum_thickness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.set_leyer_number"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.set_leyer_number()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.set_model_type"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.set_model_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.load"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.load()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.save_cif"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.save_cif()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.save4visualize"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.save4visualize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.save_vasp"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.save_vasp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.process_iter"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.process_iter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.sort"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.sort()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.remove_vacuum"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.remove_vacuum()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.add_vacuum"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.add_vacuum()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.undo_z_wrap"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.undo_z_wrap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.adsorption_Hydrogen"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.adsorption_Hydrogen()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.adsorption_Oxygen"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.adsorption_Oxygen()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.adsorption_Carbon"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.adsorption_Carbon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.adsorption_CO"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.adsorption_CO()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.adsorption_moledule"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.adsorption_moledule()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.search_surfaceatoms"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.search_surfaceatoms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.model_expansion"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.model_expansion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Slab_Processor.get_surfaceatoms"><code class="docutils literal notranslate"><span class="pre">Slab_Processor.get_surfaceatoms()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.__init__"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.reload_config"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.reload_config()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.model_addition_random"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.model_addition_random()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.add_user_structure"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.add_user_structure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.add_further_model"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.add_further_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.add_user_structure_origin"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.add_user_structure_origin()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.unconverged_calculate"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.unconverged_calculate()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.update_formation_energy"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.update_formation_energy()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.calculate"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.calculate()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.ECI_evaruate"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.ECI_evaruate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.ECI_evaluate"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.ECI_evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.ECI_evaluate_with_cf_optimization"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.ECI_evaluate_with_cf_optimization()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.additional_cf_optimization"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.additional_cf_optimization()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.get_ECI"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.get_ECI()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.get_basis_function"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.get_basis_function()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.make_qubit"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.make_qubit()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#allfunc.ClusterExpansionExcutor.make_QUBO"><code class="docutils literal notranslate"><span class="pre">ClusterExpansionExcutor.make_QUBO()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#allfunc.plot_fit"><code class="docutils literal notranslate"><span class="pre">plot_fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#allfunc.plot_ECIs"><code class="docutils literal notranslate"><span class="pre">plot_ECIs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#allfunc.plot_QUBO"><code class="docutils literal notranslate"><span class="pre">plot_QUBO()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#allfunc.Annealing_Machine_Converter"><code class="docutils literal notranslate"><span class="pre">Annealing_Machine_Converter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Annealing_Machine_Converter.__init__"><code class="docutils literal notranslate"><span class="pre">Annealing_Machine_Converter.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Annealing_Machine_Converter.set_default_penalty"><code class="docutils literal notranslate"><span class="pre">Annealing_Machine_Converter.set_default_penalty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Annealing_Machine_Converter.bit2energy"><code class="docutils literal notranslate"><span class="pre">Annealing_Machine_Converter.bit2energy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Annealing_Machine_Converter.endcode_to_annealing_machine"><code class="docutils literal notranslate"><span class="pre">Annealing_Machine_Converter.endcode_to_annealing_machine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Annealing_Machine_Converter.setting_constraints"><code class="docutils literal notranslate"><span class="pre">Annealing_Machine_Converter.setting_constraints()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Annealing_Machine_Converter.run"><code class="docutils literal notranslate"><span class="pre">Annealing_Machine_Converter.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Annealing_Machine_Converter.decode_to_universal_style"><code class="docutils literal notranslate"><span class="pre">Annealing_Machine_Converter.decode_to_universal_style()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#allfunc.Fixstars_Amplify"><code class="docutils literal notranslate"><span class="pre">Fixstars_Amplify</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Fixstars_Amplify.__init__"><code class="docutils literal notranslate"><span class="pre">Fixstars_Amplify.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Fixstars_Amplify.encode_to_annealing_machine"><code class="docutils literal notranslate"><span class="pre">Fixstars_Amplify.encode_to_annealing_machine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Fixstars_Amplify.setting_constraints"><code class="docutils literal notranslate"><span class="pre">Fixstars_Amplify.setting_constraints()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Fixstars_Amplify.run"><code class="docutils literal notranslate"><span class="pre">Fixstars_Amplify.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allfunc.Fixstars_Amplify.decode_to_universal_style"><code class="docutils literal notranslate"><span class="pre">Fixstars_Amplify.decode_to_universal_style()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#allfunc.best_bits2model"><code class="docutils literal notranslate"><span class="pre">best_bits2model()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="visualize.html">visualize module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dashboard.html">dashboard module</a></li>
 </ul>
 </li>
 </ul>
@@ -165,36 +232,45 @@
            <div itemprop="articleBody">
              
   <section id="module-allfunc">
-<span id="allfunc-module"></span><h1>allfunc module<a class="headerlink" href="#module-allfunc" title="この見出しへのパーマリンク"></a></h1>
+<span id="allfunc-module"></span><h1>allfunc module<a class="headerlink" href="#module-allfunc" title="Link to this heading"></a></h1>
+<p>grouped_basisの作成は、複雑なのは自作してもらうかto be continued, 金属種ごとくらいなら実装する?金属間化合物や酸化物で重要になるが、今の間はしない。後ほど行う。
+サイトの違いはgrouped_basisで対応できる
+ひとまずCu-Coに速く映りたい　Cu111から　七種君にもやることを確認。急いで毎日やる
+logger infoとdebugを書いていく 最後のチェックがてら。読みにくいところは修正の余地ありなのでそのチェックにも</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="allfunc.check_type">
-<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">check_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#check_type"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.check_type" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">check_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#check_type"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.check_type" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="allfunc.Prepare_Config">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">Prepare_Config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Prepare_Config"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Prepare_Config" title="この定義へのパーマリンク"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">Prepare_Config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Prepare_Config"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Prepare_Config" title="Link to this definition"></a></dt>
 <dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.Prepare_Config.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Prepare_Config.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Prepare_Config.__init__" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Prepare_Config.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Prepare_Config.__init__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.Prepare_Config.read">
-<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Prepare_Config.read"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Prepare_Config.read" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Prepare_Config.read"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Prepare_Config.read" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Prepare_Config.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Prepare_Config.save"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Prepare_Config.save" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.Prepare_Config.write">
-<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Prepare_Config.write"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Prepare_Config.write" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Prepare_Config.write"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Prepare_Config.write" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="allfunc.storage_path_initialize">
-<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">storage_path_initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#storage_path_initialize"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.storage_path_initialize" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">storage_path_initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#storage_path_initialize"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.storage_path_initialize" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
 <dt>input:</dt><dd><p>config: Prepare_Configクラスのもの。</p>
 </dd>
@@ -205,7 +281,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="allfunc.output_symmetry">
-<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">output_symmetry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#output_symmetry"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.output_symmetry" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">output_symmetry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#output_symmetry"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.output_symmetry" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
 <dt>input:</dt><dd><p>config: Prepare_Configクラスのもの。
 storage_path: configで自動設定されるが、別用途で使いたいときのため
@@ -221,7 +297,7 @@ translations: 並進対称操作</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="allfunc.convert_nanosheet_into_slab">
-<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">convert_nanosheet_into_slab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#convert_nanosheet_into_slab"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.convert_nanosheet_into_slab" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">convert_nanosheet_into_slab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#convert_nanosheet_into_slab"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.convert_nanosheet_into_slab" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
 <dt>input:</dt><dd><p>config: Prepare_Configクラスのもの。
 host: configで自動設定されるが、別用途で使いたいときのため。設定の時はase.Atoms class</p>
@@ -235,7 +311,7 @@ host: configで自動設定されるが、別用途で使いたいときのた�
 
 <dl class="py function">
 <dt class="sig sig-object py" id="allfunc.symmetry_equivalent_arrange">
-<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">symmetry_equivalent_arrange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#symmetry_equivalent_arrange"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.symmetry_equivalent_arrange" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">symmetry_equivalent_arrange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#symmetry_equivalent_arrange"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.symmetry_equivalent_arrange" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
 <dt>input:</dt><dd><p>host: 対称性を明らかにしたい構造。
 symmetry: spglib.get_symmetry_datasetの結果か、dict:{&quot;rotations&quot;: output_symmetry(config)[0],&quot;translations&quot;: output_symmetry(config)[1]}でOK</p>
@@ -249,7 +325,7 @@ symmetry: spglib.get_symmetry_datasetの結果か、dict:{&quot;rotations&quot;:
 
 <dl class="py function">
 <dt class="sig sig-object py" id="allfunc.visualize_symmetry_operation">
-<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">visualize_symmetry_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#visualize_symmetry_operation"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.visualize_symmetry_operation" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">visualize_symmetry_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#visualize_symmetry_operation"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.visualize_symmetry_operation" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
 <dt>input:</dt><dd><p>config: Prepare_Configクラスのもの。</p>
 </dd>
@@ -262,93 +338,99 @@ symmetry: spglib.get_symmetry_datasetの結果か、dict:{&quot;rotations&quot;:
 
 <dl class="py function">
 <dt class="sig sig-object py" id="allfunc.bulk2slab">
-<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">bulk2slab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conventional_cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">miller</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vacuum_thickness</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#bulk2slab"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.bulk2slab" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">bulk2slab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conventional_cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">miller</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vacuum_thickness</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#bulk2slab"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.bulk2slab" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="allfunc.adjust_concentration_each_layer">
-<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">adjust_concentration_each_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis_elements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grouped_basis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ranges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#adjust_concentration_each_layer"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.adjust_concentration_each_layer" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">adjust_concentration_each_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis_elements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grouped_basis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ranges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#adjust_concentration_each_layer"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.adjust_concentration_each_layer" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="allfunc.SurfaceAtomsManager">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">SurfaceAtomsManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#SurfaceAtomsManager"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.SurfaceAtomsManager" title="この定義へのパーマリンク"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">SurfaceAtomsManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#SurfaceAtomsManager"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.SurfaceAtomsManager" title="Link to this definition"></a></dt>
 <dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">AtomsManager</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.SurfaceAtomsManager.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#SurfaceAtomsManager.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.SurfaceAtomsManager.__init__" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#SurfaceAtomsManager.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.SurfaceAtomsManager.__init__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.SurfaceAtomsManager.index_by_basis">
-<span class="sig-name descname"><span class="pre">index_by_basis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grouped_basis</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#SurfaceAtomsManager.index_by_basis"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.SurfaceAtomsManager.index_by_basis" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">index_by_basis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grouped_basis</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#SurfaceAtomsManager.index_by_basis"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.SurfaceAtomsManager.index_by_basis" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.SurfaceAtomsManager.basisindex_by_tag">
-<span class="sig-name descname"><span class="pre">basisindex_by_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag2grouped_basis</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#SurfaceAtomsManager.basisindex_by_tag"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.SurfaceAtomsManager.basisindex_by_tag" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">basisindex_by_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag2grouped_basis</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#SurfaceAtomsManager.basisindex_by_tag"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.SurfaceAtomsManager.basisindex_by_tag" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="allfunc.ClusterExpansionSettings_nowarning">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">ClusterExpansionSettings_nowarning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concentration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">27</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'clease.db'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cluster_dia</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5.0,</span> <span class="pre">5.0,</span> <span class="pre">5.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_background_atoms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis_func_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'polynomial'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionSettings_nowarning"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionSettings_nowarning" title="この定義へのパーマリンク"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">ClusterExpansionSettings_nowarning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concentration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">27</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'clease.db'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cluster_dia</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5.0,</span> <span class="pre">5.0,</span> <span class="pre">5.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_background_atoms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis_func_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'polynomial'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionSettings_nowarning"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionSettings_nowarning" title="Link to this definition"></a></dt>
 <dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">ClusterExpansionSettings</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.ClusterExpansionSettings_nowarning.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concentration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">27</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'clease.db'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cluster_dia</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5.0,</span> <span class="pre">5.0,</span> <span class="pre">5.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_background_atoms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis_func_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'polynomial'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionSettings_nowarning.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionSettings_nowarning.__init__" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concentration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">27</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'clease.db'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cluster_dia</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5.0,</span> <span class="pre">5.0,</span> <span class="pre">5.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_background_atoms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis_func_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'polynomial'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionSettings_nowarning.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionSettings_nowarning.__init__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.ClusterExpansionSettings_nowarning.tag2grouped_basis">
-<span class="sig-name descname"><span class="pre">tag2grouped_basis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prim_cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grouped_basis</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionSettings_nowarning.tag2grouped_basis"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionSettings_nowarning.tag2grouped_basis" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">tag2grouped_basis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prim_cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grouped_basis</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionSettings_nowarning.tag2grouped_basis"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionSettings_nowarning.tag2grouped_basis" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="allfunc.ClusterExpansionSettings_nowarning.index_by_basis">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">index_by_basis</span></span><a class="headerlink" href="#allfunc.ClusterExpansionSettings_nowarning.index_by_basis" title="この定義へのパーマリンク"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">index_by_basis</span></span><a class="headerlink" href="#allfunc.ClusterExpansionSettings_nowarning.index_by_basis" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="allfunc.ClusterExpansionSettings_nowarning.all_cf_names">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">all_cf_names</span></span><a class="headerlink" href="#allfunc.ClusterExpansionSettings_nowarning.all_cf_names" title="この定義へのパーマリンク"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">all_cf_names</span></span><a class="headerlink" href="#allfunc.ClusterExpansionSettings_nowarning.all_cf_names" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="allfunc.ClusterExpansionSettings_nowarning.cluster_mng">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cluster_mng</span></span><a class="headerlink" href="#allfunc.ClusterExpansionSettings_nowarning.cluster_mng" title="この定義へのパーマリンク"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cluster_mng</span></span><a class="headerlink" href="#allfunc.ClusterExpansionSettings_nowarning.cluster_mng" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.ClusterExpansionSettings_nowarning.create_cluster_list_and_trans_matrix">
+<span class="sig-name descname"><span class="pre">create_cluster_list_and_trans_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionSettings_nowarning.create_cluster_list_and_trans_matrix"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionSettings_nowarning.create_cluster_list_and_trans_matrix" title="Link to this definition"></a></dt>
+<dd><p>Prepares the internal cache objects by calculating cluster related properties</p>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="allfunc.cluster2index">
-<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">cluster2index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clusters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_structure</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#cluster2index"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.cluster2index" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">cluster2index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clusters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_structure</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#cluster2index"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.cluster2index" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="allfunc.cf_calculator_each_sublattice">
-<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">cf_calculator_each_sublattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cf_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#cf_calculator_each_sublattice"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.cf_calculator_each_sublattice" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">cf_calculator_each_sublattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cf_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#cf_calculator_each_sublattice"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.cf_calculator_each_sublattice" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="allfunc.validate_calculatedCF">
-<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">validate_calculatedCF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster_expansion_excutor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#validate_calculatedCF"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.validate_calculatedCF" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">validate_calculatedCF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster_expansion_excutor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#validate_calculatedCF"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.validate_calculatedCF" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="allfunc.ClusterManager_each_sublattice">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">ClusterManager_each_sublattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prim_cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_syms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterManager_each_sublattice"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterManager_each_sublattice" title="この定義へのパーマリンク"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">ClusterManager_each_sublattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prim_cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_syms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterManager_each_sublattice"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterManager_each_sublattice" title="Link to this definition"></a></dt>
 <dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">ClusterManager</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.ClusterManager_each_sublattice.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prim_cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_syms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterManager_each_sublattice.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterManager_each_sublattice.__init__" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prim_cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_syms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterManager_each_sublattice.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterManager_each_sublattice.__init__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.ClusterManager_each_sublattice.build">
-<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_cluster_dia</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterManager_each_sublattice.build"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterManager_each_sublattice.build" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_cluster_dia</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterManager_each_sublattice.build"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterManager_each_sublattice.build" title="Link to this definition"></a></dt>
 <dd><p>Construct all clusters.</p>
 <p>Parameters:</p>
 <dl class="simple">
@@ -358,11 +440,23 @@ for each cluster body. The diameters start at 2-body clusters</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.ClusterManager_each_sublattice.cluster_list_for_template">
+<span class="sig-name descname"><span class="pre">cluster_list_for_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">template</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterManager_each_sublattice.cluster_list_for_template"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterManager_each_sublattice.cluster_list_for_template" title="Link to this definition"></a></dt>
+<dd><p>Specialise the cluster information to a template. Returns a new
+ClusterList instance.</p>
+<p>Parameter:</p>
+<dl class="simple">
+<dt>template: ase.Atoms</dt><dd><p>Atoms object representing the simulation cell</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="allfunc.CESlab_nowarning">
-<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">CESlab_nowarning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conventional_cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">miller</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis_elements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ranges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grouped_basis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vacuum_thickness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CESlab_nowarning"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CESlab_nowarning" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">CESlab_nowarning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conventional_cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">miller</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis_elements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ranges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grouped_basis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vacuum_thickness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CESlab_nowarning"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CESlab_nowarning" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">パラメータ<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -382,64 +476,64 @@ layers. The two first are repetitions of the in-plane unit vectors</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="allfunc.Calculator">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">Calculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Calculator"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Calculator" title="この定義へのパーマリンク"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">Calculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Calculator"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Calculator" title="Link to this definition"></a></dt>
 <dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.Calculator.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Calculator.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Calculator.__init__" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Calculator.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Calculator.__init__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.Calculator.optimization">
-<span class="sig-name descname"><span class="pre">optimization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Calculator.optimization"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Calculator.optimization" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">optimization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Calculator.optimization"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Calculator.optimization" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.Calculator.single_point">
-<span class="sig-name descname"><span class="pre">single_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Calculator.single_point"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Calculator.single_point" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">single_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Calculator.single_point"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Calculator.single_point" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.Calculator.csv_write">
-<span class="sig-name descname"><span class="pre">csv_write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Calculator.csv_write"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Calculator.csv_write" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">csv_write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Calculator.csv_write"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Calculator.csv_write" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.Calculator.csv_read">
-<span class="sig-name descname"><span class="pre">csv_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Calculator.csv_read"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Calculator.csv_read" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">csv_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Calculator.csv_read"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Calculator.csv_read" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.Calculator.csv_write_formationE">
-<span class="sig-name descname"><span class="pre">csv_write_formationE</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Calculator.csv_write_formationE"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Calculator.csv_write_formationE" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">csv_write_formationE</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Calculator.csv_write_formationE"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Calculator.csv_write_formationE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="allfunc.CSV_Reader">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">CSV_Reader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CSV_Reader"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CSV_Reader" title="この定義へのパーマリンク"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">CSV_Reader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CSV_Reader"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CSV_Reader" title="Link to this definition"></a></dt>
 <dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">Calculator</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="allfunc.CSV_Reader.implemented_properties">
-<span class="sig-name descname"><span class="pre">implemented_properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['energy']</span></em><a class="headerlink" href="#allfunc.CSV_Reader.implemented_properties" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">implemented_properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List[str]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['energy']</span></em><a class="headerlink" href="#allfunc.CSV_Reader.implemented_properties" title="Link to this definition"></a></dt>
 <dd><p>Properties calculator can handle (energy, forces, ...)</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="allfunc.CSV_Reader.nolabel">
-<span class="sig-name descname"><span class="pre">nolabel</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#allfunc.CSV_Reader.nolabel" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">nolabel</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#allfunc.CSV_Reader.nolabel" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="allfunc.CSV_Reader.default_parameters">
-<span class="sig-name descname"><span class="pre">default_parameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">,</span> <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'asap_cutoff':</span> <span class="pre">False}</span></em><a class="headerlink" href="#allfunc.CSV_Reader.default_parameters" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">default_parameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict[str,</span> <span class="pre">Any]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'asap_cutoff':</span> <span class="pre">False}</span></em><a class="headerlink" href="#allfunc.CSV_Reader.default_parameters" title="Link to this definition"></a></dt>
 <dd><p>Default parameters</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.CSV_Reader.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CSV_Reader.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CSV_Reader.__init__" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CSV_Reader.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CSV_Reader.__init__" title="Link to this definition"></a></dt>
 <dd><p>Basic calculator implementation.</p>
 <dl class="simple">
 <dt>restart: str</dt><dd><p>Prefix for restart file.  May contain a directory. Default
@@ -467,7 +561,7 @@ unit-cell updated from file.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.CSV_Reader.calculate">
-<span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['energy']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_changes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['positions',</span> <span class="pre">'numbers',</span> <span class="pre">'cell',</span> <span class="pre">'pbc',</span> <span class="pre">'initial_charges',</span> <span class="pre">'initial_magmoms']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CSV_Reader.calculate"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CSV_Reader.calculate" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['energy']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_changes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['positions',</span> <span class="pre">'numbers',</span> <span class="pre">'cell',</span> <span class="pre">'pbc',</span> <span class="pre">'initial_charges',</span> <span class="pre">'initial_magmoms']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CSV_Reader.calculate"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CSV_Reader.calculate" title="Link to this definition"></a></dt>
 <dd><p>Do the calculation.</p>
 <dl class="simple">
 <dt>properties: list of str</dt><dd><p>List of what needs to be calculated.  Can be any combination
@@ -499,39 +593,91 @@ directories.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.CSV_Reader.get_potential_energy">
-<span class="sig-name descname"><span class="pre">get_potential_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CSV_Reader.get_potential_energy"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CSV_Reader.get_potential_energy" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">get_potential_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CSV_Reader.get_potential_energy"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CSV_Reader.get_potential_energy" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.CSV_Reader.set_model_id">
-<span class="sig-name descname"><span class="pre">set_model_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CSV_Reader.set_model_id"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CSV_Reader.set_model_id" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">set_model_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CSV_Reader.set_model_id"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CSV_Reader.set_model_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="allfunc.NewStructures_each_sublattice">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">NewStructures_each_sublattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct_per_gen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#NewStructures_each_sublattice"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.NewStructures_each_sublattice" title="この定義へのパーマリンク"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">NewStructures_each_sublattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct_per_gen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#NewStructures_each_sublattice"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.NewStructures_each_sublattice" title="Link to this definition"></a></dt>
 <dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">NewStructures</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.NewStructures_each_sublattice.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct_per_gen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#NewStructures_each_sublattice.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.NewStructures_each_sublattice.__init__" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct_per_gen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#NewStructures_each_sublattice.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.NewStructures_each_sublattice.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.NewStructures_each_sublattice.generate_probe_structure">
+<span class="sig-name descname"><span class="pre">generate_probe_structure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_steps_per_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approx_mean_var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_samples_var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#NewStructures_each_sublattice.generate_probe_structure"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.NewStructures_each_sublattice.generate_probe_structure" title="Link to this definition"></a></dt>
+<dd><p>Generate a probe structure according to PRB 80, 165122 (2009).</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atoms</strong> -- ASE Atoms object with the desired cell size and shape of
+the new structure.</p></li>
+<li><p><strong>init_temp</strong> -- initial temperature (does not represent <em>physical</em>
+temperature)</p></li>
+<li><p><strong>final_temp</strong> -- final temperature (does not represent <em>physical</em>
+temperature)</p></li>
+<li><p><strong>num_temp</strong> -- number of temperatures to be used in simulated
+annealing</p></li>
+<li><p><strong>num_steps_per_temp</strong> -- number of steps in simulated annealing</p></li>
+<li><p><strong>approx_mean_var</strong> -- <p>whether or not to use a spherical and
+isotropical distribution approximation scheme for determining the
+mean variance.</p>
+<dl class="simple">
+<dt>-<cite>True</cite>: Assume a spherical and isotropical distribution of</dt><dd><p>structures in the configurational space. Corresponds to eq.4
+in PRB 80, 165122 (2009)</p>
+</dd>
+<dt>-<cite>False</cite>: Use sigma and mu of eq.3 in PRB 80, 165122 (2009)</dt><dd><p>to characterize the distribution of structures in population.
+Requires pre-sampling of random structures before generating
+probe structures. sigma and mu are generated and stored in
+'probe_structure-sigma_mu.npz' file.</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>num_samples_var</strong> -- number of samples to be used in determining
+signam and mu. Only used when <cite>approx_mean_var</cite> is <cite>True</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Note: init_temp and final_temp are automatically generated if either</dt><dd><p>one of the two is not specified.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="allfunc.ProbeStructure_each_sublattice">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">ProbeStructure_each_sublattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_steps_per_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approx_mean_var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ProbeStructure_each_sublattice"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ProbeStructure_each_sublattice" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">ProbeStructure</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.ProbeStructure_each_sublattice.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_steps_per_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approx_mean_var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ProbeStructure_each_sublattice.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ProbeStructure_each_sublattice.__init__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="allfunc.CorrFunction_each_sublattice">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">CorrFunction_each_sublattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CorrFunction_each_sublattice"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CorrFunction_each_sublattice" title="この定義へのパーマリンク"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">CorrFunction_each_sublattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CorrFunction_each_sublattice"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CorrFunction_each_sublattice" title="Link to this definition"></a></dt>
 <dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">CorrFunction</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.CorrFunction_each_sublattice.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CorrFunction_each_sublattice.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CorrFunction_each_sublattice.__init__" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CorrFunction_each_sublattice.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CorrFunction_each_sublattice.__init__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.CorrFunction_each_sublattice.get_cf_by_names">
-<span class="sig-name descname"><span class="pre">get_cf_by_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cf_names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CorrFunction_each_sublattice.get_cf_by_names"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CorrFunction_each_sublattice.get_cf_by_names" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">get_cf_by_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cf_names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#CorrFunction_each_sublattice.get_cf_by_names"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.CorrFunction_each_sublattice.get_cf_by_names" title="Link to this definition"></a></dt>
 <dd><p>Calculate correlation functions of the specified clusters and return
 them in a dictionary format.</p>
 <dl class="field-list simple">
@@ -550,16 +696,147 @@ the structure provided in atoms</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="allfunc.check_position_overlap">
-<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">check_position_overlap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#check_position_overlap"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.check_position_overlap" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">check_position_overlap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#check_position_overlap"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.check_position_overlap" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="allfunc.check_max_cluster_size">
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">check_max_cluster_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prim_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cluster_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#check_max_cluster_size"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.check_max_cluster_size" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">Slab_Processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cif_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vacuum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leyer_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cif_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vacuum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leyer_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.update_radiusdict">
+<span class="sig-name descname"><span class="pre">update_radiusdict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.update_radiusdict"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.update_radiusdict" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.selective_dynamics">
+<span class="sig-name descname"><span class="pre">selective_dynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">POSCAR_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adsorbate_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix_relax_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.selective_dynamics"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.selective_dynamics" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.set_cif_list">
+<span class="sig-name descname"><span class="pre">set_cif_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cif_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.set_cif_list"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.set_cif_list" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.set_vaccum_thickness">
+<span class="sig-name descname"><span class="pre">set_vaccum_thickness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vacuum_thickness</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.set_vaccum_thickness"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.set_vaccum_thickness" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.set_leyer_number">
+<span class="sig-name descname"><span class="pre">set_leyer_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">leyer_number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.set_leyer_number"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.set_leyer_number" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.set_model_type">
+<span class="sig-name descname"><span class="pre">set_model_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.set_model_type"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.set_model_type" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.load"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.load" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.save_cif">
+<span class="sig-name descname"><span class="pre">save_cif</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">profix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.save_cif"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.save_cif" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.save4visualize">
+<span class="sig-name descname"><span class="pre">save4visualize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">profix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.save4visualize"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.save4visualize" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.save_vasp">
+<span class="sig-name descname"><span class="pre">save_vasp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">profix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.save_vasp"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.save_vasp" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.process_iter">
+<span class="sig-name descname"><span class="pre">process_iter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.process_iter"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.process_iter" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.sort">
+<span class="sig-name descname"><span class="pre">sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.sort"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.sort" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.remove_vacuum">
+<span class="sig-name descname"><span class="pre">remove_vacuum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.remove_vacuum"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.remove_vacuum" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.add_vacuum">
+<span class="sig-name descname"><span class="pre">add_vacuum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.add_vacuum"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.add_vacuum" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.undo_z_wrap">
+<span class="sig-name descname"><span class="pre">undo_z_wrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.undo_z_wrap"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.undo_z_wrap" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.adsorption_Hydrogen">
+<span class="sig-name descname"><span class="pre">adsorption_Hydrogen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.adsorption_Hydrogen"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.adsorption_Hydrogen" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.adsorption_Oxygen">
+<span class="sig-name descname"><span class="pre">adsorption_Oxygen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.adsorption_Oxygen"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.adsorption_Oxygen" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.adsorption_Carbon">
+<span class="sig-name descname"><span class="pre">adsorption_Carbon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.adsorption_Carbon"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.adsorption_Carbon" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.adsorption_CO">
+<span class="sig-name descname"><span class="pre">adsorption_CO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.adsorption_CO"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.adsorption_CO" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.adsorption_moledule">
+<span class="sig-name descname"><span class="pre">adsorption_moledule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adsorbate_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.adsorption_moledule"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.adsorption_moledule" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.search_surfaceatoms">
+<span class="sig-name descname"><span class="pre">search_surfaceatoms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.search_surfaceatoms"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.search_surfaceatoms" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.model_expansion">
+<span class="sig-name descname"><span class="pre">model_expansion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.model_expansion"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.model_expansion" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Slab_Processor.get_surfaceatoms">
+<span class="sig-name descname"><span class="pre">get_surfaceatoms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connectivity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Slab_Processor.get_surfaceatoms"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Slab_Processor.get_surfaceatoms" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">ClusterExpansionExcutor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor" title="この定義へのパーマリンク"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">ClusterExpansionExcutor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm_max_cluster_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor" title="Link to this definition"></a></dt>
 <dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.__init__" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm_max_cluster_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
 <dt>input:</dt><dd><p>config: Prepare_Configクラスのもの。
 seed: 構造生成をそろえて比較したいとき用</p>
@@ -572,51 +849,173 @@ seed: 構造生成をそろえて比較したいとき用</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.reload_config">
+<span class="sig-name descname"><span class="pre">reload_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.reload_config"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.reload_config" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.model_addition_random">
-<span class="sig-name descname"><span class="pre">model_addition_random</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generation_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.model_addition_random"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.model_addition_random" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">model_addition_random</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generation_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.model_addition_random"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.model_addition_random" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.add_user_structure">
-<span class="sig-name descname"><span class="pre">add_user_structure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.add_user_structure"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.add_user_structure" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">add_user_structure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.add_user_structure"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.add_user_structure" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.add_further_model">
+<span class="sig-name descname"><span class="pre">add_further_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">struct_per_gen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_steps_per_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_composition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ECI_file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ECI.json'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.add_further_model"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.add_further_model" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.add_user_structure_origin">
+<span class="sig-name descname"><span class="pre">add_user_structure_origin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.add_user_structure_origin"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.add_user_structure_origin" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.unconverged_calculate">
-<span class="sig-name descname"><span class="pre">unconverged_calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraint_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.unconverged_calculate"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.unconverged_calculate" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">unconverged_calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraint_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.unconverged_calculate"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.unconverged_calculate" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.update_formation_energy">
-<span class="sig-name descname"><span class="pre">update_formation_energy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.update_formation_energy"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.update_formation_energy" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">update_formation_energy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.update_formation_energy"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.update_formation_energy" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.calculate">
-<span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.calculate"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.calculate" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.calculate"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.calculate" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.ECI_evaruate">
-<span class="sig-name descname"><span class="pre">ECI_evaruate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ECI_file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ECI.json'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CV_filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.ECI_evaruate"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.ECI_evaruate" title="この定義へのパーマリンク"></a></dt>
+<dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.ECI_evaluate">
+<span class="sig-name descname"><span class="pre">ECI_evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ECI_file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ECI.json'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CV_filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.ECI_evaluate"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.ECI_evaluate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.ECI_evaluate_with_cf_optimization">
+<span class="sig-name descname"><span class="pre">ECI_evaluate_with_cf_optimization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_cf_num</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ECI_file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ECI.json'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CV_filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.ECI_evaluate_with_cf_optimization"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.ECI_evaluate_with_cf_optimization" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.additional_cf_optimization">
+<span class="sig-name descname"><span class="pre">additional_cf_optimization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ECI_file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CV_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.additional_cf_optimization"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.additional_cf_optimization" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.get_ECI">
+<span class="sig-name descname"><span class="pre">get_ECI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ECI_file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ECI.json'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.get_ECI"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.get_ECI" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.get_basis_function">
-<span class="sig-name descname"><span class="pre">get_basis_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unique_element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.get_basis_function"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.get_basis_function" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">get_basis_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unique_element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.get_basis_function"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.get_basis_function" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.make_qubit">
-<span class="sig-name descname"><span class="pre">make_qubit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.make_qubit"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.make_qubit" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">make_qubit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.make_qubit"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.make_qubit" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="allfunc.ClusterExpansionExcutor.make_QUBO">
-<span class="sig-name descname"><span class="pre">make_QUBO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qubit_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.make_QUBO"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.make_QUBO" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-name descname"><span class="pre">make_QUBO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qubit_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ECI_file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#ClusterExpansionExcutor.make_QUBO"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.ClusterExpansionExcutor.make_QUBO" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="allfunc.plot_fit">
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">plot_fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaluator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#plot_fit"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.plot_fit" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="allfunc.plot_ECIs">
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">plot_ECIs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaluator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#plot_ECIs"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.plot_ECIs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="allfunc.plot_QUBO">
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">plot_QUBO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qubit_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">QUBO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csv_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#plot_QUBO"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.plot_QUBO" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="allfunc.Annealing_Machine_Converter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">Annealing_Machine_Converter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">QUBO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qubit_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Annealing_Machine_Converter"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Annealing_Machine_Converter" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Annealing_Machine_Converter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">QUBO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qubit_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Annealing_Machine_Converter.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Annealing_Machine_Converter.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Annealing_Machine_Converter.set_default_penalty">
+<span class="sig-name descname"><span class="pre">set_default_penalty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reference</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cost_max'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Annealing_Machine_Converter.set_default_penalty"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Annealing_Machine_Converter.set_default_penalty" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Annealing_Machine_Converter.bit2energy">
+<span class="sig-name descname"><span class="pre">bit2energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">QUBO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bits</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Annealing_Machine_Converter.bit2energy"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Annealing_Machine_Converter.bit2energy" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Annealing_Machine_Converter.endcode_to_annealing_machine">
+<span class="sig-name descname"><span class="pre">endcode_to_annealing_machine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Annealing_Machine_Converter.endcode_to_annealing_machine"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Annealing_Machine_Converter.endcode_to_annealing_machine" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Annealing_Machine_Converter.setting_constraints">
+<span class="sig-name descname"><span class="pre">setting_constraints</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Annealing_Machine_Converter.setting_constraints"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Annealing_Machine_Converter.setting_constraints" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Annealing_Machine_Converter.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">substitute_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">penalty_multipliers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Annealing_Machine_Converter.run"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Annealing_Machine_Converter.run" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Annealing_Machine_Converter.decode_to_universal_style">
+<span class="sig-name descname"><span class="pre">decode_to_universal_style</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Annealing_Machine_Converter.decode_to_universal_style"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Annealing_Machine_Converter.decode_to_universal_style" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="allfunc.Fixstars_Amplify">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">Fixstars_Amplify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">QUBO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qubit_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Fixstars_Amplify"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Fixstars_Amplify" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="#allfunc.Annealing_Machine_Converter" title="allfunc.Annealing_Machine_Converter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annealing_Machine_Converter</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Fixstars_Amplify.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">QUBO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qubit_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Fixstars_Amplify.__init__"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Fixstars_Amplify.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Fixstars_Amplify.encode_to_annealing_machine">
+<span class="sig-name descname"><span class="pre">encode_to_annealing_machine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Fixstars_Amplify.encode_to_annealing_machine"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Fixstars_Amplify.encode_to_annealing_machine" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Fixstars_Amplify.setting_constraints">
+<span class="sig-name descname"><span class="pre">setting_constraints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">substitute_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Fixstars_Amplify.setting_constraints"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Fixstars_Amplify.setting_constraints" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Fixstars_Amplify.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">penalty_multipliers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">substitute_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Fixstars_Amplify.run"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Fixstars_Amplify.run" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="allfunc.Fixstars_Amplify.decode_to_universal_style">
+<span class="sig-name descname"><span class="pre">decode_to_universal_style</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#Fixstars_Amplify.decode_to_universal_style"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.Fixstars_Amplify.decode_to_universal_style" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="allfunc.best_bits2model">
+<span class="sig-prename descclassname"><span class="pre">allfunc.</span></span><span class="sig-name descname"><span class="pre">best_bits2model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ClusterExpansionExcutor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/allfunc.html#best_bits2model"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#allfunc.best_bits2model" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </section>
 
@@ -625,6 +1024,7 @@ seed: 構造生成をそろえて比較したいとき用</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="main.html" class="btn btn-neutral float-left" title="API reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="visualize.html" class="btn btn-neutral float-right" title="visualize module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

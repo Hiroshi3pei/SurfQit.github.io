@@ -1,21 +1,21 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3. What is Quantum Annealing? &mdash; SurfQit 1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=404a92a0"></script>
-      <script src="../_static/doctools.js?v=888ff710"></script>
-      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/js/language_switcher.js?v=1af0da2e"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -94,24 +94,24 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">3. </span>What is Quantum Annealing?<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3. </span>What is Quantum Annealing?<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <p>Quantum annealing is a computational technique designed to solve combinatorial optimization problems quickly and accurately. This page provides a detailed explanation of quantum annealing.</p>
 <section id="id2">
-<h2><span class="section-number">3.1. </span>What is a Combinatorial Optimization Problem?<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.1. </span>What is a Combinatorial Optimization Problem?<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>A combinatorial optimization problem is one where the goal is to find the best option among a vast number of possibilities. Such problems appear in various scenarios, from finding the shortest route to a destination to optimizing the arrangement of cargo in a truck to maximize space utilization.</p>
-<img alt="../_images/image7.png" src="../_images/image7.png" />
+<img alt="../_images/image71.png" src="../_images/image71.png" />
 <p>By solving these combinatorial optimization problems, we can find combinations that lead to the shortest route to a destination or options that reduce fuel/electricity consumption and labor costs.</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">3.2. </span>Limitations of Classical Computers<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2. </span>Limitations of Classical Computers<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p>Analytical solving combinatorial optimization problems is challenging. Classical computers must either check all possible combinations or use approximation methods like neighborhood search to find better solutions.</p>
-<img alt="../_images/image8.png" src="../_images/image8.png" />
+<img alt="../_images/image81.png" src="../_images/image81.png" />
 <p>However in real-world scenarios, such as finding the shortest route to a destination, the number of possible turns is much larger than depicted in simplified diagrams. Additionally, practical problems involve not only minimizing the distance between the start and destination but also considering factors like the order of multiple destinations and avoiding congestion.</p>
 <p>As the scale of the data increases, the number of combinations to consider grows exponentially, requiring vast processing time and energy. With the improvement of semiconductor technology approaching its limits, solving practical combinatorial optimization problems with classical computers is becoming increasingly difficult. Moreover, approximation methods often get stuck in local minima, making it necessary to escape these local solutions to find the optimal answer.</p>
-<img alt="../_images/image9.png" src="../_images/image9.png" />
+<img alt="../_images/image91.png" src="../_images/image91.png" />
 </section>
 <section id="id4">
-<h2><span class="section-number">3.3. </span>What is Annealing?<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.3. </span>What is Annealing?<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <p>To address these challenges, “annealing” has been proposed as a method to solve combinatorial optimization problems quickly and accurately. Annealing originally refers to the process of heating a metal to a high temperature and then gradually cooling it to improve its crystallinity and workability.</p>
 <p>This process allows metal atoms to move randomly due to heat, eventually forming an arrangement that minimizes internal energy as the metal cools.</p>
 <img alt="../_images/image10.png" src="../_images/image10.png" />
@@ -119,7 +119,7 @@
 <p>In practice, the “metal arrangement” and “its internal energy” in metal annealing are analogized to the “combinations” and “quality of combinations” in combinatorial optimization problems. By applying the annealing algorithm, we can find the best combinations that minimize or maximize the target function.</p>
 </section>
 <section id="id5">
-<h2><span class="section-number">3.4. </span>Features and Advantages of Quantum Annealing<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.4. </span>Features and Advantages of Quantum Annealing<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
 <p>In traditional annealing, the “temperature” is varied to find the best solution. In quantum annealing, “quantum effects” are controlled to perform optimization using quantum properties such as quantum superposition and quantum tunneling.</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -137,7 +137,7 @@
 <p>Thus, by enhancing and gradually decreasing quantum effects, quantum annealing can find the best options for combinatorial optimization problems quickly and accurately.</p>
 </section>
 <section id="id6">
-<h2><span class="section-number">3.5. </span>Applications and Challenges of Quantum Annealing<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.5. </span>Applications and Challenges of Quantum Annealing<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
 <p>Quantum annealing is being applied to practical and experimental cases in fields such as finance, transportation, materials science, and drug discovery.</p>
 <p>However, challenges remain, such as the difficulty of formulating the target functions for optimization and insufficient qubits. Future developments are expected to improve function formulation and increase the number of qubits.</p>
 </section>

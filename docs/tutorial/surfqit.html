@@ -1,22 +1,22 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="ja">
+<html class="writer-html5" lang="ja" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4. 量子アニーリングによる表面モデリング &mdash; SurfQit 1 ドキュメント</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d950290e"></script>
-      <script src="../_static/doctools.js?v=888ff710"></script>
-      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-      <script src="../_static/translations.js?v=4dbe4bdc"></script>
+      <script src="../_static/documentation_options.js?v=b0bc784d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=4755f45a"></script>
       <script src="../_static/js/language_switcher.js?v=1af0da2e"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
@@ -94,13 +94,13 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">4. </span>量子アニーリングによる表面モデリング<a class="headerlink" href="#id1" title="この見出しへのパーマリンク"></a></h1>
+<h1><span class="section-number">4. </span>量子アニーリングによる表面モデリング<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <div class="line-block">
 <div class="line">SurfQitは量子アニーリングを駆使することで表面構造を高速かつ正確にモデリングするソフトウェアです。</div>
 <div class="line">このページでは、実際に表面モデリングを量子アニーリングで行うための具体的な方法を説明します。</div>
 </div>
 <section id="id2">
-<h2><span class="section-number">4.1. </span>表面モデリングにおける量子アニーリングの適用<a class="headerlink" href="#id2" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">4.1. </span>表面モデリングにおける量子アニーリングの適用<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>表面モデリングをアニーリングマシンで解くためには組合せ最適化問題に落とし込む必要があります。
 ここで、表面モデリングは各原子位置にどの元素が入るかの組合せ最適化問題と捉えることができるため、各原子位置における金属種を変数とすることでアニーリングマシンで解くことができる形になります。</p>
 <p>実際にアニーリングマシンで表面モデリングを行うためには、1)金属配置の組合せをバイナリ値(0 or 1)で表すことと、2)各金属配置の組合せに対する表面モデルの安定性を関数化すること、の2つが必要になります。</p>
@@ -108,13 +108,13 @@
 <p>金属Aと金属Bの2種類からなる2元合金では、ある原子位置に金属Aが入れば0、金属Bが入れば1とすることで金属配置の組合せのバイナリ化ができます。
 金属Aと金属Bと金属Cの3種類からなる3元合金では、ある原子位置に金属Aが入れば[1,0,0]、金属Bが入れば[0,1,0]、金属Cが入れば[0,0,1]とすることで金属配置の組合せのバイナリ化ができます。
 そのため、多元合金では各原子位置に対して構成金属種の数分の変数を設定することで全ての金属位置の組合せを0と1で表現することができます。</p>
-<img alt="../_images/image12.png" src="../_images/image12.png" />
+<img alt="../_images/image121.png" src="../_images/image121.png" />
 <p><strong>2) 各金属配置の組合せに対する表面モデルの安定性の関数化</strong></p>
 <p>表面モデルの安定性は表面エネルギーで評価することができるため、各金属配置の組合せに対する表面エネルギーを関数にすることができればアニーリングマシンで解くことができるようになります。
 ここでは、クラスター展開法を利用することで表面エネルギーの関数化を行います。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">4.2. </span>クラスター展開法による定式化<a class="headerlink" href="#id3" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">4.2. </span>クラスター展開法による定式化<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p>クラスター展開法とは系のエネルギーを小さなクラスターのエネルギーの足し合わせで表現する方法です。
 今回は合金表面の表面エネルギーを数原子からなるクラスターの足し合わせで記述します。</p>
 <img alt="../_images/image13.png" src="../_images/image13.png" />
@@ -122,7 +122,7 @@
 このクラスター相互作用を求めるためにいくつかの合金表面モデルの表面エネルギーをDFT計算により算出し、pythonのCLEASEパッケージによりクラスター相互作用を回帰して算出することができます。</p>
 </section>
 <section id="id4">
-<h2><span class="section-number">4.3. </span>アニーリングの実行<a class="headerlink" href="#id4" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">4.3. </span>アニーリングの実行<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <p>クラスター展開法により求めたクラスター相互作用を用いることでアニーリングマシンで解くことができるQUBO式(二次形式の制約なし二値変数最適化式)にします。
 このQUBO式を読み込むことでアニーリングを実行することができます。
 アニーリングの実行では目的関数が最小となる組合せを探索するため、金属種と合金比率を制御する必要があり、それに向けて制約関数を設定します。
@@ -130,7 +130,7 @@
 <img alt="../_images/image14.png" src="../_images/image14.png" />
 </section>
 <section id="id5">
-<h2><span class="section-number">4.4. </span>結果の出力と理解<a class="headerlink" href="#id5" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">4.4. </span>結果の出力と理解<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
 <p>SurfQitではアニーリングの実行により得られた表面モデルに対して、X線回折パターン・動径分布関数・触媒性能評価用の吸着モデルを出力することができます。</p>
 </section>
 </section>
