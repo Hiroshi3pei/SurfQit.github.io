@@ -1,0 +1,18 @@
+name: myenv
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+    - numpy
+    - pandas
+    - ase==3.22.0
+    - nglview==3.0.8
+    - spglib
+    - cycthon
+    - clease
+    - tqdm
+    - amplify
+    - dash
+    - dash-bootstrap-components
